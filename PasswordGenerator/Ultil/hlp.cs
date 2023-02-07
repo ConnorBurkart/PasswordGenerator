@@ -20,38 +20,48 @@ namespace PasswordGenerator
             Application.Run(new home());
         }
 
+
+        //Overall Function to make password
         public static string generatePassword(int length)
         {
-
-            string final = "";
-            char[] alphLlower = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToLower().ToCharArray();
-            char[] alphLHigher = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
             Random obj = new Random();
-
+            string final = "";
 
             for (int i = 0; i < length;i++)
             {
-                int random = obj.Next(0, 51);
+                    final = final + ranLetter(obj);
+ 
+            }
+            return final;
 
-                if (random <= 25)
-                {
-                    final = final + alphLlower[random];
+        }
 
-                }
-                else
-                {
-                    random = random - 25;
-                    final = final + alphLHigher[random];
-                    
+        // This is to generate the random letter 
+        public static char ranLetter(Random obj)
+        {
+            char result = ' ';
 
-                }
+            char[] alphLlower = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToLower().ToCharArray();
+            char[] alphLHigher = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+
+            int random = obj.Next(0, 51);
+
+            if (random <= 25)
+            {
+                result = alphLlower[random];
+
+            }
+            else
+            {
+                random = random - 25;
+                result = alphLHigher[random];
             }
 
 
-
-            return final;
-
-
+            return result;
         }
+
+
+
     }
 }
