@@ -19,24 +19,11 @@ namespace PasswordGenerator
             InitializeComponent();
         }
 
-        public void generatePassword()
-        {
-        }
-
         private void resultButton_Click(object sender, EventArgs e)
         {
-            finalResult.Text = lengthBox.Text;
+            passwordLength = Convert.ToInt16(lengthBox.Text.ToString());
 
-        }
-
-        private void home_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lengthBox_TextChanged(object sender, EventArgs e)
-        {
-
+            finalResult.Text = hlp.generatePassword(passwordLength);
         }
     }
 }

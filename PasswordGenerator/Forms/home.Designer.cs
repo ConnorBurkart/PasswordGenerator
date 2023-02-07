@@ -69,7 +69,6 @@
             this.lengthBox.Name = "lengthBox";
             this.lengthBox.Size = new System.Drawing.Size(100, 22);
             this.lengthBox.TabIndex = 3;
-            this.lengthBox.TextChanged += new System.EventHandler(this.lengthBox_TextChanged);
             // 
             // resultButton
             // 
@@ -93,7 +92,6 @@
             this.Controls.Add(this.finalResult);
             this.Name = "home";
             this.Text = "Password Generator";
-            this.Load += new System.EventHandler(this.home_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
