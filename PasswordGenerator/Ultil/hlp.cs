@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,17 +28,18 @@ namespace PasswordGenerator
         {
             Random obj = new Random();
             string final = "";
+            int specMark = 0;
             
 
             // This is the ultimate case
-            if(letter == true && num == true)
+            if(letter == true && num == true && spec == true)
             {
                 for (int i = 0; i < length; i++)
                 {
                     final = final + randomVariable(obj);
 
                 }
-                return final;
+                return checkFinal(final,obj);
 
             }
             else if(num == true)
@@ -47,7 +49,7 @@ namespace PasswordGenerator
                     final = final + ranNum(obj);
 
                 }
-                return final;
+                return checkFinal(final, obj); ;
             }
             else if(letter == true)
             {
@@ -56,7 +58,7 @@ namespace PasswordGenerator
                     final = final + ranLetter(obj);
 
                 }
-                return final;
+                return checkFinal(final, obj); ;
 
             }
             else if(spec == true)
@@ -66,11 +68,11 @@ namespace PasswordGenerator
                     final = final + ranSpecial(obj);
 
                 }
-                return final;
+                return checkFinal(final, obj); ;
             }
 
 
-            return final;
+            return checkFinal(final, obj); ;
 
 
         }
@@ -150,7 +152,88 @@ namespace PasswordGenerator
             return final;
         }
 
+        // This is to make sure the final has at least two special characters
+
+        public static string checkFinal(string final,Random obj)
+        {
+            int specMark = 0;
+            int finalLength = final.Length;
+            int halfFinal = finalLength / 2;
+            char[] specArray = "!@#$%^&*_-+=/|?<>'".ToCharArray();
+            string newPassword = "";
 
 
-    }
-}
+            // Sees how many special characters there are
+            for (int i = 0; i < finalLength;i++)
+            { 
+                for(int j = 0; j < specArray.Length; j++)
+                {
+                    if (final[i] == specArray[j] )
+                    {
+                        specMark++;
+                    }
+                }
+
+            }
+
+            // IF there are 0 speical characters add two of them
+            // We split the string in half and add them to each end
+            // Then reattach them.
+            if (specMark == 0 && finalLength >= 6)
+            {
+
+                string temp = "";
+                string temp2 = "";
+
+                for (int q = 0; q < finalLength; q++)
+                {
+
+                    if(q < halfFinal)
+                    {
+                        temp += final[q];
+
+                    }
+                    else
+                    {
+                        temp2+= final[q];
+                    }
+
+                }
+
+                temp = temp.Remove(temp.Length - 1);
+                temp2 = temp2.Remove(temp2.Length-1);
+                temp = temp + ranSpecial(obj);
+
+                temp2 = temp2 + ranSpecial(obj);
+
+                newPassword = temp + temp2;
+
+                return newPassword;
+
+
+            }
+
+            // If only one add it at the end
+            if (finalLength >= 6 && specMark == 1)
+            {
+                newPassword = final;
+
+                newPassword = newPassword + ranSpecial(obj);
+
+                return newPassword;
+
+
+            }
+
+            return final;
+        }
+
+            
+     }
+
+           
+
+
+
+ }
+

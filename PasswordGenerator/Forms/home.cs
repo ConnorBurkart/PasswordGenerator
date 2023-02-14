@@ -16,6 +16,9 @@ namespace PasswordGenerator
         bool num = false;
         bool letter = false;
         bool spec = false;
+        public int specialCount = 18;
+        public int numberCount = 10;
+        public int letterCount = 51;
 
         public home()
         {
