@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -28,8 +29,12 @@ namespace PasswordGenerator
         {
             Random obj = new Random();
             string final = "";
-            int specMark = 0;
             
+            if(num == false && letter == false && spec == false)
+            {
+                MessageBox.Show("Please Use a CheckBox");
+
+            }
 
             // This is the ultimate case
             if(letter == true && num == true && spec == true)
@@ -39,7 +44,69 @@ namespace PasswordGenerator
                     final = final + randomVariable(obj);
 
                 }
-                return checkFinal(final,obj);
+                return checkFinal(final,obj,spec);
+
+            }
+            else if(letter == true && num == true)
+            {
+                int random;
+
+                for(int i = 0; i < length; i++)
+                {
+                    random = obj.Next(0, 99);
+
+                    if (random < 49)
+                    {
+                        final= final + ranLetter(obj);
+                    }
+                    else
+                    {
+                        final = final + ranNum(obj);
+                    }
+
+
+                }
+            }
+            else if(num == true && spec == true)
+            {
+                int random;
+
+                for (int i = 0; i < length; i++)
+                {
+                    random = obj.Next(0, 99);
+
+                    if (random < 49)
+                    {
+                        final = final + ranSpecial(obj);
+                    }
+                    else
+                    {
+                        final = final + ranNum(obj);
+                    }
+
+
+                }
+            }
+            else if(letter == true && spec == true)
+            {
+
+                int random;
+
+                for (int i = 0; i < length; i++)
+                {
+                    random = obj.Next(0, 99);
+
+                    if (random < 49)
+                    {
+                        final = final + ranSpecial(obj);
+                    }
+                    else
+                    {
+                        final = final + ranLetter(obj);
+                    }
+
+                }
+
 
             }
             else if(num == true)
@@ -49,7 +116,7 @@ namespace PasswordGenerator
                     final = final + ranNum(obj);
 
                 }
-                return checkFinal(final, obj); ;
+                return checkFinal(final, obj, spec);
             }
             else if(letter == true)
             {
@@ -58,7 +125,7 @@ namespace PasswordGenerator
                     final = final + ranLetter(obj);
 
                 }
-                return checkFinal(final, obj); ;
+                return checkFinal(final, obj, spec);
 
             }
             else if(spec == true)
@@ -68,15 +135,15 @@ namespace PasswordGenerator
                     final = final + ranSpecial(obj);
 
                 }
-                return checkFinal(final, obj); ;
+                return checkFinal(final, obj, spec);
             }
 
 
-            return checkFinal(final, obj); ;
+            return checkFinal(final, obj, spec);
 
 
         }
-        
+
         // This is to generate the random letter 
         public static char ranLetter(Random obj)
         {
@@ -154,8 +221,14 @@ namespace PasswordGenerator
 
         // This is to make sure the final has at least two special characters
 
-        public static string checkFinal(string final,Random obj)
+        public static string checkFinal(string final,Random obj,bool special)
         {
+
+            if(special == false)
+            {
+                return final;
+            }
+
             int specMark = 0;
             int finalLength = final.Length;
             int halfFinal = finalLength / 2;

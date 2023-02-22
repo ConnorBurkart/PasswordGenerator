@@ -23,10 +23,17 @@ namespace PasswordGenerator
         public home()
         {
             InitializeComponent();
+            
         }
         // This is the end all be all button that actually calls the function to make the password
         private void resultButton_Click(object sender, EventArgs e)
         {
+            if(lengthBox.Text.ToString() == "")
+            {
+                MessageBox.Show("Enter a length");
+                return;
+            }
+
             passwordLength = Convert.ToInt16(lengthBox.Text.ToString());
 
             finalResult.Text = hlp.generatePassword(passwordLength, letter, num,spec);
