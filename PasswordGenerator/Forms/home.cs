@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasswordGenerator.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,6 +38,10 @@ namespace PasswordGenerator
             passwordLength = Convert.ToInt16(lengthBox.Text.ToString());
 
             finalResult.Text = hlp.generatePassword(passwordLength, letter, num,spec);
+
+            // Copies Text to Clipboard
+            Clipboard.SetText(finalResult.Text);
+
         }
         //This is to see if we want to include numbers
         private void numChecked_Checbox(object sender, EventArgs e)
@@ -74,6 +79,17 @@ namespace PasswordGenerator
             {
                 spec = false;
             }
+        }
+
+        private void addPasswordList(object sender, EventArgs e)
+        {
+            frmList newfrom = new frmList();
+
+            newfrom.stdResult = finalResult.Text;
+
+           
+
+            newfrom.Show();
         }
     }
 }
