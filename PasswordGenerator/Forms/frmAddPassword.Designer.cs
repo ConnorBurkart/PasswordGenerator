@@ -1,6 +1,6 @@
 ﻿namespace PasswordGenerator.Forms
 {
-    partial class frmList
+    partial class frmAddPassword
     {
         /// <summary>
         /// Required designer variable.
@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.passwordBox = new System.Windows.Forms.TextBox();
+            this.usernameBox = new System.Windows.Forms.TextBox();
             this.Username = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.btAdd = new System.Windows.Forms.Button();
+            this.urlBox = new System.Windows.Forms.TextBox();
+            this.btAddtoPasswordList = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // passwordBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(166, 87);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(194, 22);
-            this.textBox1.TabIndex = 0;
+            this.passwordBox.Location = new System.Drawing.Point(166, 87);
+            this.passwordBox.Name = "passwordBox";
+            this.passwordBox.Size = new System.Drawing.Size(194, 22);
+            this.passwordBox.TabIndex = 0;
             // 
-            // textBox2
+            // usernameBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(166, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(194, 22);
-            this.textBox2.TabIndex = 1;
+            this.usernameBox.Location = new System.Drawing.Point(166, 46);
+            this.usernameBox.Name = "usernameBox";
+            this.usernameBox.Size = new System.Drawing.Size(194, 22);
+            this.usernameBox.TabIndex = 1;
             // 
             // Username
             // 
@@ -78,34 +78,35 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Website/Domain: ";
             // 
-            // textBox3
+            // urlBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(166, 125);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(194, 22);
-            this.textBox3.TabIndex = 5;
+            this.urlBox.Location = new System.Drawing.Point(166, 125);
+            this.urlBox.Name = "urlBox";
+            this.urlBox.Size = new System.Drawing.Size(194, 22);
+            this.urlBox.TabIndex = 5;
             // 
-            // btAdd
+            // btAddtoPasswordList
             // 
-            this.btAdd.Location = new System.Drawing.Point(390, 128);
-            this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(75, 23);
-            this.btAdd.TabIndex = 6;
-            this.btAdd.Text = "Add";
-            this.btAdd.UseVisualStyleBackColor = true;
+            this.btAddtoPasswordList.Location = new System.Drawing.Point(390, 128);
+            this.btAddtoPasswordList.Name = "btAddtoPasswordList";
+            this.btAddtoPasswordList.Size = new System.Drawing.Size(75, 23);
+            this.btAddtoPasswordList.TabIndex = 6;
+            this.btAddtoPasswordList.Text = "Add";
+            this.btAddtoPasswordList.UseVisualStyleBackColor = true;
+            this.btAddtoPasswordList.Click += new System.EventHandler(this.btAdd_Click);
             // 
             // frmList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(498, 175);
-            this.Controls.Add(this.btAdd);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.btAddtoPasswordList);
+            this.Controls.Add(this.urlBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Username);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.usernameBox);
+            this.Controls.Add(this.passwordBox);
             this.Name = "frmList";
             this.Text = "frmList";
             this.Load += new System.EventHandler(this.frmList_Load);
@@ -116,12 +117,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox passwordBox;
+        private System.Windows.Forms.TextBox usernameBox;
         private System.Windows.Forms.Label Username;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button btAdd;
+        private System.Windows.Forms.TextBox urlBox;
+        private System.Windows.Forms.Button btAddtoPasswordList;
     }
 }

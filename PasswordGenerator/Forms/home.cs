@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,11 +25,16 @@ namespace PasswordGenerator
         public home()
         {
             InitializeComponent();
-            
+
+            // Creates a connection to local host
+            SqlConnection con = new SqlConnection("data source = localhost; database = master; Trusted_Connection=True ");
+
+
         }
         // This is the end all be all button that actually calls the function to make the password
         private void resultButton_Click(object sender, EventArgs e)
         {
+            // Makes sure user enters a length
             if(lengthBox.Text.ToString() == "")
             {
                 MessageBox.Show("Enter a length");
@@ -36,8 +42,8 @@ namespace PasswordGenerator
             }
 
             passwordLength = Convert.ToInt16(lengthBox.Text.ToString());
-
             finalResult.Text = hlp.generatePassword(passwordLength, letter, num,spec);
+
 
             // Copies Text to Clipboard
             Clipboard.SetText(finalResult.Text);
@@ -46,6 +52,7 @@ namespace PasswordGenerator
         //This is to see if we want to include numbers
         private void numChecked_Checbox(object sender, EventArgs e)
         {
+            // Validates Box Logic
             if(numberBox.Checked)
             {
                 num = true;
@@ -59,6 +66,7 @@ namespace PasswordGenerator
         //This is to see if we want to include letters
         private void letterBox_Click(object sender, EventArgs e)
         {
+            // Validates Box Logic
             if (letterBox.Checked)
             {
                 letter = true;
@@ -71,6 +79,7 @@ namespace PasswordGenerator
         //This is to see if we want to include Special Characters
         private void specialBox_Click(object sender, EventArgs e)
         {
+            // Validates Box Logic
             if (specialBox.Checked)
             {
                 spec = true;
@@ -83,13 +92,27 @@ namespace PasswordGenerator
 
         private void addPasswordList(object sender, EventArgs e)
         {
-            frmList newfrom = new frmList();
 
-            newfrom.stdResult = finalResult.Text;
+            // Calls frmAddPassword to add a password to the list 
+            frmAddPassword newfrom = new frmAddPassword();
 
-           
+            // This copies the string form the home screen to addpassword
+            newfrom.stdResult = finalResult.Text;     
 
+            // Shows Form
             newfrom.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Calls Manger to view passwords
+            FrmManager newManger = new FrmManager();
+
+            // Shows Form
+            newManger.Show();
+
+
+            
         }
     }
 }

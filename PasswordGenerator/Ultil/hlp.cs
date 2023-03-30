@@ -27,8 +27,11 @@ namespace PasswordGenerator
         //Overall Function to make password
         public static string generatePassword(int length, bool letter,bool num, bool spec)
         {
+
+            // Makes a random variable
             Random obj = new Random();
             string final = "";
+            
             
             if(num == false && letter == false && spec == false)
             {
