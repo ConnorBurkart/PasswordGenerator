@@ -16,3 +16,10 @@ use it as well.
 * Database Use
 * Encryption
 * Design
+
+### Algorithms
+I have to create a algorithm that actually makes a good password. That is the core of the project so I have to make sure it is good. How I did this was using general
+password logic. Strong passwords have four key things. The length of the password is the main thing. A strong password has 8 to 12 characters. So I made it so you can 
+make it up to 18 character for those passwords that need to be really secure. The rest of the variables are letter, numbers, and special characters. Including all
+different types of these in a password makes it harder and harder to guess. So you have the option of all of them. I used the website https://www.passwordmonster.com/ 
+to help see how strong it is.
