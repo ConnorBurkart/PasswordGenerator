@@ -65,16 +65,17 @@
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassword.Location = new System.Drawing.Point(8, 148);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(132, 20);
+            this.lblPassword.Size = new System.Drawing.Size(140, 20);
             this.lblPassword.TabIndex = 2;
-            this.lblPassword.Text = "Password Length";
+            this.lblPassword.Text = "Password Length: ";
             // 
             // lengthBox
             // 
-            this.lengthBox.Location = new System.Drawing.Point(158, 148);
+            this.lengthBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lengthBox.Location = new System.Drawing.Point(189, 148);
             this.lengthBox.Name = "lengthBox";
-            this.lengthBox.Size = new System.Drawing.Size(81, 22);
-            this.lengthBox.TabIndex = 10;
+            this.lengthBox.Size = new System.Drawing.Size(32, 22);
+            this.lengthBox.TabIndex = 20;
             // 
             // resultButton
             // 

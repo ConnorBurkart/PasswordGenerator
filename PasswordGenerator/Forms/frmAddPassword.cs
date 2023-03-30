@@ -49,7 +49,7 @@ namespace PasswordGenerator.Forms
             cmd.CommandType = System.Data.CommandType.Text;
 
             // Create the two strings dynamically and creates the foundation of the query.
-            string sqlInsertTblPassword = "INSERT into tblPasswordList (P_Username,P_Password,P_URL_Domain)";
+            string sqlInsertTblPassword = "INSERT into tblMasterPasswordList (P_Username,P_Password,P_URL_Domain)";
             string sqlInsertTblPasswordResults = "VALUES (" +"'" +stdUsername +"'" + ", " +"'" + stdResult +"'"+ ", " +"'" + stdUrl +"'" + ")";
 
             // This create the query
@@ -62,6 +62,10 @@ namespace PasswordGenerator.Forms
             sqlConnection1.Open();
             cmd.ExecuteNonQuery();
             sqlConnection1.Close();
+
+            this.Close();
+
+            home newHome = new home();
 
         }
     }

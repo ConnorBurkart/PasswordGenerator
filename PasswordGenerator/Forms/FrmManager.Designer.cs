@@ -30,16 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tblPasswordListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.masterDataSet = new PasswordGenerator.masterDataSet();
+            this.tblPasswordListTableAdapter = new PasswordGenerator.masterDataSetTableAdapters.tblPasswordListTableAdapter();
+            this.masterDataSet1 = new PasswordGenerator.masterDataSet1();
+            this.tblMasterPasswordListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblMasterPasswordListTableAdapter = new PasswordGenerator.masterDataSet1TableAdapters.tblMasterPasswordListTableAdapter();
             this.pIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pUserNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pPasswordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pURLDomainDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblPasswordListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.masterDataSet = new PasswordGenerator.masterDataSet();
-            this.tblPasswordListTableAdapter = new PasswordGenerator.masterDataSetTableAdapters.tblPasswordListTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblPasswordListBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.masterDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblMasterPasswordListBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -51,12 +56,40 @@
             this.pUserNameDataGridViewTextBoxColumn,
             this.pPasswordDataGridViewTextBoxColumn,
             this.pURLDomainDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.tblPasswordListBindingSource;
+            this.dataGridView1.DataSource = this.tblMasterPasswordListBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(71, 72);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(540, 150);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // tblPasswordListBindingSource
+            // 
+            this.tblPasswordListBindingSource.DataMember = "tblPasswordList";
+            this.tblPasswordListBindingSource.DataSource = this.masterDataSet;
+            // 
+            // masterDataSet
+            // 
+            this.masterDataSet.DataSetName = "masterDataSet";
+            this.masterDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblPasswordListTableAdapter
+            // 
+            this.tblPasswordListTableAdapter.ClearBeforeFill = true;
+            // 
+            // masterDataSet1
+            // 
+            this.masterDataSet1.DataSetName = "masterDataSet1";
+            this.masterDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblMasterPasswordListBindingSource
+            // 
+            this.tblMasterPasswordListBindingSource.DataMember = "tblMasterPasswordList";
+            this.tblMasterPasswordListBindingSource.DataSource = this.masterDataSet1;
+            // 
+            // tblMasterPasswordListTableAdapter
+            // 
+            this.tblMasterPasswordListTableAdapter.ClearBeforeFill = true;
             // 
             // pIDDataGridViewTextBoxColumn
             // 
@@ -83,20 +116,6 @@
             this.pURLDomainDataGridViewTextBoxColumn.HeaderText = "P_URL_Domain";
             this.pURLDomainDataGridViewTextBoxColumn.Name = "pURLDomainDataGridViewTextBoxColumn";
             // 
-            // tblPasswordListBindingSource
-            // 
-            this.tblPasswordListBindingSource.DataMember = "tblPasswordList";
-            this.tblPasswordListBindingSource.DataSource = this.masterDataSet;
-            // 
-            // masterDataSet
-            // 
-            this.masterDataSet.DataSetName = "masterDataSet";
-            this.masterDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tblPasswordListTableAdapter
-            // 
-            this.tblPasswordListTableAdapter.ClearBeforeFill = true;
-            // 
             // FrmManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -109,6 +128,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblPasswordListBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.masterDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblMasterPasswordListBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -119,6 +140,9 @@
         private masterDataSet masterDataSet;
         private System.Windows.Forms.BindingSource tblPasswordListBindingSource;
         private masterDataSetTableAdapters.tblPasswordListTableAdapter tblPasswordListTableAdapter;
+        private masterDataSet1 masterDataSet1;
+        private System.Windows.Forms.BindingSource tblMasterPasswordListBindingSource;
+        private masterDataSet1TableAdapters.tblMasterPasswordListTableAdapter tblMasterPasswordListTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn pIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pUserNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pPasswordDataGridViewTextBoxColumn;

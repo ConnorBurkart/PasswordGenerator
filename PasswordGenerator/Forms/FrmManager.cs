@@ -19,8 +19,8 @@ namespace PasswordGenerator.Forms
 
         private void FrmManager_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'masterDataSet.tblPasswordList' table. You can move, or remove it, as needed.
-            this.tblPasswordListTableAdapter.Fill(this.masterDataSet.tblPasswordList);
+            // TODO: This line of code loads data into the 'masterDataSet1.tblMasterPasswordList' table. You can move, or remove it, as needed.
+            this.tblMasterPasswordListTableAdapter.Fill(this.masterDataSet1.tblMasterPasswordList);
 
          }
     }
