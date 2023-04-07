@@ -33,11 +33,6 @@ namespace PasswordGenerator
             string final = "";
             
             
-            if(num == false && letter == false && spec == false)
-            {
-                MessageBox.Show("Please Use a CheckBox");
-
-            }
 
             // This is the ultimate case
             if(letter == true && num == true && spec == true)

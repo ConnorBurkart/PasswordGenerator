@@ -38,12 +38,20 @@ namespace PasswordGenerator
             if(lengthBox.Text.ToString() == "")
             {
                 MessageBox.Show("Enter a length");
+
                 return;
             }
 
             passwordLength = Convert.ToInt16(lengthBox.Text.ToString());
             finalResult.Text = hlp.generatePassword(passwordLength, letter, num,spec);
 
+            if(numberBox.Checked == false && specialBox.Checked == false && letterBox.Checked == false)
+            {
+                MessageBox.Show("Check a Box");
+
+                return;
+               
+            }
 
             // Copies Text to Clipboard
             Clipboard.SetText(finalResult.Text);

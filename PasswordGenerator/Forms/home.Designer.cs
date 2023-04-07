@@ -55,7 +55,7 @@
             this.tblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tblTitle.Location = new System.Drawing.Point(12, 9);
             this.tblTitle.Name = "tblTitle";
-            this.tblTitle.Size = new System.Drawing.Size(248, 29);
+            this.tblTitle.Size = new System.Drawing.Size(305, 36);
             this.tblTitle.TabIndex = 1;
             this.tblTitle.Text = "Passoword Generator";
             // 
@@ -65,7 +65,7 @@
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassword.Location = new System.Drawing.Point(8, 148);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(140, 20);
+            this.lblPassword.Size = new System.Drawing.Size(174, 25);
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "Password Length: ";
             // 
@@ -79,7 +79,7 @@
             // 
             // resultButton
             // 
-            this.resultButton.Location = new System.Drawing.Point(150, 311);
+            this.resultButton.Location = new System.Drawing.Point(12, 312);
             this.resultButton.Name = "resultButton";
             this.resultButton.Size = new System.Drawing.Size(132, 48);
             this.resultButton.TabIndex = 4;
@@ -94,7 +94,7 @@
             this.numberBox.Location = new System.Drawing.Point(12, 193);
             this.numberBox.Name = "numberBox";
             this.numberBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.numberBox.Size = new System.Drawing.Size(157, 24);
+            this.numberBox.Size = new System.Drawing.Size(192, 29);
             this.numberBox.TabIndex = 11;
             this.numberBox.Text = "Include Numbers?";
             this.numberBox.UseVisualStyleBackColor = true;
@@ -106,7 +106,7 @@
             this.letterBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.letterBox.Location = new System.Drawing.Point(12, 235);
             this.letterBox.Name = "letterBox";
-            this.letterBox.Size = new System.Drawing.Size(143, 24);
+            this.letterBox.Size = new System.Drawing.Size(172, 29);
             this.letterBox.TabIndex = 14;
             this.letterBox.Text = "Include Letters?";
             this.letterBox.UseVisualStyleBackColor = true;
@@ -118,7 +118,7 @@
             this.specialBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.specialBox.Location = new System.Drawing.Point(12, 277);
             this.specialBox.Name = "specialBox";
-            this.specialBox.Size = new System.Drawing.Size(227, 24);
+            this.specialBox.Size = new System.Drawing.Size(279, 29);
             this.specialBox.TabIndex = 16;
             this.specialBox.Text = "Include Special Characters?";
             this.specialBox.UseVisualStyleBackColor = true;
@@ -136,7 +136,7 @@
             // 
             // btseeList
             // 
-            this.btseeList.Location = new System.Drawing.Point(12, 311);
+            this.btseeList.Location = new System.Drawing.Point(159, 312);
             this.btseeList.Name = "btseeList";
             this.btseeList.Size = new System.Drawing.Size(132, 48);
             this.btseeList.TabIndex = 17;

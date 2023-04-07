@@ -95,7 +95,7 @@
             this.btAddtoPasswordList.UseVisualStyleBackColor = true;
             this.btAddtoPasswordList.Click += new System.EventHandler(this.btAdd_Click);
             // 
-            // frmList
+            // frmAddPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -107,7 +107,8 @@
             this.Controls.Add(this.Username);
             this.Controls.Add(this.usernameBox);
             this.Controls.Add(this.passwordBox);
-            this.Name = "frmList";
+            this.Name = "frmAddPassword";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmList";
             this.Load += new System.EventHandler(this.frmList_Load);
             this.ResumeLayout(false);
