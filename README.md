@@ -13,7 +13,7 @@ use it as well.
 
 ## Objectives
 * Algorithms 
-* Database Use
+* File Use
 * Encryption
 * Design
 
