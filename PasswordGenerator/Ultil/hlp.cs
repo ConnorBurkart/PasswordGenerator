@@ -2,10 +2,12 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace PasswordGenerator
 {
@@ -21,6 +23,57 @@ namespace PasswordGenerator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new home());
+        }
+
+
+        // This is how we add the entry to the txt file
+        public static void AddEntryToFile(string user, string password, string domain)
+        {
+
+            try
+            {
+                string path = @"C:\Users\conno\source\repos\PasswordGenerator\PasswordGenerator\Ultil\List.txt";
+
+                // Ensure the directory exists
+                string directory = Path.GetDirectoryName(path);
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+
+                // Gets the tabs right
+                string tabs = "                        ";
+
+                // This fixing the spacing based on the length of the string
+                for(int i = 0;i <= tabs.Length; i++)
+                {
+                    
+                    if(user.Length != tabs.Length)
+                    {
+                        user = user + " ";
+                    }
+                    if(password.Length != tabs.Length) 
+                    {
+                        password = password + " ";
+                    }
+                    if(domain.Length != tabs.Length) 
+                    {
+                        domain = domain + " ";
+                    }
+                }
+
+                string newEntry = "\n" + user + password+ domain;
+
+                // Adds to the end of the file
+                File.AppendAllText(path, newEntry);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred. Details: {ex.Message}");
+            }
+
+
+
         }
 
 
@@ -301,6 +354,7 @@ namespace PasswordGenerator
 
             
      }
+
 
            
 

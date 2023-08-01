@@ -37,13 +37,15 @@
             this.letterBox = new System.Windows.Forms.CheckBox();
             this.specialBox = new System.Windows.Forms.CheckBox();
             this.addPasswordButton = new System.Windows.Forms.Button();
-            this.btseeList = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // finalResult
             // 
             this.finalResult.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.finalResult.Location = new System.Drawing.Point(411, 85);
+            this.finalResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.finalResult.Name = "finalResult";
             this.finalResult.ReadOnly = true;
             this.finalResult.Size = new System.Drawing.Size(201, 22);
@@ -63,7 +65,7 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(8, 148);
+            this.lblPassword.Location = new System.Drawing.Point(3, 12);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(174, 25);
             this.lblPassword.TabIndex = 2;
@@ -72,14 +74,16 @@
             // lengthBox
             // 
             this.lengthBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lengthBox.Location = new System.Drawing.Point(189, 148);
+            this.lengthBox.Location = new System.Drawing.Point(195, 15);
+            this.lengthBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lengthBox.Name = "lengthBox";
             this.lengthBox.Size = new System.Drawing.Size(32, 22);
             this.lengthBox.TabIndex = 20;
             // 
             // resultButton
             // 
-            this.resultButton.Location = new System.Drawing.Point(12, 312);
+            this.resultButton.Location = new System.Drawing.Point(8, 158);
+            this.resultButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.resultButton.Name = "resultButton";
             this.resultButton.Size = new System.Drawing.Size(132, 48);
             this.resultButton.TabIndex = 4;
@@ -91,7 +95,8 @@
             // 
             this.numberBox.AutoSize = true;
             this.numberBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numberBox.Location = new System.Drawing.Point(12, 193);
+            this.numberBox.Location = new System.Drawing.Point(8, 44);
+            this.numberBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numberBox.Name = "numberBox";
             this.numberBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.numberBox.Size = new System.Drawing.Size(192, 29);
@@ -104,7 +109,8 @@
             // 
             this.letterBox.AutoSize = true;
             this.letterBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.letterBox.Location = new System.Drawing.Point(12, 235);
+            this.letterBox.Location = new System.Drawing.Point(8, 79);
+            this.letterBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.letterBox.Name = "letterBox";
             this.letterBox.Size = new System.Drawing.Size(172, 29);
             this.letterBox.TabIndex = 14;
@@ -116,7 +122,8 @@
             // 
             this.specialBox.AutoSize = true;
             this.specialBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.specialBox.Location = new System.Drawing.Point(12, 277);
+            this.specialBox.Location = new System.Drawing.Point(8, 113);
+            this.specialBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.specialBox.Name = "specialBox";
             this.specialBox.Size = new System.Drawing.Size(279, 29);
             this.specialBox.TabIndex = 16;
@@ -126,7 +133,8 @@
             // 
             // addPasswordButton
             // 
-            this.addPasswordButton.Location = new System.Drawing.Point(618, 85);
+            this.addPasswordButton.Location = new System.Drawing.Point(619, 85);
+            this.addPasswordButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addPasswordButton.Name = "addPasswordButton";
             this.addPasswordButton.Size = new System.Drawing.Size(149, 27);
             this.addPasswordButton.TabIndex = 11;
@@ -134,36 +142,38 @@
             this.addPasswordButton.UseVisualStyleBackColor = true;
             this.addPasswordButton.Click += new System.EventHandler(this.addPasswordList);
             // 
-            // btseeList
+            // panel1
             // 
-            this.btseeList.Location = new System.Drawing.Point(159, 312);
-            this.btseeList.Name = "btseeList";
-            this.btseeList.Size = new System.Drawing.Size(132, 48);
-            this.btseeList.TabIndex = 17;
-            this.btseeList.Text = "View List";
-            this.btseeList.UseVisualStyleBackColor = true;
-            this.btseeList.Click += new System.EventHandler(this.button1_Click);
+            this.panel1.Controls.Add(this.lblPassword);
+            this.panel1.Controls.Add(this.lengthBox);
+            this.panel1.Controls.Add(this.numberBox);
+            this.panel1.Controls.Add(this.resultButton);
+            this.panel1.Controls.Add(this.specialBox);
+            this.panel1.Controls.Add(this.letterBox);
+            this.panel1.Location = new System.Drawing.Point(1, 148);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(341, 208);
+            this.panel1.TabIndex = 21;
             // 
             // home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 371);
-            this.Controls.Add(this.btseeList);
+            this.ClientSize = new System.Drawing.Size(800, 370);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.addPasswordButton);
-            this.Controls.Add(this.specialBox);
-            this.Controls.Add(this.letterBox);
-            this.Controls.Add(this.numberBox);
-            this.Controls.Add(this.resultButton);
-            this.Controls.Add(this.lengthBox);
-            this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.tblTitle);
             this.Controls.Add(this.finalResult);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Password Generator";
             this.Click += new System.EventHandler(this.numChecked_Checbox);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,6 +190,6 @@
         private System.Windows.Forms.CheckBox letterBox;
         private System.Windows.Forms.CheckBox specialBox;
         private System.Windows.Forms.Button addPasswordButton;
-        private System.Windows.Forms.Button btseeList;
+        private System.Windows.Forms.Panel panel1;
     }
 }

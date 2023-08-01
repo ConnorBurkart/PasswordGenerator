@@ -111,17 +111,5 @@ namespace PasswordGenerator
             newfrom.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // Calls Manger to view passwords
-            FrmManager newManger = new FrmManager();
-
-            // Shows Form
-            newManger.Show();
-
-
-
-            
-        }
     }
 }

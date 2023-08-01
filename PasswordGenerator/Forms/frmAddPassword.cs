@@ -7,9 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PasswordGenerator.Forms;
 
-using System.Data.SqlClient;
-using System.Security.Cryptography;
 
 namespace PasswordGenerator.Forms
 {
@@ -39,33 +38,15 @@ namespace PasswordGenerator.Forms
             // Sets Each textbox to its variable
             stdResult = passwordBox.Text;
             stdUsername = usernameBox.Text;
-            stdUrl = urlBox.Text; 
+            stdUrl = urlBox.Text;
 
-            // Makes new connection to local host
-            System.Data.SqlClient.SqlConnection sqlConnection1 = new System.Data.SqlClient.SqlConnection("Data Source=localhost;Initial Catalog=master;Integrated Security=True");
+            hlp.AddEntryToFile(stdUsername , stdResult, stdUrl);
 
-            // Makes new sql connection to local host and emphasizes the text
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
-            cmd.CommandType = System.Data.CommandType.Text;
-
-            // Create the two strings dynamically and creates the foundation of the query.
-            string sqlInsertTblPassword = "INSERT into tblMasterPasswordList (P_Username,P_Password,P_URL_Domain)";
-            string sqlInsertTblPasswordResults = "VALUES (" +"'" +stdUsername +"'" + ", " +"'" + stdResult +"'"+ ", " +"'" + stdUrl +"'" + ")";
-
-            // This create the query
-            cmd.CommandText = sqlInsertTblPassword + sqlInsertTblPasswordResults;
-
-            // This adds the command connection to the query
-            cmd.Connection = sqlConnection1;
-
-            // This is what excutes and opens the connection to do the magic
-            sqlConnection1.Open();
-            cmd.ExecuteNonQuery();
-            sqlConnection1.Close();
-
-            this.Close();
 
             home newHome = new home();
+
+            this.Close();
+            
 
         }
     }
