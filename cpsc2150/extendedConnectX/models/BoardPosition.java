@@ -18,7 +18,8 @@ public class BoardPosition
      * @param
      * @param
      * @pre
-     * aRow > 0 && aRow <= 9 and aColumn > 0 && aColumn <= 7
+     * aRow > 0 and aRow <= 9
+     * aColumn > 0 and aColumn <= 7
      * @post
      */
     public BoardPosition(int aRow, int aColumn)
