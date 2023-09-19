@@ -5,7 +5,13 @@ Jacob Colson (jccolso)
 
 
  */
-
+/**
+ * This class contains the methods that can be done by the game in order to validate token positions
+ * and to advance the game.
+ *
+ * @invariant
+ *
+ */
 public class GameBoard
 {
 

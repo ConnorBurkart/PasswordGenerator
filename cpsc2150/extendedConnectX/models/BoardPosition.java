@@ -4,8 +4,11 @@ package cpsc2150.extendedConnectX.models;
 Jacob Colson (jccolso)
 
 
+*/
+/**
+ * This board position class contains all data related to a possible position on the board.
+ * BoardPosition contains a Row and Column number.
  */
-
 public class BoardPosition
 {
     private int Row;
@@ -55,12 +58,33 @@ public class BoardPosition
         //returns the column
     }
 
+    /**
+     * Takes in a BoardPosition object and returns true if two boardPositions are equal to each
+     * other.
+     *
+     * @param obj
+     *
+     * @return boolean, true if BoardPosition are equal and false if BoardPosition are different.
+     *
+     * @pre
+     *
+     * @post
+     */
     @Override
     public boolean equals(Object obj)
     {
 
     }
 
+    /**
+     * returns
+     *
+     * @return
+     *
+     * @pre None
+     *
+     * @post 
+     */
     @Override
     public String toString()
     {
