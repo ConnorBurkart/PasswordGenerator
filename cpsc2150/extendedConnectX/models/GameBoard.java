@@ -9,7 +9,8 @@ Jacob Colson (jccolso)
  * This class contains the methods that can be done by the game in order to validate token positions
  * and to advance the game.
  *
- * @invariant
+ * @invariant [GameBoard should be valid 9x7 size board] AND [BoardPosition object must be valid, Row > 0
+ * AND Row <= 9 AND Column > 0 AND Column <= 7]
  *
  */
 public class GameBoard

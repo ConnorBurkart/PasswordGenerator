@@ -62,14 +62,15 @@ public class BoardPosition
      * Takes in a BoardPosition object and returns true if two boardPositions are equal to each
      * other.
      *
-     * @param obj
+     * @param obj [Parameters are BoardPositon object]
      *
-     * @return boolean, true iff two BoardPosition objects have the same Row and Column values and False iff
-     * two BoardPosition objects have different Row and Column values.
+     * @return [boolean, true iff two BoardPosition objects have the same Row and Column values and False iff
+     * two BoardPosition objects have different Row and Column values.]
      *
-     * @pre
+     * @pre [BoardPosition object has valid Row and Column]
+     * [Row > 0 AND Row <= 9 AND Column > 0 AND Column <= 7]
      *
-     * @post
+     * @post [equals = true OR equals = false] [Row = #Row AND Column = #Column]
      */
     @Override
     public boolean equals(Object obj)
@@ -80,11 +81,11 @@ public class BoardPosition
     /**
      * Takes the values for Row and Column and converts them into string format "<Row>,<Column>"
      *
-     * @return
+     * @return The values for Row and Column as a string.
      *
      * @pre None
      *
-     * @post 
+     * @post [toString = "<Row>,<Column>"] AND Row = #Row AND Column = #Column
      */
     @Override
     public String toString()
