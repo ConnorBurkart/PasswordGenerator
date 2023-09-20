@@ -1,7 +1,7 @@
 package cpsc2150.extendedConnectX.models;
 
 /*GROUP MEMBER NAMES AND GITHUB USERNAMES SHOULD GO HERE
-Jacob Colson (jccolso)
+Jacob Colson (jccolso) - Wrote BoardPosition contracts, help elsewhere when needed.
 
 
 */
@@ -64,7 +64,8 @@ public class BoardPosition
      *
      * @param obj
      *
-     * @return boolean, true if BoardPosition are equal and false if BoardPosition are different.
+     * @return boolean, true iff two BoardPosition objects have the same Row and Column values and False iff
+     * two BoardPosition objects have different Row and Column values.
      *
      * @pre
      *
@@ -77,7 +78,7 @@ public class BoardPosition
     }
 
     /**
-     * returns
+     * Takes the values for Row and Column and converts them into string format "<Row>,<Column>"
      *
      * @return
      *
