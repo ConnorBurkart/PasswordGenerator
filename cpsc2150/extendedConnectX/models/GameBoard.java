@@ -11,7 +11,7 @@ Warren Wasden (wwasden)
  * and to advance the game.
  *
  * @invariant [GameBoard should be valid 9x7 size board] AND [BoardPosition object must be valid, Row > 0
- * AND Row <= 9 AND Column > 0 AND Column <= 7]
+ * AND Row <= 9 AND Column > 0 AND Column <= 7] AND [Player must be "X" or "O"]
  *
  */
 public class GameBoard
@@ -19,7 +19,10 @@ public class GameBoard
     /**
      * Constructs a GameBoard that is a size of 9x7 and contains
      * blank spaces for each position in the 9x7
-     * 
+     *
+     * @pre None
+     *
+     * @post [Constructs GameBoard object]
      */
     public GameBoard()
     {
@@ -27,16 +30,16 @@ public class GameBoard
     }
 
     /**
-     * Checks if the desired collumn is full of tokens or has
+     * Checks if the desired column is full of tokens or has
      * free space.
      * 
-     * @param c number to indicate which collumn to check
+     * @param c
      * 
-     * @return true if free   false if occupied
+     * @return [true if free OR false if occupied]
      * 
      * @pre c >= 0 AND c <= 6
      * 
-     * @post 
+     * @post [checkIfFree = true OR checkIfFree = False]
      */
     public boolean checkIfFree(int c)
     {
@@ -45,16 +48,15 @@ public class GameBoard
 
     /**
      * Drops a token to the bottom of the board in the specified
-     * collumn
+     * column
      * 
-     * @param p The player character which will be placed in the
-     * specified collumn
+     * @param p
      *  
-     * @param c The collumn which the token will be placed in
+     * @param c
      * 
      * @pre c >= 0 AND c <=6 
      * 
-     * @post 
+     * @post [GameBoard = #GameBoard] AND [BoardPosition, Row = #Row AND Column = c]
      */
     public void dropToken(char p, int c)
     {
@@ -66,12 +68,12 @@ public class GameBoard
      * or diagonal
      * 
      * @param c 
-     * @return true if 4 tokens connected in a row, up, or diagonal
-     * false if 4 not connected
+     * @return [true if 4 tokens connected in a row, up, or diagonal
+     * false if 4 not connected]
      * 
      * @pre c >= 0 AND c <= 6
      * 
-     * @post 
+     * @post [checkForWin = true OR checkForWin = false] AND [GameBoard = #GameBoard]
      */
     public boolean checkForWin(int c)
     {
@@ -82,10 +84,13 @@ public class GameBoard
 
     /**
      * Check to see if the game has ended in a tie
-     * 
-     * 
-     * @return true if all positions on gameboard are full
-     * false if game has not ended
+     *
+     * @return [true if all positions on gameboard are full
+     * false if game has not ended]
+     *
+     * @pre None
+     *
+     * @post [checkTie = True OR checkTie = False] [GameBoard = #GameBoard]
      */
     public boolean checkTie()
     {
@@ -97,11 +102,16 @@ public class GameBoard
 
     /**
      * Check if either player has 4 tokens connected horizontally
-     * 
-     * 
-     * @param pos 
-     * @param p 
-     * @return 
+     *
+     * @param pos
+     *
+     * @param p
+     *
+     * @return [Boolean, returns true iff player has horizontal win, false iff they do not have horizontal win.]
+     *
+     * @pre [p = "X" OR p = "O"]
+     *
+     * @post [checkHorizWin = True OR checkHorizWin = false] [pos = #pos]
      */
     public boolean checkHorizWin(BoardPosition pos, char p)
     {
@@ -113,9 +123,16 @@ public class GameBoard
      * Check if either player has 4 tokens connected vertically
      * 
      * 
-     * @param pos Desired position on the gameboard
-     * @param p 
-     * @return 
+     * @param pos
+     *
+     * @param p
+     *
+     * @return [Boolean, returns true iff player wins at vertical position, false iff player
+     * does not win at vertical position.]
+     *
+     * @pre [p = "X" OR p = "O"]
+     *
+     * @post [checkVertWin = true OR checkVertWin = false] [pos = #pos]
      */
     public boolean checkVertWin(BoardPosition pos, char p)
     {
@@ -125,11 +142,16 @@ public class GameBoard
 
     /**
      * Check if either player has 4 tokens connected diagonally
-     * 
-     * 
-     * @param pos Desired position on the gameboard
-     * @param p 
-     * @return 
+     *
+     * @param pos
+     *
+     * @param p
+     *
+     * @return [Boolean, returns true iff, false otherwise]
+     *
+     * @pre [p = "X" OR p = "O"]
+     *
+     * @post [checkDiagWin = true OR checkDiagWin = false] [pos = #pos]
      */
     public boolean checkDiagWin(BoardPosition pos, char p)
     {
@@ -138,11 +160,15 @@ public class GameBoard
     }
 
     /**
-     * Check which character is at any position on the gameboard
-     * 
-     * 
-     * @param pos Desired position on the gameboard
-     * @return Player token that is at desired position
+     * Check which character is at any position on the gameboard and returns said character.
+     *
+     * @param pos
+     *
+     * @return Player token that is at desired position as a Character
+     *
+     * @pre [pos equals valid BoardPosition, Row > 0 AND Row <= 9 AND Column > 0 AND Column <= 7]
+     *
+     * @post whatsAtPos = "X" OR whatsAtPos = "O" OR whatsAtPos = "" [pos = #pos]
      */
     public char whatsAtPos(BoardPosition pos)
     {
@@ -152,12 +178,17 @@ public class GameBoard
     /**
      * Determine which player has placed a token at the position
      * on the gameboard
-     * 
-     * 
-     * @param pos Desired position on the gameboard
-     * @param player 
-     * @return true iff correct player token is at position
-     * false if other player is at position
+     *
+     * @param pos
+     *
+     * @param player
+     *
+     * @return [boolean, true iff correct player token is at position
+     * false iff other player is at position]
+     *
+     * @pre [player = "X" OR player = "O"]
+     *
+     * @post [isPlayerAtPos = true OR isPlayerAtPos = false] [pos = #pos]
      */
     public boolean isPlayerAtPos(BoardPosition pos, char player)
     {
