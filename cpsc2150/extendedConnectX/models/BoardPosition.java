@@ -3,7 +3,7 @@ package cpsc2150.extendedConnectX.models;
 /*GROUP MEMBER NAMES AND GITHUB USERNAMES SHOULD GO HERE
 Jacob Colson (jccolso)
 Warren Wasden (wwasden)
-
+Steven Cabezas (scabeza)
 
 */
 /**
@@ -60,7 +60,7 @@ public class BoardPosition
     }
 
     /**
-     * Takes in a BoardPosition object and returns true if two boardPositions are equal to each
+     * Takes in a BoardPosition object and returns true if two BoardPositions are equal to each
      * other.
      *
      * @param obj [Parameters are BoardPositon object]

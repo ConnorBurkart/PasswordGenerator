@@ -3,7 +3,7 @@ package cpsc2150.extendedConnectX.models;
 /*GROUP MEMBER NAMES AND GITHUB USERNAMES SHOULD GO HERE
 Jacob Colson (jccolso)
 Warren Wasden (wwasden)
-
+Steven Cabezas (scabeza)
 
  */
 /**
@@ -85,7 +85,7 @@ public class GameBoard
     /**
      * Check to see if the game has ended in a tie
      *
-     * @return [true if all positions on gameboard are full
+     * @return [true if all positions on Gameboard are full
      * false if game has not ended]
      *
      * @pre None
@@ -160,7 +160,7 @@ public class GameBoard
     }
 
     /**
-     * Check which character is at any position on the gameboard and returns said character.
+     * Check which character is at any position on the Gameboard and returns said character.
      *
      * @param pos
      *
@@ -177,7 +177,7 @@ public class GameBoard
 
     /**
      * Determine which player has placed a token at the position
-     * on the gameboard
+     * on the Gameboard
      *
      * @param pos
      *
@@ -199,9 +199,15 @@ public class GameBoard
     }
 
     /**
-     * 
-     * 
-     * 
+     * Create a string from values for row and column
+     * in the format "<row>,<column>"
+     *
+     * @return the values input for Row and Column to a string
+     * formatted as "<row>,<column>"
+     *
+     * @pre None
+     *
+     * @post [toString = "<row>,<column>"] AND Row = #Row AND Column = #Column
      * 
      */
     @Override
