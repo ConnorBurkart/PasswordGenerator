@@ -6,7 +6,7 @@ This project should be runnable with JDK17
 --------------------------------------------------------
 ## Contribution Statements:
 
-Should be in a format similar to this. One for each group member:\
-Matthew Re (Matthewjre) - Wrote the contracts for most of the BoardPosition functions. Helped with other functions when needed.\
-Yang Hu (CottageLord) - Wrote the contracts for GameBoard functions.\
+Jacob Colson (jccolso) - Wrote Contracts for BoardPosition class. Helped elsewhere when needed.
+Warren Wasden (wwasden) - Wrote Contracts for GameBoard class. Helped with other functions when needed.
+Steven Cabezas (scabeza) - Finished Contracts for GameBoard class. Helped with other functions and corrected issues.
 ...
