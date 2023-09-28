@@ -19,8 +19,8 @@ public class BoardPosition
      * Constructs a BoardPosition object that indicates the exact
      * position of a token within the 9x7 range of the board.
      *
-     * @param aRow
-     * @param aColumn
+     * @param aRow number of Rows
+     * @param aColumn number of Columns
      *
      * @pre aRow > 0 AND aRow <= 9 AND aColumn > 0 AND aColumn <= 7
      *
@@ -38,7 +38,7 @@ public class BoardPosition
      *
      * @pre None
      * 
-     * @post getRow = Row. Row = #Row AND Column = #Column
+     * @post getRow = Row AND Row = #Row AND Column = #Column
      */
     public int getRow()
     {
@@ -52,7 +52,7 @@ public class BoardPosition
      *
      * @pre None
      * 
-     * @post getColumn = Column. Row = #Row AND Column = #Column
+     * @post getColumn = Column AND Row = #Row AND Column = #Column
      */
     public int getColumn()
     {
@@ -68,10 +68,11 @@ public class BoardPosition
      * @return [boolean, true iff two BoardPosition objects have the same Row and Column values and False iff
      * two BoardPosition objects have different Row and Column values.]
      *
-     * @pre [BoardPosition object has valid Row and Column]
-     * [Row > 0 AND Row <= 9 AND Column > 0 AND Column <= 7]
+     * @pre None
      *
-     * @post [equals = true OR equals = false] [Row = #Row AND Column = #Column]
+     * @post [equals iff (this.Row - obj.Row AND this.Column - obj.Column AND
+     * [this and obj are both instances of BoardPosition])]
+     * AND obj = #obj AND Row = #Row AND Column = #Column
      */
     @Override
     public boolean equals(Object obj)
