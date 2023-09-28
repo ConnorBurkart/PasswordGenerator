@@ -10,7 +10,9 @@ Steven Cabezas (scabeza)
  * This class contains the methods that can be done by the game in order to validate token positions
  * and to advance the game.
  *
- * @invariant [GameBoard should be valid 9x7 size board] AND [BoardPosition object must be valid, Row > 0
+ * @invariant [GameBoard should be valid 9x7 size board] AND
+ * [Instance variables Row and Column must be Row = 9 and Column = 7]
+ * AND [BoardPosition object must be valid, Row > 0
  * AND Row <= 9 AND Column > 0 AND Column <= 7] AND [Player must be "X" or "O"]
  *
  */
@@ -22,7 +24,8 @@ public class GameBoard
      *
      * @pre None
      *
-     * @post [Constructs GameBoard object]
+     * @post [Creates instance of empty 2D array to represent gameBoard] AND [instance variables
+     * Row = 9 and Column = 7]
      */
     public GameBoard()
     {
@@ -33,13 +36,15 @@ public class GameBoard
      * Checks if the desired column is full of tokens or has
      * free space.
      * 
-     * @param c
+     * @param c column number to check if position is free.
      * 
      * @return [true if free OR false if occupied]
      * 
      * @pre c >= 0 AND c <= 6
      * 
-     * @post [checkIfFree = true OR checkIfFree = False]
+     * @post [checkIfFree true iff gameBoard[][c] = " " AND true iff gameBoard[0][c] = " "
+     * (returns false iff gameBoard[][c] is occupied by either
+     * an 'X' or an 'O'.)] AND [Row = #Row AND Column = #Column and gameBoard[][] = #gameBoard[][].]
      */
     public boolean checkIfFree(int c)
     {
@@ -50,13 +55,14 @@ public class GameBoard
      * Drops a token to the bottom of the board in the specified
      * column
      * 
-     * @param p
+     * @param p indicates player's character [player character is 'x' or 'o']
      *  
-     * @param c
+     * @param c indicates the column number
      * 
-     * @pre c >= 0 AND c <=6 
+     * @pre c > 0 AND c <= 7 AND [checkIfFree() for column, c, should return true.]
      * 
-     * @post [GameBoard = #GameBoard] AND [BoardPosition, Row = #Row AND Column = c]
+     * @post [GameBoard array at column, c, contains player character ('x' or 'o')]
+     * AND [Instance variables Row = #row AND Column = #Column]
      */
     public void dropToken(char p, int c)
     {
