@@ -70,16 +70,19 @@ public class GameBoard
     }
 
     /**
-     * Checks to see if there are 4 tokens in a row, up,
+     * Checks to see if there are 5 tokens in a row, up,
      * or diagonal
      * 
-     * @param c 
-     * @return [true if 4 tokens connected in a row, up, or diagonal
-     * false if 4 not connected]
+     * @param c indicates column number to check.
+     *
+     * @return [returns true iff 5 of the same players tokens (X or Y) are placed in a consecutive
+     * horizontal, vertical, or diagonal row. False iff 5 tokens are not consecutively placed.]
      * 
-     * @pre c >= 0 AND c <= 6
+     * @pre c >= 1 AND c <= 7 [C is the column in which the latest token was placed.]
      * 
-     * @post [checkForWin = true OR checkForWin = false] AND [GameBoard = #GameBoard]
+     * @post [checkForWin returns true iff the last placed token is the 5th consecutive token in a vertical,
+     * horizontal, or diagonal row. False iff the last placed token is not 5th or consecutive in a vertical,
+     * horizontal, or diagonal row.] AND self = #self
      */
     public boolean checkForWin(int c)
     {
@@ -91,12 +94,13 @@ public class GameBoard
     /**
      * Check to see if the game has ended in a tie
      *
-     * @return [true if all positions on Gameboard are full
-     * false if game has not ended]
+     * @return [true iff all positions on 2D gameBoard array are full return false if
+     * gameBoard array is not full]
      *
      * @pre None
      *
-     * @post [checkTie = True OR checkTie = False] [GameBoard = #GameBoard]
+     * @post [Checks each space on the gameBoard to see if it is occupied and if the entire gameBoard array
+     * is occupied then returns true, else returns false because the game is still able to continue.] AND self = #self
      */
     public boolean checkTie()
     {
@@ -107,17 +111,18 @@ public class GameBoard
     }
 
     /**
-     * Check if either player has 4 tokens connected horizontally
+     * Check if either player has 5 tokens connected horizontally
      *
-     * @param pos
+     * @param pos Indicates current position on the board
      *
-     * @param p
+     * @param p Indicates the player's character [X's or O's]
      *
      * @return [Boolean, returns true iff player has horizontal win, false iff they do not have horizontal win.]
      *
      * @pre [p = "X" OR p = "O"]
      *
-     * @post [checkHorizWin = True OR checkHorizWin = false] [pos = #pos]
+     * @post [Returns true iff last token placed in the 5th consecutive in a horizontal row, returns false
+     * iff last placed token was not 5th or in a consecutive row.] AND self = #self
      */
     public boolean checkHorizWin(BoardPosition pos, char p)
     {
@@ -126,19 +131,20 @@ public class GameBoard
     }
 
     /**
-     * Check if either player has 4 tokens connected vertically
+     * Check if either player has 5 tokens connected vertically
      * 
      * 
-     * @param pos
+     * @param pos Indicates the position on the gameBoard
      *
-     * @param p
+     * @param p Indicates the player's character [X's or O's]
      *
      * @return [Boolean, returns true iff player wins at vertical position, false iff player
      * does not win at vertical position.]
      *
      * @pre [p = "X" OR p = "O"]
      *
-     * @post [checkVertWin = true OR checkVertWin = false] [pos = #pos]
+     * @post [checkVertWin returns true iff last placed token was 5th consecutive token in a vertical alignment.
+     * returns false iff last placed token was not 5th or in a consecutive row.] AND self = #self.
      */
     public boolean checkVertWin(BoardPosition pos, char p)
     {
@@ -147,17 +153,19 @@ public class GameBoard
     }
 
     /**
-     * Check if either player has 4 tokens connected diagonally
+     * Check if either player has 5 tokens connected diagonally
      *
-     * @param pos
+     * @param pos Indicates position on gameBoard
      *
-     * @param p
+     * @param p Indicates the player's character [X's or O's]
      *
-     * @return [Boolean, returns true iff, false otherwise]
+     * @return [Boolean, returns true iff player wins at diagonal position and false iff player
+     * does not win at vertical position.]
      *
      * @pre [p = "X" OR p = "O"]
      *
-     * @post [checkDiagWin = true OR checkDiagWin = false] [pos = #pos]
+     * @post [[checkDiagWin returns true iff last placed token was 5th consecutive token in a diagonal alignment.
+     * returns false iff last placed token was not 5th or in a consecutive row.] AND self = #self.
      */
     public boolean checkDiagWin(BoardPosition pos, char p)
     {
@@ -168,13 +176,14 @@ public class GameBoard
     /**
      * Check which character is at any position on the Gameboard and returns said character.
      *
-     * @param pos
+     * @param pos Current position on the gameboard array.
      *
      * @return Player token that is at desired position as a Character
      *
-     * @pre [pos equals valid BoardPosition, Row > 0 AND Row <= 9 AND Column > 0 AND Column <= 7]
+     * @pre None
      *
-     * @post whatsAtPos = "X" OR whatsAtPos = "O" OR whatsAtPos = "" [pos = #pos]
+     * @post [whatsAtPos returns which player's character (X or O) is at the current position on the game board
+     * array] AND self = #self
      */
     public char whatsAtPos(BoardPosition pos)
     {
@@ -185,16 +194,17 @@ public class GameBoard
      * Determine which player has placed a token at the position
      * on the Gameboard
      *
-     * @param pos
+     * @param pos Indicates current position on the GameBoard
      *
-     * @param player
+     * @param player character of the player [X or O]
      *
      * @return [boolean, true iff correct player token is at position
      * false iff other player is at position]
      *
      * @pre [player = "X" OR player = "O"]
      *
-     * @post [isPlayerAtPos = true OR isPlayerAtPos = false] [pos = #pos]
+     * @post [isPlayerAtPos returns true iff the player (x or o) is at the corresponding position on the
+     * gameboard, return true iff the player is not at the corresponding position] AND self = #self
      */
     public boolean isPlayerAtPos(BoardPosition pos, char player)
     {
@@ -208,12 +218,12 @@ public class GameBoard
      * Create a string from values for row and column
      * in the format "<row>,<column>"
      *
-     * @return the values input for Row and Column to a string
-     * formatted as "<row>,<column>"
+     * @return the values input for Row and Column as a string ["<row>,<column>"]
      *
      * @pre None
      *
-     * @post [toString = "<row>,<column>"] AND Row = #Row AND Column = #Column
+     * @post [toString returns the row and column number formatted as "<row>,<column>".
+     * Converts the row and column to a string and this is output to the players.] AND self = #self
      * 
      */
     @Override

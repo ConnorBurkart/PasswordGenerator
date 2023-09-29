@@ -72,7 +72,7 @@ public class BoardPosition
      *
      * @post [equals iff (this.Row - obj.Row AND this.Column - obj.Column AND
      * [this and obj are both instances of BoardPosition])]
-     * AND obj = #obj AND Row = #Row AND Column = #Column
+     * AND self = #self AND Row = #Row AND Column = #Column
      */
     @Override
     public boolean equals(Object obj)
