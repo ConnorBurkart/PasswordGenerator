@@ -45,6 +45,7 @@ public class GameBoard
      * @post [checkIfFree true iff gameBoard[][c] = " " AND true iff gameBoard[0][c] = " "
      * (returns false iff gameBoard[][c] is occupied by either
      * an 'X' or an 'O'.)] AND [Row = #Row AND Column = #Column and gameBoard[][] = #gameBoard[][].]
+     * AND self = #self
      */
     public boolean checkIfFree(int c)
     {
@@ -62,7 +63,7 @@ public class GameBoard
      * @pre c > 0 AND c <= 7 AND [checkIfFree() for column, c, should return true.]
      * 
      * @post [GameBoard array at column, c, contains player character ('x' or 'o')]
-     * AND [Instance variables Row = #row AND Column = #Column]
+     * AND [Instance variables Row = #row AND Column = #Column] AND self = #self
      */
     public void dropToken(char p, int c)
     {
