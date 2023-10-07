@@ -18,6 +18,10 @@ Steven Cabezas (scabeza)
  */
 public class GameBoard
 {
+    public static int ROWS = 9;
+    public static int COLUMNS = 7;
+    public BoardPosition currentPos;
+    private static char[][] GameBoard;
     /**
      * Constructs a GameBoard that is a size of 9x7 and contains
      * blank spaces for each position in the 9x7
@@ -29,7 +33,8 @@ public class GameBoard
      */
     public GameBoard()
     {
-
+        GameBoard = new char[ROWS][COLUMNS];
+        currentPos = new BoardPosition(0, 0);
     }
 
     /**
@@ -50,6 +55,12 @@ public class GameBoard
     public boolean checkIfFree(int c)
     {
         //returns true if the column can accept another token; false otherwise.
+        if (GameBoard[currentPos.getRow()][c] == ' ') {
+            return true;
+        }
+
+        return false;
+
     }
 
     /**
