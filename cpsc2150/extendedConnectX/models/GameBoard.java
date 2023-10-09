@@ -16,7 +16,7 @@ Steven Cabezas (scabeza)
  * AND Row <= 9 AND Column > 0 AND Column <= 7] AND [Player must be "X" or "O"]
  *
  */
-public class GameBoard
+public class GameBoard implements IGameBoard
 {
     public static int ROWS = 9;
     public static int COLUMNS = 7;
@@ -239,7 +239,20 @@ public class GameBoard
      * 
      */
     @Override
-    public String toString(){
+    public String toString()
+    {
+
+    }
+    public int getNumRows()
+    {
+
+    }
+    public int getNumColumns()
+    {
+
+    }
+    public int getNumToWin()
+    {
 
     }
 
