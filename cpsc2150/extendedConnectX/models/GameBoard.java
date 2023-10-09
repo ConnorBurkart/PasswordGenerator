@@ -21,7 +21,7 @@ public class GameBoard implements IGameBoard
     public static int ROWS = 9;
     public static int COLUMNS = 7;
     public BoardPosition currentPos;
-    private static char[][] GameBoard;
+    private static char[][] playersGameBoard;
     /**
      * Constructs a GameBoard that is a size of 9x7 and contains
      * blank spaces for each position in the 9x7
@@ -33,7 +33,7 @@ public class GameBoard implements IGameBoard
      */
     public GameBoard()
     {
-        GameBoard = new char[ROWS][COLUMNS];
+        playersGameBoard = new char[ROWS][COLUMNS];
         currentPos = new BoardPosition(0, 0);
     }
 
@@ -55,7 +55,7 @@ public class GameBoard implements IGameBoard
     public boolean checkIfFree(int c)
     {
         //returns true if the column can accept another token; false otherwise.
-        if (GameBoard[currentPos.getRow()][c] == ' ') {
+        if (playersGameBoard[currentPos.getRow()][c] == ' ') {
             return true;
         }
 
@@ -79,6 +79,7 @@ public class GameBoard implements IGameBoard
     public void dropToken(char p, int c)
     {
         //places the character p in column c. The token will be placed in the lowest available row in column c.
+        playersGameBoard[currentPos.getRow()][c] = p;
     }
 
     /**
@@ -101,6 +102,7 @@ public class GameBoard implements IGameBoard
         /*this function will check to see if the last token placed in column c resulted in the player winning the game.
         If so it will return true, otherwise false. Note: this is not checking the entire board for a win, it is just
         checking if the last token placed results in a win. You may call other methods to complete this method */
+        return true;
     }
 
     /**
@@ -120,6 +122,7 @@ public class GameBoard implements IGameBoard
         positions remaining. You do not need to check for any potential wins because we can assume that the players
         were checking for win conditions as they played the game. It will return true if the game is tied and
         false otherwise.*/
+        return true;
     }
 
     /**
@@ -140,6 +143,7 @@ public class GameBoard implements IGameBoard
     {
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in
         a row horizontally. Returns true if it does, otherwise false*/
+        return true;
     }
 
     /**
@@ -162,6 +166,7 @@ public class GameBoard implements IGameBoard
     {
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
         vertically. Returns true if it does, otherwise false*/
+        return true;
     }
 
     /**
@@ -183,6 +188,7 @@ public class GameBoard implements IGameBoard
     {
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
         diagonally. Returns true if it does, otherwise false Note: there are two diagonals to check*/
+        return true;
     }
 
     /**
@@ -200,6 +206,16 @@ public class GameBoard implements IGameBoard
     public char whatsAtPos(BoardPosition pos)
     {
         //returns what is in the GameBoard at position pos If no marker is there, it returns a blank space char.
+
+        /*if (playersGameBoard[pos.getRow()][pos.getColumn()] == ' ')
+        {
+            return ' ';
+        }
+
+         */
+
+        //return playersGameBoard[pos.getRow()][pos.getColumn()];
+        return ' ';
     }
 
     /**
@@ -224,6 +240,12 @@ public class GameBoard implements IGameBoard
         similarly to whatsAtPos, but it's asking a different question. We only know they will be similar because we
         know GameBoard will contain a 2D array. If the data structure were to change in the future,
         these two methods could be radically different.*/
+        if (playersGameBoard[pos.getRow()][pos.getColumn()] == player)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -241,19 +263,19 @@ public class GameBoard implements IGameBoard
     @Override
     public String toString()
     {
-
+        return "<" + currentPos.getRow() + ">" + "<" + currentPos.getColumn() + ">";
     }
     public int getNumRows()
     {
-
+        return ROWS;
     }
     public int getNumColumns()
     {
-
+        return COLUMNS;
     }
     public int getNumToWin()
     {
-
+        return 0;
     }
 
 

@@ -4,6 +4,6 @@ public abstract class AbsGameBoard implements IGameBoard
 {
     @Override
     public String toString() {
-
+        return "";
     }
 }

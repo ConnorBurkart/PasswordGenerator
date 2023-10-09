@@ -79,9 +79,10 @@ public class BoardPosition
     @Override
     public boolean equals(Object obj)
     {
+        /*
         if (this.Row == obj.Row && this.Column == obj.Column) {
             return true;
-        }
+        } */
 
         return false;
     }
