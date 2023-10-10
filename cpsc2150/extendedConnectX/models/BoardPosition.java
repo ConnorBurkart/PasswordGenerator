@@ -65,7 +65,7 @@ public class BoardPosition
      * Takes in a BoardPosition object and returns true if two BoardPositions are equal to each
      * other.
      *
-     * @param obj [Parameters are BoardPositon object]
+     * @param obj [Parameters are BoardPosition object]
      *
      * @return [boolean, true iff two BoardPosition objects have the same Row and Column values and False iff
      * two BoardPosition objects have different Row and Column values.]

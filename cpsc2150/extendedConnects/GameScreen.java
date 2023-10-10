@@ -1,5 +1,6 @@
 package cpsc2150.extendedConnects;
 
+import cpsc2150.extendedConnectX.models.BoardPosition;
 import cpsc2150.extendedConnectX.models.GameBoard;
 import java.util.Scanner;
 
@@ -13,27 +14,28 @@ Steven Cabezas (scabeza)
 public class GameScreen {
 
     private static final GameBoard playerBoard = new GameBoard();
-    public static boolean isPlayerXTurn = true;
-    private static void printBoard()
+    private static boolean isPlayerXTurn = true;
+    public static void printBoard()
     {
         System.out.println("|0|1|2|3|4|5|6|");
 
         for (int i = 0; i < playerBoard.getNumRows(); i++) {
             for (int j = 0; j < playerBoard.getNumColumns(); j++) {
+                BoardPosition currentPos = new BoardPosition(i, j);
                 System.out.print('|');
-                System.out.print(playerBoard.whatsAtPos(playerBoard.currentPos));
+                System.out.print(playerBoard.whatsAtPos(currentPos));
             }
             System.out.print('|');
             System.out.print('\n');
         }
     }
 
-    private static void printWinner()
+    public static void printWinner()
     {
 
     }
 
-    private static int askPlayerForColumn()
+    public static int askPlayerForColumn()
     {
 
         if (isPlayerXTurn) {
@@ -55,8 +57,10 @@ public class GameScreen {
         printBoard();
 
         //I just added to make sure askPlayerForColumn was working
-        System.out.println(askPlayerForColumn());
-        System.out.println(askPlayerForColumn());
+        playerBoard.dropToken('X', askPlayerForColumn());
+        printBoard();
+        playerBoard.dropToken('O', askPlayerForColumn());
+        printBoard();
 
     }
 

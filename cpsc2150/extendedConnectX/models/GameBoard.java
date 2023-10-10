@@ -18,9 +18,8 @@ Steven Cabezas (scabeza)
  */
 public class GameBoard implements IGameBoard
 {
-    public static int ROWS = 9;
-    public static int COLUMNS = 7;
-    public BoardPosition currentPos;
+    private static int ROWS = 9;
+    private static int COLUMNS = 7;
     private static char[][] playersGameBoard;
     /**
      * Constructs a GameBoard that is a size of 9x7 and contains
@@ -34,7 +33,7 @@ public class GameBoard implements IGameBoard
     public GameBoard()
     {
         playersGameBoard = new char[ROWS][COLUMNS];
-        currentPos = new BoardPosition(0, 0);
+
     }
 
     /**
@@ -55,7 +54,7 @@ public class GameBoard implements IGameBoard
     public boolean checkIfFree(int c)
     {
         //returns true if the column can accept another token; false otherwise.
-        if (playersGameBoard[currentPos.getRow()][c] == ' ') {
+        if (playersGameBoard[ROWS - 1][c] == ' ') {
             return true;
         }
 
@@ -79,7 +78,15 @@ public class GameBoard implements IGameBoard
     public void dropToken(char p, int c)
     {
         //places the character p in column c. The token will be placed in the lowest available row in column c.
-        playersGameBoard[currentPos.getRow()][c] = p;
+        for (int i = ROWS - 1; i >= 0; i--) {
+            if (playersGameBoard[i][c] == 'X' || playersGameBoard[i][c] == 'O' ) {
+                continue;
+            }
+            else {
+                playersGameBoard[i][c] = p;
+                break;
+            }
+        }
     }
 
     /**
@@ -102,7 +109,7 @@ public class GameBoard implements IGameBoard
         /*this function will check to see if the last token placed in column c resulted in the player winning the game.
         If so it will return true, otherwise false. Note: this is not checking the entire board for a win, it is just
         checking if the last token placed results in a win. You may call other methods to complete this method */
-        return true;
+        return false;
     }
 
     /**
@@ -207,15 +214,12 @@ public class GameBoard implements IGameBoard
     {
         //returns what is in the GameBoard at position pos If no marker is there, it returns a blank space char.
 
-        /*if (playersGameBoard[pos.getRow()][pos.getColumn()] == ' ')
-        {
+        if (playersGameBoard[pos.getRow()][pos.getColumn()] == 'X' || playersGameBoard[pos.getRow()][pos.getColumn()] == 'O') {
+            return playersGameBoard[pos.getRow()][pos.getColumn()];
+        }
+        else {
             return ' ';
         }
-
-         */
-
-        //return playersGameBoard[pos.getRow()][pos.getColumn()];
-        return ' ';
     }
 
     /**
@@ -263,7 +267,7 @@ public class GameBoard implements IGameBoard
     @Override
     public String toString()
     {
-        return "<" + currentPos.getRow() + ">" + "<" + currentPos.getColumn() + ">";
+        return " ";
     }
     public int getNumRows()
     {
