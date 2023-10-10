@@ -57,10 +57,6 @@ public class GameScreen {
         printBoard();
 
         //I just added to make sure askPlayerForColumn was working
-        playerBoard.dropToken('X', askPlayerForColumn());
-        printBoard();
-        playerBoard.dropToken('O', askPlayerForColumn());
-        printBoard();
 
     }
 

@@ -20,6 +20,7 @@ public class GameBoard implements IGameBoard
 {
     private static int ROWS = 9;
     private static int COLUMNS = 7;
+    private static int NUMTOWIN = 5;
     private static char[][] playersGameBoard;
     /**
      * Constructs a GameBoard that is a size of 9x7 and contains
@@ -83,7 +84,7 @@ public class GameBoard implements IGameBoard
                 continue;
             }
             else {
-                playersGameBoard[i][c] = p;
+                playersGameBoard[i][]
                 break;
             }
         }
@@ -109,7 +110,7 @@ public class GameBoard implements IGameBoard
         /*this function will check to see if the last token placed in column c resulted in the player winning the game.
         If so it will return true, otherwise false. Note: this is not checking the entire board for a win, it is just
         checking if the last token placed results in a win. You may call other methods to complete this method */
-        return false;
+
     }
 
     /**
@@ -129,6 +130,13 @@ public class GameBoard implements IGameBoard
         positions remaining. You do not need to check for any potential wins because we can assume that the players
         were checking for win conditions as they played the game. It will return true if the game is tied and
         false otherwise.*/
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLUMNS; j++) {
+                if (playersGameBoard[i][j] == ' ') {
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
@@ -150,7 +158,18 @@ public class GameBoard implements IGameBoard
     {
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in
         a row horizontally. Returns true if it does, otherwise false*/
-        return true;
+        int matchCount = 0;
+        for (int i = 0; i < COLUMNS - 1; i++) {
+            if (playersGameBoard[pos.getRow()][i] == playersGameBoard[pos.getRow()][i + 1]) {
+                matchCount++;
+            }
+        }
+
+        if (matchCount == getNumToWin()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -173,7 +192,18 @@ public class GameBoard implements IGameBoard
     {
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
         vertically. Returns true if it does, otherwise false*/
-        return true;
+        int matchCount = 0;
+        for (int i = 0; i < ROWS - 1; i++) {
+            if (playersGameBoard[i][pos.getColumn()] == playersGameBoard[i + 1][pos.getColumn()]) {
+                matchCount++;
+            }
+        }
+
+        if (matchCount == getNumToWin()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -188,14 +218,29 @@ public class GameBoard implements IGameBoard
      *
      * @pre [p = "X" OR p = "O"]
      *
-     * @post [[checkDiagWin returns true iff last placed token was 5th consecutive token in a diagonal alignment.
+     * @post [checkDiagWin returns true iff last placed token was 5th consecutive token in a diagonal alignment.
      * returns false iff last placed token was not 5th or in a consecutive row.] AND self = #self.
      */
     public boolean checkDiagWin(BoardPosition pos, char p)
     {
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
         diagonally. Returns true if it does, otherwise false Note: there are two diagonals to check*/
-        return true;
+        int i = 0;
+        int j = 0;
+        int matchCount = 0;
+
+        while (i < getNumRows() && j < getNumColumns()) {
+            if (playersGameBoard[i][j] == playersGameBoard[i + 1][j + 1]) {
+                matchCount++;
+                i++;
+                j++;
+            }
+        }
+
+        if (matchCount == getNumToWin()) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -279,7 +324,7 @@ public class GameBoard implements IGameBoard
     }
     public int getNumToWin()
     {
-        return 0;
+        return NUMTOWIN;
     }
 
 
