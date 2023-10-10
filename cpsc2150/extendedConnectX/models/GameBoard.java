@@ -20,7 +20,8 @@ public class GameBoard implements IGameBoard
 {
     private static int ROWS = 9;
     private static int COLUMNS = 7;
-    private static int NUMTOWIN = 5;
+    private static int numToWin = 5;
+    private static BoardPosition LastPlacedToken;
     private static char[][] playersGameBoard;
     /**
      * Constructs a GameBoard that is a size of 9x7 and contains
@@ -34,6 +35,7 @@ public class GameBoard implements IGameBoard
     public GameBoard()
     {
         playersGameBoard = new char[ROWS][COLUMNS];
+        LastPlacedToken = new BoardPosition(8, 0);
 
     }
 
@@ -55,7 +57,7 @@ public class GameBoard implements IGameBoard
     public boolean checkIfFree(int c)
     {
         //returns true if the column can accept another token; false otherwise.
-        if (playersGameBoard[ROWS - 1][c] == ' ') {
+        if (playersGameBoard[getNumRows() - 1][c] == ' ') {
             return true;
         }
 
@@ -79,12 +81,12 @@ public class GameBoard implements IGameBoard
     public void dropToken(char p, int c)
     {
         //places the character p in column c. The token will be placed in the lowest available row in column c.
-        for (int i = ROWS - 1; i >= 0; i--) {
+        for (int i = getNumRows() - 1; i >= 0; i--) {
             if (playersGameBoard[i][c] == 'X' || playersGameBoard[i][c] == 'O' ) {
                 continue;
             }
             else {
-                playersGameBoard[i][]
+                playersGameBoard[i][c] = p;
                 break;
             }
         }
@@ -111,6 +113,7 @@ public class GameBoard implements IGameBoard
         If so it will return true, otherwise false. Note: this is not checking the entire board for a win, it is just
         checking if the last token placed results in a win. You may call other methods to complete this method */
 
+        return false;
     }
 
     /**
@@ -130,8 +133,8 @@ public class GameBoard implements IGameBoard
         positions remaining. You do not need to check for any potential wins because we can assume that the players
         were checking for win conditions as they played the game. It will return true if the game is tied and
         false otherwise.*/
-        for (int i = 0; i < ROWS; i++) {
-            for (int j = 0; j < COLUMNS; j++) {
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumColumns(); j++) {
                 if (playersGameBoard[i][j] == ' ') {
                     return false;
                 }
@@ -159,7 +162,7 @@ public class GameBoard implements IGameBoard
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in
         a row horizontally. Returns true if it does, otherwise false*/
         int matchCount = 0;
-        for (int i = 0; i < COLUMNS - 1; i++) {
+        for (int i = 0; i < getNumColumns() - 1; i++) {
             if (playersGameBoard[pos.getRow()][i] == playersGameBoard[pos.getRow()][i + 1]) {
                 matchCount++;
             }
@@ -193,7 +196,7 @@ public class GameBoard implements IGameBoard
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
         vertically. Returns true if it does, otherwise false*/
         int matchCount = 0;
-        for (int i = 0; i < ROWS - 1; i++) {
+        for (int i = 0; i < getNumRows() - 1; i++) {
             if (playersGameBoard[i][pos.getColumn()] == playersGameBoard[i + 1][pos.getColumn()]) {
                 matchCount++;
             }
@@ -324,7 +327,7 @@ public class GameBoard implements IGameBoard
     }
     public int getNumToWin()
     {
-        return NUMTOWIN;
+        return numToWin;
     }
 
 

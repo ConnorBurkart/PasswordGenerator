@@ -32,31 +32,53 @@ public class GameScreen {
 
     public static void printWinner()
     {
-
+        if (isPlayerXTurn) {
+            System.out.println("Player X Won!");
+        }
+        else {
+            System.out.println("Player O Won!");
+        }
     }
 
     public static int askPlayerForColumn()
     {
+        int column;
+        do {
+            if (isPlayerXTurn) {
+                System.out.println("Player X, what column do you want to place your marker in?\n");
+            }
+            else {
+                System.out.println("Player O, what column do you want to place your marker in?\n");
+            }
 
-        if (isPlayerXTurn) {
-            System.out.println("Player X, what column do you want to place your marker in?\n");
-            isPlayerXTurn = false;
-        }
-        else {
-            System.out.println("Player O, what column do you want to place your marker in?\n");
-            isPlayerXTurn = true;
-        }
+            Scanner in = new Scanner(System.in);
+            column = in.nextInt();
 
-        Scanner in = new Scanner(System.in);
-        return in.nextInt();
+            if (column < 0) {
+                System.out.println("Column cannot be less than 0");
+            }
+            else if (column > playerBoard.getNumColumns() - 1) {
+                System.out.println("Column cannot be greater than 6");
+            }
+
+        } while (column < 0 || column > playerBoard.getNumColumns() - 1);
+
+        if (isPlayerXTurn) { isPlayerXTurn = false; }
+        else { isPlayerXTurn = true; }
+
+        return column;
 
     }
 
     public static void main(String[] args)
     {
+        //just testing to make sure printBoard and AskplayerForColumn work
+        printBoard();
+        playerBoard.dropToken('X', askPlayerForColumn());
+        printBoard();
+        playerBoard.dropToken('O', askPlayerForColumn());
         printBoard();
 
-        //I just added to make sure askPlayerForColumn was working
 
     }
 
