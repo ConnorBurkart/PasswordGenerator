@@ -77,11 +77,19 @@ public class GameScreen {
 
     public static void main(String[] args)
     {
-        while (!isGameOver) {
+        while (!isGameOver)
+        {
+            int col = 0;
             printBoard();
-            playerBoard.dropToken('X', askPlayerForColumn());
+            col = askPlayerForColumn();
+            playerBoard.dropToken('X', col);
+            playerBoard.checkTie();
+            playerBoard.checkForWin(col);
             printBoard();
-            playerBoard.dropToken('O', askPlayerForColumn());
+            col = askPlayerForColumn();
+            playerBoard.dropToken('O', col);
+            playerBoard.checkTie();
+            playerBoard.checkForWin(col);
         }
 
         printWinner();

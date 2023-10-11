@@ -83,7 +83,7 @@ public class GameBoard implements IGameBoard
         //places the character p in column c. The token will be placed in the lowest available row in column c.
         for (int i = getNumRows() - 1; i >= 0; i--) {
             if (playersGameBoard[i][c] == 'X' || playersGameBoard[i][c] == 'O' ) {
-                continue;
+                return;
             }
             else {
                 playersGameBoard[i][c] = p;
@@ -109,6 +109,8 @@ public class GameBoard implements IGameBoard
      */
     public boolean checkForWin(int c)
     {
+        // needs to be defualt
+
         /*this function will check to see if the last token placed in column c resulted in the player winning the game.
         If so it will return true, otherwise false. Note: this is not checking the entire board for a win, it is just
         checking if the last token placed results in a win. You may call other methods to complete this method */
@@ -168,6 +170,8 @@ public class GameBoard implements IGameBoard
      */
     public boolean checkHorizWin(BoardPosition pos, char p)
     {
+        // needs to be default
+
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in
         a row horizontally. Returns true if it does, otherwise false*/
         for (int i = 0; i < getNumToWin(); i++) {
@@ -216,6 +220,8 @@ public class GameBoard implements IGameBoard
      */
     public boolean checkVertWin(BoardPosition pos, char p)
     {
+        // needs to be default
+
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
         vertically. Returns true if it does, otherwise false*/
         for (int i = 0; i < getNumToWin(); i++) {
@@ -247,6 +253,8 @@ public class GameBoard implements IGameBoard
      */
     public boolean checkDiagWin(BoardPosition pos, char p)
     {
+        // needs to be default
+
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
         diagonally. Returns true if it does, otherwise false Note: there are two diagonals to check*/
         int leftHorizontalCount = 0;
