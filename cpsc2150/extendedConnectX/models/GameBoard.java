@@ -174,6 +174,22 @@ public class GameBoard implements IGameBoard
             if (whatsAtPos(pos) != p) {
                 return false;
             }
+            /*
+            For this if statement should we add another part that checks to see if [pos.getRow()][i - 1] is equal
+            as well? This would mean that the token could be in the column to the right or the left not just the right.
+            I am not sure if this would require an else if statement or we could just put it into the if statement as
+            another condition. Could this be default as well? Also we need to make GameBoard extend AbsGameBoard, but
+            I'm not sure how to do that and implement the interface within the same line.
+            Also I think that all of the methods in this file should be default because none of them use private
+            variables, they all use primary methods to access the private data. So I think that all of the methods
+            except for the contructor and the getters, and toString at the bottom should be default. Also could you
+            leave a comment explaining how these checkWin functions work now that you changed how they were from before?
+
+            else if (playersGameBoard[pos.getRow()[i] == playersGameBoard[pos.getRow()[i - 1])
+            {
+            matchCount++;
+            }
+            */
 
             pos = new BoardPosition(pos.getRow(), i);
 
