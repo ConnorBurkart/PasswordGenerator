@@ -21,7 +21,7 @@ public class GameBoard implements IGameBoard
     private static int ROWS = 9;
     private static int COLUMNS = 7;
     private static int numToWin = 5;
-    private static BoardPosition LastPlacedToken;
+    //private static BoardPosition LastPlacedToken;
     private static char[][] playersGameBoard;
     /**
      * Constructs a GameBoard that is a size of 9x7 and contains
@@ -35,7 +35,7 @@ public class GameBoard implements IGameBoard
     public GameBoard()
     {
         playersGameBoard = new char[ROWS][COLUMNS];
-        LastPlacedToken = new BoardPosition(8, 0);
+        //LastPlacedToken = new BoardPosition(8, 0);
 
     }
 
@@ -112,6 +112,15 @@ public class GameBoard implements IGameBoard
         /*this function will check to see if the last token placed in column c resulted in the player winning the game.
         If so it will return true, otherwise false. Note: this is not checking the entire board for a win, it is just
         checking if the last token placed results in a win. You may call other methods to complete this method */
+        for (int i = 0; i < getNumRows(); i++) {
+            BoardPosition currentPos = new BoardPosition(i, c);
+
+            if (checkHorizWin(currentPos, whatsAtPos(currentPos)) || checkVertWin(currentPos, whatsAtPos(currentPos))
+                    || checkDiagWin(currentPos, whatsAtPos(currentPos)))
+            {
+                return true;
+            }
+        }
 
         return false;
     }
@@ -161,18 +170,16 @@ public class GameBoard implements IGameBoard
     {
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in
         a row horizontally. Returns true if it does, otherwise false*/
-        int matchCount = 0;
-        for (int i = 0; i < getNumColumns() - 1; i++) {
-            if (playersGameBoard[pos.getRow()][i] == playersGameBoard[pos.getRow()][i + 1]) {
-                matchCount++;
+        for (int i = 0; i < getNumToWin(); i++) {
+            if (whatsAtPos(pos) != p) {
+                return false;
             }
+
+            pos = new BoardPosition(pos.getRow(), i);
+
         }
 
-        if (matchCount == getNumToWin()) {
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     /**
@@ -195,18 +202,16 @@ public class GameBoard implements IGameBoard
     {
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
         vertically. Returns true if it does, otherwise false*/
-        int matchCount = 0;
-        for (int i = 0; i < getNumRows() - 1; i++) {
-            if (playersGameBoard[i][pos.getColumn()] == playersGameBoard[i + 1][pos.getColumn()]) {
-                matchCount++;
+        for (int i = 0; i < getNumToWin(); i++) {
+            if (whatsAtPos(pos) != p) {
+                return false;
             }
+
+            pos = new BoardPosition(i, pos.getColumn());
+
         }
 
-        if (matchCount == getNumToWin()) {
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     /**
@@ -228,22 +233,16 @@ public class GameBoard implements IGameBoard
     {
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
         diagonally. Returns true if it does, otherwise false Note: there are two diagonals to check*/
-        int i = 0;
-        int j = 0;
         int matchCount = 0;
-
-        while (i < getNumRows() && j < getNumColumns()) {
-            if (playersGameBoard[i][j] == playersGameBoard[i + 1][j + 1]) {
-                matchCount++;
-                i++;
-                j++;
+        for (int i = 0; i < getNumToWin(); i++) {
+            if (whatsAtPos(pos) != p) {
+                return false;
             }
+            pos = new BoardPosition(pos.getRow() + 1, pos.getColumn() + 1);
+
         }
 
-        if (matchCount == getNumToWin()) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     /**

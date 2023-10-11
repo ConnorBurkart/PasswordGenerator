@@ -15,6 +15,7 @@ public class GameScreen {
 
     private static final GameBoard playerBoard = new GameBoard();
     private static boolean isPlayerXTurn = true;
+    private static boolean isGameOver = false;
     public static void printBoard()
     {
         System.out.println("|0|1|2|3|4|5|6|");
@@ -66,19 +67,24 @@ public class GameScreen {
         if (isPlayerXTurn) { isPlayerXTurn = false; }
         else { isPlayerXTurn = true; }
 
+        if (playerBoard.checkForWin(column)) {
+            isGameOver = true;
+        }
+
         return column;
 
     }
 
     public static void main(String[] args)
     {
-        //just testing to make sure printBoard and AskplayerForColumn work
-        printBoard();
-        playerBoard.dropToken('X', askPlayerForColumn());
-        printBoard();
-        playerBoard.dropToken('O', askPlayerForColumn());
-        printBoard();
+        while (!isGameOver) {
+            printBoard();
+            playerBoard.dropToken('X', askPlayerForColumn());
+            printBoard();
+            playerBoard.dropToken('O', askPlayerForColumn());
+        }
 
+        printWinner();
 
     }
 
