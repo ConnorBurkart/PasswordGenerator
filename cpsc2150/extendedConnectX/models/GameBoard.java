@@ -191,7 +191,7 @@ public class GameBoard implements IGameBoard
             }
             */
 
-            pos = new BoardPosition(pos.getRow(), i);
+            pos = new BoardPosition(pos.getRow(), pos.getColumn() + 1);
 
         }
 
@@ -249,13 +249,24 @@ public class GameBoard implements IGameBoard
     {
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
         diagonally. Returns true if it does, otherwise false Note: there are two diagonals to check*/
-        int matchCount = 0;
-        for (int i = 0; i < getNumToWin(); i++) {
-            if (whatsAtPos(pos) != p) {
-                return false;
-            }
-            pos = new BoardPosition(pos.getRow() + 1, pos.getColumn() + 1);
+        int leftHorizontalCount = 0;
+        int rightHorizontalCount = 0;
+        BoardPosition originalPos = new BoardPosition(pos.getRow(), pos.getColumn());
 
+        while (pos.getRow() < getNumRows() - 1 && pos.getColumn() < getNumColumns() - 1) {
+            if (whatsAtPos(pos) != p) {
+                break;
+            }
+            leftHorizontalCount++;
+            pos = new BoardPosition(pos.getRow() + 1, pos.getColumn() + 1);
+        }
+
+        pos = originalPos;
+
+        while (pos.getRow() >= 0 && pos.getColumn() >= 0) {
+
+
+            pos = new BoardPosition(pos.getRow() - 1, pos.getColumn() - 1);
         }
 
         return true;
