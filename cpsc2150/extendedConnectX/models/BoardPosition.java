@@ -97,6 +97,6 @@ public class BoardPosition
     @Override
     public String toString()
     {
-        return "<" + Row + ">" + "<" + Column + ">";
+        return "<" + this.Row + ">" + "<" + this.Column + ">";
     }
 }
