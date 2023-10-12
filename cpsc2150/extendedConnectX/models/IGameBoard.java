@@ -12,7 +12,7 @@ package cpsc2150.extendedConnectX.models;
  *          num_to_win : z
  *
  *@constraints: |self| = num_rows x num_columns AND [GameBoard cannot contain any characters besides an 'X', 'O',
- *  or '' at any point.] AND [num_to_win indicates number of consequtive matches to win the game, this must be equal to 5]
+ *  or '' at any point.] AND [num_to_win indicates number of consecutive matches to win the game, this must be equal to 5]
  *
  */
 public interface IGameBoard {

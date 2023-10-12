@@ -17,6 +17,7 @@ public class GameScreen {
     private static boolean isPlayerXTurn = true;
     public static void printBoard()
     {
+        /*
         System.out.println("|0|1|2|3|4|5|6|");
 
         for (int i = 0; i < playerBoard.getNumRows(); i++) {
@@ -28,6 +29,9 @@ public class GameScreen {
             System.out.print('|');
             System.out.print('\n');
         }
+
+         */
+        System.out.println(playerBoard.toString());
     }
 
     public static void printWinner()
@@ -47,10 +51,10 @@ public class GameScreen {
         while (invalidColumnNum) {
 
             if (isPlayerXTurn) {
-                System.out.println("Player X, what column do you want to place your marker in?\n");
+                System.out.println("Player X, what column do you want to place your marker in?");
             }
             else {
-                System.out.println("Player O, what column do you want to place your marker in?\n");
+                System.out.println("Player O, what column do you want to place your marker in?");
             }
 
             Scanner in = new Scanner(System.in);
@@ -132,7 +136,6 @@ public class GameScreen {
                 playerInput = inputChar.next().charAt(0);
                 playerBoard = new GameBoard();
             }
-
 
         }
 

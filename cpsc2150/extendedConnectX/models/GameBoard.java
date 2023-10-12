@@ -119,18 +119,16 @@ public class GameBoard implements IGameBoard
         /*this function will check to see if the last token placed in column c resulted in the player winning the game.
         If so it will return true, otherwise false. Note: this is not checking the entire board for a win, it is just
         checking if the last token placed results in a win. You may call other methods to complete this method */
+
+        //BoardPosition currentPos = new BoardPosition(, c);
         /*
-        for (int i = 0; i < getNumRows(); i++) {
-            BoardPosition currentPos = new BoardPosition(i, c);
+        if (checkHorizWin(currentPos, whatsAtPos(currentPos)) || checkVertWin(currentPos, whatsAtPos(currentPos))
+                || checkDiagWin(currentPos, whatsAtPos(currentPos)))
+        {
+            return true;
+        } */
 
-            if (checkHorizWin(currentPos, whatsAtPos(currentPos)) || checkVertWin(currentPos, whatsAtPos(currentPos))
-                    || checkDiagWin(currentPos, whatsAtPos(currentPos)))
-            {
-                return true;
-            }
-        }
 
-         */
 
         return false;
     }
@@ -445,16 +443,18 @@ public class GameBoard implements IGameBoard
     @Override
     public String toString()
     {
-        String outputString = "";
-        BoardPosition pos = new BoardPosition(0, 0);
+        String boardString = "|0|1|2|3|4|5|6|\n";
+
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumColumns(); j++) {
-                outputString += ("<" + pos.getRow() + ">" + "," + "<" + pos.getColumn() + ">");
-
-                pos = new BoardPosition(i, j);
+                BoardPosition currentPos = new BoardPosition(i, j);
+                boardString += ('|');
+                boardString += (whatsAtPos(currentPos));
             }
+            boardString += ('|');
+            boardString += '\n';
         }
-        return outputString;
+        return boardString;
     }
     public int getNumRows()
     {
