@@ -57,11 +57,12 @@ public class GameBoard implements IGameBoard
     public boolean checkIfFree(int c)
     {
         //returns true if the column can accept another token; false otherwise.
-        if (playersGameBoard[getNumRows() - 1][c] == ' ') {
-            return true;
+        BoardPosition pos = new BoardPosition(0, c);
+        if (whatsAtPos(pos) == 'X' || whatsAtPos(pos) == 'O') {
+            return false;
         }
 
-        return false;
+        return true;
 
     }
 
@@ -83,11 +84,11 @@ public class GameBoard implements IGameBoard
         //places the character p in column c. The token will be placed in the lowest available row in column c.
         for (int i = getNumRows() - 1; i >= 0; i--) {
             if (playersGameBoard[i][c] == 'X' || playersGameBoard[i][c] == 'O' ) {
-                return;
+                continue;
             }
             else {
                 playersGameBoard[i][c] = p;
-                break;
+                return;
             }
         }
     }
@@ -114,6 +115,7 @@ public class GameBoard implements IGameBoard
         /*this function will check to see if the last token placed in column c resulted in the player winning the game.
         If so it will return true, otherwise false. Note: this is not checking the entire board for a win, it is just
         checking if the last token placed results in a win. You may call other methods to complete this method */
+        /*
         for (int i = 0; i < getNumRows(); i++) {
             BoardPosition currentPos = new BoardPosition(i, c);
 
@@ -123,6 +125,8 @@ public class GameBoard implements IGameBoard
                 return true;
             }
         }
+
+         */
 
         return false;
     }
@@ -144,11 +148,9 @@ public class GameBoard implements IGameBoard
         positions remaining. You do not need to check for any potential wins because we can assume that the players
         were checking for win conditions as they played the game. It will return true if the game is tied and
         false otherwise.*/
-        for (int i = 0; i < getNumRows(); i++) {
-            for (int j = 0; j < getNumColumns(); j++) {
-                if (playersGameBoard[i][j] == ' ') {
-                    return false;
-                }
+        for (int i = 0; i < getNumColumns(); i++) {
+            if (checkIfFree(i)) {
+                return false;
             }
         }
         return true;
@@ -171,9 +173,8 @@ public class GameBoard implements IGameBoard
     public boolean checkHorizWin(BoardPosition pos, char p)
     {
         // needs to be default
-
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in
-        a row horizontally. Returns true if it does, otherwise false*/
+        a row horizontally. Returns true if it does, otherwise false
         for (int i = 0; i < getNumToWin(); i++) {
             if (whatsAtPos(pos) != p) {
                 return false;
@@ -193,11 +194,12 @@ public class GameBoard implements IGameBoard
             {
             matchCount++;
             }
-            */
+
 
             pos = new BoardPosition(pos.getRow(), pos.getColumn() + 1);
 
         }
+        */
 
         return true;
     }
@@ -224,14 +226,7 @@ public class GameBoard implements IGameBoard
 
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
         vertically. Returns true if it does, otherwise false*/
-        for (int i = 0; i < getNumToWin(); i++) {
-            if (whatsAtPos(pos) != p) {
-                return false;
-            }
 
-            pos = new BoardPosition(i, pos.getColumn());
-
-        }
 
         return true;
     }
@@ -257,25 +252,7 @@ public class GameBoard implements IGameBoard
 
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
         diagonally. Returns true if it does, otherwise false Note: there are two diagonals to check*/
-        int leftHorizontalCount = 0;
-        int rightHorizontalCount = 0;
-        BoardPosition originalPos = new BoardPosition(pos.getRow(), pos.getColumn());
 
-        while (pos.getRow() < getNumRows() - 1 && pos.getColumn() < getNumColumns() - 1) {
-            if (whatsAtPos(pos) != p) {
-                break;
-            }
-            leftHorizontalCount++;
-            pos = new BoardPosition(pos.getRow() + 1, pos.getColumn() + 1);
-        }
-
-        pos = originalPos;
-
-        while (pos.getRow() >= 0 && pos.getColumn() >= 0) {
-
-
-            pos = new BoardPosition(pos.getRow() - 1, pos.getColumn() - 1);
-        }
 
         return true;
     }

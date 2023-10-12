@@ -13,9 +13,8 @@ Steven Cabezas (scabeza)
  */
 public class GameScreen {
 
-    private static final GameBoard playerBoard = new GameBoard();
+    private static GameBoard playerBoard;
     private static boolean isPlayerXTurn = true;
-    private static boolean isGameOver = false;
     public static void printBoard()
     {
         System.out.println("|0|1|2|3|4|5|6|");
@@ -44,7 +43,9 @@ public class GameScreen {
     public static int askPlayerForColumn()
     {
         int column;
+        boolean invalidColumnNum;
         do {
+
             if (isPlayerXTurn) {
                 System.out.println("Player X, what column do you want to place your marker in?\n");
             }
@@ -57,19 +58,26 @@ public class GameScreen {
 
             if (column < 0) {
                 System.out.println("Column cannot be less than 0");
+                invalidColumnNum = true;
             }
             else if (column > playerBoard.getNumColumns() - 1) {
                 System.out.println("Column cannot be greater than 6");
+                invalidColumnNum = true;
+            }
+            else {
+                invalidColumnNum = false;
             }
 
-        } while (column < 0 || column > playerBoard.getNumColumns() - 1);
+            if (!playerBoard.checkIfFree(column)) {
+                System.out.println("Column is full");
+                invalidColumnNum = true;
+            }
+
+        } while (invalidColumnNum);
 
         if (isPlayerXTurn) { isPlayerXTurn = false; }
         else { isPlayerXTurn = true; }
 
-        if (playerBoard.checkForWin(column)) {
-            isGameOver = true;
-        }
 
         return column;
 
@@ -77,22 +85,34 @@ public class GameScreen {
 
     public static void main(String[] args)
     {
-        while (!isGameOver)
-        {
-            int col = 0;
+        playerBoard = new GameBoard();
+
+        int col = 0;
+        char playerInput = 'y';
+        while (playerInput == 'y') {
             printBoard();
             col = askPlayerForColumn();
             playerBoard.dropToken('X', col);
-            playerBoard.checkTie();
-            playerBoard.checkForWin(col);
             printBoard();
             col = askPlayerForColumn();
             playerBoard.dropToken('O', col);
-            playerBoard.checkTie();
-            playerBoard.checkForWin(col);
-        }
 
-        printWinner();
+            if (playerBoard.checkTie()) {
+                System.out.println("Tie!");
+                System.out.println("Would you like to play again? y/n");
+                Scanner inputChar = new Scanner(System.in);
+                playerInput = inputChar.next().charAt(0);
+            }
+
+            if (playerBoard.checkForWin(col)) {
+                printWinner();
+                System.out.println("Would you like to play again? y/n");
+                Scanner inputChar = new Scanner(System.in);
+                playerInput = inputChar.next().charAt(0);
+            }
+
+            playerBoard = new GameBoard();
+        }
 
     }
 
