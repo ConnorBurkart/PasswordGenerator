@@ -119,18 +119,23 @@ public class GameBoard implements IGameBoard
         /*this function will check to see if the last token placed in column c resulted in the player winning the game.
         If so it will return true, otherwise false. Note: this is not checking the entire board for a win, it is just
         checking if the last token placed results in a win. You may call other methods to complete this method */
+        int row = -1;
+        BoardPosition currentPos = new BoardPosition(row, c);
 
-        //BoardPosition currentPos = new BoardPosition(, c);
-        /*
-        if (checkHorizWin(currentPos, whatsAtPos(currentPos)) || checkVertWin(currentPos, whatsAtPos(currentPos))
-                || checkDiagWin(currentPos, whatsAtPos(currentPos)))
-        {
-            return true;
-        } */
+        for (int i = 0; i < getNumRows(); i++) {
+            row++;
+            currentPos = new BoardPosition(row, c);
+            if (whatsAtPos(currentPos) != ' ') {
+                row = i;
+                break;
+            }
+        }
+
+        return (checkHorizWin(currentPos, whatsAtPos(currentPos)) || checkVertWin(currentPos, whatsAtPos(currentPos))
+                || checkDiagWin(currentPos, whatsAtPos(currentPos)));
 
 
 
-        return false;
     }
 
     /**
