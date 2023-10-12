@@ -93,6 +93,29 @@ public class GameScreen {
             printBoard();
             col = askPlayerForColumn();
             playerBoard.dropToken('X', col);
+
+            if (playerBoard.checkTie()) {
+                System.out.println("Tie!");
+                System.out.println("Would you like to play again? y/n");
+                Scanner inputChar = new Scanner(System.in);
+                playerInput = inputChar.next().charAt(0);
+
+                if (playerInput == 'n') {
+                    break;
+                }
+
+                isPlayerXTurn = true;
+                playerBoard = new GameBoard();
+            }
+
+            if (playerBoard.checkForWin(col)) {
+                printWinner();
+                System.out.println("Would you like to play again? y/n");
+                Scanner inputChar = new Scanner(System.in);
+                playerInput = inputChar.next().charAt(0);
+                playerBoard = new GameBoard();
+            }
+
             printBoard();
             col = askPlayerForColumn();
             playerBoard.dropToken('O', col);
@@ -102,6 +125,7 @@ public class GameScreen {
                 System.out.println("Would you like to play again? y/n");
                 Scanner inputChar = new Scanner(System.in);
                 playerInput = inputChar.next().charAt(0);
+                playerBoard = new GameBoard();
             }
 
             if (playerBoard.checkForWin(col)) {
@@ -109,9 +133,10 @@ public class GameScreen {
                 System.out.println("Would you like to play again? y/n");
                 Scanner inputChar = new Scanner(System.in);
                 playerInput = inputChar.next().charAt(0);
+                playerBoard = new GameBoard();
             }
 
-            playerBoard = new GameBoard();
+
         }
 
     }

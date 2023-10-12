@@ -21,7 +21,6 @@ public class GameBoard implements IGameBoard
     private static int ROWS = 9;
     private static int COLUMNS = 7;
     private static int numToWin = 5;
-    //private static BoardPosition LastPlacedToken;
     private static char[][] playersGameBoard;
     /**
      * Constructs a GameBoard that is a size of 9x7 and contains
@@ -35,7 +34,6 @@ public class GameBoard implements IGameBoard
     public GameBoard()
     {
         playersGameBoard = new char[ROWS][COLUMNS];
-        //LastPlacedToken = new BoardPosition(8, 0);
 
     }
 
@@ -153,6 +151,7 @@ public class GameBoard implements IGameBoard
                 return false;
             }
         }
+
         return true;
     }
 
@@ -201,7 +200,7 @@ public class GameBoard implements IGameBoard
         }
         */
 
-        return true;
+        return false;
     }
 
     /**
@@ -228,7 +227,7 @@ public class GameBoard implements IGameBoard
         vertically. Returns true if it does, otherwise false*/
 
 
-        return true;
+        return false;
     }
 
     /**
@@ -254,7 +253,7 @@ public class GameBoard implements IGameBoard
         diagonally. Returns true if it does, otherwise false Note: there are two diagonals to check*/
 
 
-        return true;
+        return false;
     }
 
     /**
