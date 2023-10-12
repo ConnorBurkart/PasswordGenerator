@@ -11,9 +11,12 @@ Steven Cabezas (scabeza)
  * and to advance the game.
  *
  * @invariant [GameBoard should be valid 9x7 size board] AND
- * [Instance variables Row and Column must be Row = 9 and Column = 7]
- * AND [BoardPosition object must be valid, Row > 0
- * AND Row <= 9 AND Column > 0 AND Column <= 7] AND [Player must be "X" or "O"]
+ * [Instance variables Row and Column must be ROW = 9 and COLUMN = 7]
+ * AND [Player must be "X" or "O"]
+ *
+ * @corresponds num_rows = ROWS
+ * @corresponds num_columns = COLUMNS
+ * @corresponds num_to_win = numToWin
  *
  */
 public class GameBoard implements IGameBoard
@@ -28,8 +31,7 @@ public class GameBoard implements IGameBoard
      *
      * @pre None
      *
-     * @post [Creates instance of empty 2D array to represent gameBoard] AND [instance variables
-     * Row = 9 and Column = 7]
+     * @post [Creates instance of empty 2D array to represent gameBoard] AND ROWS = 9 AND COLUMNS = 7 AND numToWin = 5
      */
     public GameBoard()
     {
@@ -51,7 +53,7 @@ public class GameBoard implements IGameBoard
      * 
      * @post [checkIfFree true iff gameBoard[][c] = " " AND true iff gameBoard[0][c] = " "
      * (returns false iff gameBoard[][c] is occupied by either
-     * an 'X' or an 'O'.)] AND [Row = #Row AND Column = #Column and gameBoard[][] = #gameBoard[][].]
+     * an 'X' or an 'O'.)] AND [Row = #Row AND Column = #Column]
      * AND self = #self
      */
     /*
@@ -443,7 +445,16 @@ public class GameBoard implements IGameBoard
     @Override
     public String toString()
     {
-        return " ";
+        String outputString = "";
+        BoardPosition pos = new BoardPosition(0, 0);
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumColumns(); j++) {
+                outputString += ("<" + pos.getRow() + ">" + "," + "<" + pos.getColumn() + ">");
+
+                pos = new BoardPosition(i, j);
+            }
+        }
+        return outputString;
     }
     public int getNumRows()
     {

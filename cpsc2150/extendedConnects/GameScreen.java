@@ -42,9 +42,9 @@ public class GameScreen {
 
     public static int askPlayerForColumn()
     {
-        int column;
-        boolean invalidColumnNum;
-        do {
+        int column = 0;
+        boolean invalidColumnNum = true;
+        while (invalidColumnNum) {
 
             if (isPlayerXTurn) {
                 System.out.println("Player X, what column do you want to place your marker in?\n");
@@ -58,22 +58,19 @@ public class GameScreen {
 
             if (column < 0) {
                 System.out.println("Column cannot be less than 0");
-                invalidColumnNum = true;
             }
             else if (column > playerBoard.getNumColumns() - 1) {
                 System.out.println("Column cannot be greater than 6");
-                invalidColumnNum = true;
+            }
+            else if (!playerBoard.checkIfFree(column)) {
+                System.out.println("Column is full");
             }
             else {
                 invalidColumnNum = false;
             }
 
-            if (!playerBoard.checkIfFree(column)) {
-                System.out.println("Column is full");
-                invalidColumnNum = true;
-            }
 
-        } while (invalidColumnNum);
+        }
 
         if (isPlayerXTurn) { isPlayerXTurn = false; }
         else { isPlayerXTurn = true; }

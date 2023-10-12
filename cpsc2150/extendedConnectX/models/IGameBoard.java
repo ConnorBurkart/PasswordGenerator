@@ -1,5 +1,20 @@
 package cpsc2150.extendedConnectX.models;
 
+/**IGameBoard contract
+ * GameBoard represents the board for extendedConnect X
+ *
+ *@initialization Ensures:
+ *              GameBoard contains no player values and is
+ *              of size num_rows x num_columns
+ *
+ *@defines: num_rows : z
+ *          num_columns : z
+ *          num_to_win : z
+ *
+ *@constraints: |self| = num_rows x num_columns AND [GameBoard cannot contain any characters besides an 'X', 'O',
+ *  or '' at any point.] AND [num_to_win indicates number of consequtive matches to win the game, this must be equal to 5]
+ *
+ */
 public interface IGameBoard {
     public default boolean checkIfFree(int c) {
         //returns true if the column can accept another token; false otherwise.
