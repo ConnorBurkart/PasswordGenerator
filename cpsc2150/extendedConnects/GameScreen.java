@@ -15,6 +15,14 @@ public class GameScreen {
 
     private static GameBoard playerBoard;
     private static boolean isPlayerXTurn = true;
+
+    /**
+     * Prints the board in current relation to the playerBoard object.
+     *
+     * @pre None
+     *
+     * @post playerBoard = #playerBoard
+     */
     public static void printBoard()
     {
         /*
@@ -34,6 +42,13 @@ public class GameScreen {
         System.out.println(playerBoard.toString());
     }
 
+    /**
+     * Prints the winner of the game.
+     *
+     * @pre None
+     *
+     * @post isPlayerXTurn = #isPlayerXTurn
+     */
     public static void printWinner()
     {
         if (isPlayerXTurn) {
@@ -44,6 +59,15 @@ public class GameScreen {
         }
     }
 
+    /**
+     * Ask player which column they want their token dropped in.
+     *
+     * @return the column in which the player wants the token dropped.
+     *
+     * @pre None
+     *
+     * @post self = #self
+     */
     public static int askPlayerForColumn()
     {
         int column = 0;
