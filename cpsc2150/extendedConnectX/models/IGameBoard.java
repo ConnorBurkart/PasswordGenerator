@@ -180,18 +180,20 @@ public interface IGameBoard {
 
         int count = 0;
 
-        while (pos.getRow() < getNumRows() - 1 && count < getNumToWin()) {
+        while (pos.getRow() < getNumRows() - 1 && count < getNumRows() - 1) {
             pos = new BoardPosition(pos.getRow() + 1, pos.getColumn());
 
-            if (whatsAtPos(pos) == p) {
-                count++;
+            if (whatsAtPos(pos) != p) {
+                break;
             }
+            count++;
         }
 
-        if (count < getNumToWin() - 1) {
-            return false;
+        if (count == getNumToWin() - 1) {
+            return true;
         }
-        return true;
+
+        return false;
     }
 
     /**
@@ -229,8 +231,8 @@ public interface IGameBoard {
         pos = originalPos;
         count = 0;
 
-        while (pos.getRow() > 0 && pos.getColumn() > 0) {
-            pos = new BoardPosition(pos.getRow() - 1, pos.getColumn() - 1);
+        while (pos.getRow() < getNumRows() - 1 && pos.getColumn() > 0) {
+            pos = new BoardPosition(pos.getRow() + 1, pos.getColumn() - 1);
 
             if (whatsAtPos(pos) == p) {
                 count++;
