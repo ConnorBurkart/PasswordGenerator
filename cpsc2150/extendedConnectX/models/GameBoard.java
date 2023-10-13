@@ -119,23 +119,22 @@ public class GameBoard implements IGameBoard
         /*this function will check to see if the last token placed in column c resulted in the player winning the game.
         If so it will return true, otherwise false. Note: this is not checking the entire board for a win, it is just
         checking if the last token placed results in a win. You may call other methods to complete this method */
-        int row = -1;
-        BoardPosition currentPos = new BoardPosition(row, c);
+        BoardPosition pos = new BoardPosition(0, c);
+        char playerChar = ' ';
 
         for (int i = 0; i < getNumRows(); i++) {
-            row++;
-            currentPos = new BoardPosition(row, c);
-            if (whatsAtPos(currentPos) != ' ') {
-                row = i;
+            pos = new BoardPosition(i, c);
+            if (whatsAtPos(pos) == 'X' || whatsAtPos(pos) == 'O') {
+                playerChar = whatsAtPos(pos);
                 break;
             }
         }
 
-        return (checkHorizWin(currentPos, whatsAtPos(currentPos)) || checkVertWin(currentPos, whatsAtPos(currentPos))
-                || checkDiagWin(currentPos, whatsAtPos(currentPos)));
+        if (checkVertWin(pos, playerChar)) {
+            return true;
+        }
 
-
-
+        return false;
     }
 
     /**
@@ -209,46 +208,37 @@ public class GameBoard implements IGameBoard
 
         }
         */
-        BoardPosition originalPos = pos;
-        int matchCount = 0;
-        for (int i = 0; i < getNumToWin(); i++) {
-
-            if (pos.getColumn() == getNumColumns() - 1) {
-                break;
-            }
-
-            if (isPlayerAtPos(pos, p)) {
-                matchCount++;
-            }
-
-            pos = new BoardPosition(pos.getRow(), pos.getColumn() + 1);
-        }
-
-        if (matchCount == getNumToWin()) {
-            return true;
-        }
-
-        pos = originalPos;
-        matchCount = 0;
 
         for (int i = 0; i < getNumToWin(); i++) {
+            pos = new BoardPosition(pos.getRow(), i);
 
-            if (pos.getColumn() == 0) {
-                break;
+
+            if (whatsAtPos(pos) != p) {
+                return false;
             }
+        }
 
-            if (isPlayerAtPos(pos, p)) {
-                matchCount++;
+        for (int i = getNumColumns() - 1; i >= 2; i--) {
+            pos = new BoardPosition(pos.getRow(), i);
+
+            if (whatsAtPos(pos) != p) {
+                return false;
             }
+        }
 
+        /*
+        pos = origPosit;
+        for (int i = 0; i < getNumToWin(); i++) {
             pos = new BoardPosition(pos.getRow(), pos.getColumn() - 1);
+
+            if (whatsAtPos(pos) != p) {
+                return false;
+            }
         }
 
-        if (matchCount == getNumToWin()) {
-            return true;
-        }
+         */
 
-        return false;
+        return true;
     }
 
     /**
@@ -267,54 +257,25 @@ public class GameBoard implements IGameBoard
      * @post [checkVertWin returns true iff last placed token was 5th consecutive token in a vertical alignment.
      * returns false iff last placed token was not 5th or in a consecutive row.] AND self = #self.
      */
+    /*
     public boolean checkVertWin(BoardPosition pos, char p)
     {
         // needs to be default
 
         /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
-        vertically. Returns true if it does, otherwise false*/
+        vertically. Returns true if it does, otherwise false
 
-        BoardPosition originalPos = pos;
-        int matchCount = 0;
-        for (int i = 0; i < getNumToWin(); i++) {
+        for (int i = getNumRows() - 1; i >= getNumToWin() - 1; i--) {
+            pos = new BoardPosition(i, pos.getColumn());
 
-            if (pos.getRow() == getNumRows() - 1) {
-                break;
+            if (whatsAtPos(pos) != p) {
+                return false;
             }
-
-            if (isPlayerAtPos(pos, p)) {
-                matchCount++;
-            }
-
-            pos = new BoardPosition(pos.getRow() + 1, pos.getColumn());
         }
 
-        if (matchCount == getNumToWin()) {
-            return true;
-        }
-
-        pos = originalPos;
-        matchCount = 0;
-
-        for (int i = 0; i < getNumToWin(); i++) {
-
-            if (pos.getRow() == 0) {
-                break;
-            }
-
-            if (isPlayerAtPos(pos, p)) {
-                matchCount++;
-            }
-
-            pos = new BoardPosition(pos.getRow() - 1, pos.getColumn());
-        }
-
-        if (matchCount == getNumToWin()) {
-            return true;
-        }
-
-        return false;
+        return true;
     }
+    */
 
     /**
      * Check if either player has 5 tokens connected diagonally

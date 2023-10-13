@@ -46,7 +46,20 @@ public interface IGameBoard {
 
     public boolean checkHorizWin(BoardPosition pos, char p);
 
-    public boolean checkVertWin(BoardPosition pos, char p);
+    public default boolean checkVertWin(BoardPosition pos, char p) {
+        /*checks to see if the last token placed (which was placed in position pos by player p) resulted in 5 in a row
+        vertically. Returns true if it does, otherwise false*/
+
+        for (int i = getNumRows() - 1; i >= getNumToWin() - 1; i--) {
+            pos = new BoardPosition(i, pos.getColumn());
+
+            if (whatsAtPos(pos) != p) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     public boolean checkDiagWin(BoardPosition pos, char p);
 
