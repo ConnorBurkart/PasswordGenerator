@@ -76,10 +76,6 @@ public class GameScreen {
 
         }
 
-        if (isPlayerXTurn) { isPlayerXTurn = false; }
-        else { isPlayerXTurn = true; }
-
-
         return column;
 
     }
@@ -108,7 +104,6 @@ public class GameScreen {
                     break;
                 }
 
-                isPlayerXTurn = true;
                 playerBoard = new GameBoard();
             }
 
@@ -122,10 +117,10 @@ public class GameScreen {
                 {
                     break;
                 }
-
                 playerBoard = new GameBoard();
             }
 
+            isPlayerXTurn = false;
             /*
             I'm thinking that since everything is in this while loop, we only need to have 3 if statements.
             1. check for a tie and if the game ends, we ask them if they want to play again, and they select 'y'
@@ -156,6 +151,7 @@ public class GameScreen {
                 playerBoard = new GameBoard();
             }
 
+
             if (playerBoard.checkForWin(col)) {
                 printWinner();
                 System.out.println("Would you like to play again? y/n");
@@ -163,6 +159,8 @@ public class GameScreen {
                 playerInput = inputChar.next().charAt(0);
                 playerBoard = new GameBoard();
             }
+
+            isPlayerXTurn = true;
 
         }
 
