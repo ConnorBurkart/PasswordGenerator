@@ -106,6 +106,7 @@ public class GameScreen {
 
     public static void main(String[] args)
     {
+
         playerBoard = new GameBoard();
 
         int col = 0;
@@ -127,12 +128,9 @@ public class GameScreen {
                     playerInput = inputChar.next().charAt(0);
                 } while (playerInput != 'y' && playerInput != 'n');
 
-                if (playerInput == 'n')
-                {
-                    break;
-                }
 
                 playerBoard = new GameBoard();
+                continue;
             }
 
             if (playerBoard.checkForWin(col))
@@ -144,11 +142,8 @@ public class GameScreen {
                     Scanner inputChar = new Scanner(System.in);
                     playerInput = inputChar.next().charAt(0);
                 } while (playerInput != 'y' && playerInput != 'n');
-                if (playerInput == 'n')
-                {
-                    break;
-                }
                 playerBoard = new GameBoard();
+                continue;
             }
 
             /*
@@ -183,6 +178,7 @@ public class GameScreen {
                     playerInput = inputChar.next().charAt(0);
                 } while (playerInput != 'y' && playerInput != 'n');
                 playerBoard = new GameBoard();
+                continue;
             }
 
 
@@ -195,8 +191,8 @@ public class GameScreen {
                     playerInput = inputChar.next().charAt(0);
                 } while (playerInput != 'y' && playerInput != 'n');
                 playerBoard = new GameBoard();
+                continue;
             }
-
 
         }
 

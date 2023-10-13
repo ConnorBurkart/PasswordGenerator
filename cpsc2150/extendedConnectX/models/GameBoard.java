@@ -25,13 +25,15 @@ public class GameBoard implements IGameBoard
     private static int COLUMNS;
     private static int numToWin;
     private static char[][] playersGameBoard;
+
     /**
      * Constructs a GameBoard that is a size of 9x7 and contains
      * blank spaces for each position in the 9x7
      *
      * @pre None
      *
-     * @post [Creates instance of empty 2D array to represent gameBoard] AND ROWS = 9 AND COLUMNS = 7 AND numToWin = 5
+     * @post [Creates instance of empty 2D array to represent gameBoard of size ROWSxCOLUMNS]
+     * AND ROWS = 9 AND COLUMNS = 7 AND numToWin = 5
      */
     public GameBoard()
     {
@@ -52,7 +54,8 @@ public class GameBoard implements IGameBoard
      * @pre c > 0 AND c <= 7 AND [checkIfFree() for column, c, should return true.]
      * 
      * @post [GameBoard array at column, c, contains player character ('x' or 'o')]
-     * AND [Instance variables Row = #row AND Column = #Column] AND self = #self
+     * AND [Instance variables Row = #row AND Column = #Column]
+     * ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
      */
     public void dropToken(char p, int c)
     {
@@ -78,7 +81,7 @@ public class GameBoard implements IGameBoard
      * @pre None
      *
      * @post [whatsAtPos returns which player's character (X or O) is at the current position on the game board
-     * array] AND self = #self
+     * array] ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
      */
     public char whatsAtPos(BoardPosition pos)
     {
@@ -106,14 +109,11 @@ public class GameBoard implements IGameBoard
      * @pre [player = "X" OR player = "O"]
      *
      * @post [isPlayerAtPos returns true iff the player (x or o) is at the corresponding position on the
-     * gameboard, return true iff the player is not at the corresponding position] AND self = #self
+     * gameboard, return true iff the player is not at the corresponding position]
+     * ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
      */
     public boolean isPlayerAtPos(BoardPosition pos, char player)
     {
-        /*returns true if the player is at pos; otherwise, it returns false. Note: this method will be implemented very
-        similarly to whatsAtPos, but it's asking a different question. We only know they will be similar because we
-        know GameBoard will contain a 2D array. If the data structure were to change in the future,
-        these two methods could be radically different.*/
         if (playersGameBoard[pos.getRow()][pos.getColumn()] == player)
         {
             return true;
@@ -123,15 +123,15 @@ public class GameBoard implements IGameBoard
     }
 
     /**
-     * Create a string from values for row and column
-     * in the format "<row>,<column>"
+     * Creates a string for the GameBoard containing each value within 2D gameboard array.
      *
-     * @return the values input for Row and Column as a string ["<row>,<column>"]
+     * @return the GameBoard array as a String.
      *
      * @pre None
      *
-     * @post [toString returns the row and column number formatted as "<row>,<column>".
-     * Converts the row and column to a string and this is output to the players.] AND self = #self
+     * @post [toString returns each value contained within the 2D GameBoard array
+     * as a string formatted as the GameBoard] AND ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin
+     * AND self = #self
      * 
      */
     @Override
@@ -150,29 +150,51 @@ public class GameBoard implements IGameBoard
         }
         return boardString;
     }
+
+    /**
+     * Returns the value for ROWS
+     *
+     * @return the value for ROWS as an int
+     *
+     * @pre None
+     *
+     * @post getNumRows = ROWS AND ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
+     *
+     */
     public int getNumRows()
     {
         return ROWS;
     }
+
+    /**
+     * Returns the value for COLUMNS
+     *
+     * @return the value for COLUMNS as an int
+     *
+     * @pre None
+     *
+     * @post getNumColumns = COLUMNS AND ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
+     *
+     */
     public int getNumColumns()
     {
         return COLUMNS;
     }
+
+    /**
+     * Returns the value for numToWin
+     *
+     * @return the value for numToWin as an int
+     *
+     * @pre None
+     *
+     * @post getNumColumns = COLUMNS AND ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin
+     *
+     */
     public int getNumToWin()
     {
         return numToWin;
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
