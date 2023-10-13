@@ -88,16 +88,20 @@ public class GameScreen {
         char playerInput = 'y';
         while (playerInput == 'y')
         {
+            isPlayerXTurn = true;
             printBoard();
             col = askPlayerForColumn();
             playerBoard.dropToken('X', col);
 
             if (playerBoard.checkTie())
             {
-                System.out.println("Tie!");
-                System.out.println("Would you like to play again? y/n");
-                Scanner inputChar = new Scanner(System.in);
-                playerInput = inputChar.next().charAt(0);
+                printBoard();
+                do {
+                    System.out.println("Tie!");
+                    System.out.println("Would you like to play again? y/n");
+                    Scanner inputChar = new Scanner(System.in);
+                    playerInput = inputChar.next().charAt(0);
+                } while (playerInput != 'y' && playerInput != 'n');
 
                 if (playerInput == 'n')
                 {
@@ -109,10 +113,13 @@ public class GameScreen {
 
             if (playerBoard.checkForWin(col))
             {
+                printBoard();
                 printWinner();
-                System.out.println("Would you like to play again? y/n");
-                Scanner inputChar = new Scanner(System.in);
-                playerInput = inputChar.next().charAt(0);
+                do {
+                    System.out.println("Would you like to play again? y/n");
+                    Scanner inputChar = new Scanner(System.in);
+                    playerInput = inputChar.next().charAt(0);
+                } while (playerInput != 'y' && playerInput != 'n');
                 if (playerInput == 'n')
                 {
                     break;
@@ -120,7 +127,6 @@ public class GameScreen {
                 playerBoard = new GameBoard();
             }
 
-            isPlayerXTurn = false;
             /*
             I'm thinking that since everything is in this while loop, we only need to have 3 if statements.
             1. check for a tie and if the game ends, we ask them if they want to play again, and they select 'y'
@@ -140,27 +146,33 @@ public class GameScreen {
              */
 
             printBoard();
+            isPlayerXTurn = false;
             col = askPlayerForColumn();
             playerBoard.dropToken('O', col);
 
             if (playerBoard.checkTie()) {
+                printBoard();
                 System.out.println("Tie!");
-                System.out.println("Would you like to play again? y/n");
-                Scanner inputChar = new Scanner(System.in);
-                playerInput = inputChar.next().charAt(0);
+                do {
+                    System.out.println("Would you like to play again? y/n");
+                    Scanner inputChar = new Scanner(System.in);
+                    playerInput = inputChar.next().charAt(0);
+                } while (playerInput != 'y' && playerInput != 'n');
                 playerBoard = new GameBoard();
             }
 
 
             if (playerBoard.checkForWin(col)) {
+                printBoard();
                 printWinner();
-                System.out.println("Would you like to play again? y/n");
-                Scanner inputChar = new Scanner(System.in);
-                playerInput = inputChar.next().charAt(0);
+                do {
+                    System.out.println("Would you like to play again? y/n");
+                    Scanner inputChar = new Scanner(System.in);
+                    playerInput = inputChar.next().charAt(0);
+                } while (playerInput != 'y' && playerInput != 'n');
                 playerBoard = new GameBoard();
             }
 
-            isPlayerXTurn = true;
 
         }
 
