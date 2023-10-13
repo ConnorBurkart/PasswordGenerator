@@ -146,24 +146,6 @@ public class GameScreen {
                 continue;
             }
 
-            /*
-            I'm thinking that since everything is in this while loop, we only need to have 3 if statements.
-            1. check for a tie and if the game ends, we ask them if they want to play again, and they select 'y'
-                then the game will continue. If they select 'n' then the game will end because the player input will
-                no longer be 'y'.
-            2. Another if statement and we ask them again, then the game will continue based on their response.
-            3. The last if statement will be one that checks for an out-of-bounds response and require them to
-                select a valid input, and the game will continue.
-            I would say that above this comment we should have a bounds check if statement and below this if statement
-            there should be no more code because anything else will go back to the beginning of the loop.
-
-            Also, in the if statement for the playerInput == 'n' I am not sure if the **break;** statement will exit
-            the while loop, but if it doesn't we have to figure out how to exit the while loop to end the game.
-
-            Aside from these changes the game should be complete once we figure out the other functions
-            that need fixing.
-             */
-
             printBoard();
             isPlayerXTurn = false;
             col = askPlayerForColumn();
