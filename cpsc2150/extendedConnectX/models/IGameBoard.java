@@ -53,7 +53,7 @@ public interface IGameBoard {
      * @return [returns true iff 5 of the same players tokens (X or Y) are placed in a consecutive
      * horizontal, vertical, or diagonal row. False iff 5 tokens are not consecutively placed.]
      *
-     * @pre c >= 1 AND c <= 7 [C is the column in which the latest token was placed.]
+     * @pre c >= 0 AND c <= 6 [C is the column in which the latest token was placed.]
      *
      * @post [checkForWin returns true iff the last placed token is the 5th consecutive token in a vertical,
      * horizontal, or diagonal row. False iff the last placed token is not 5th or consecutive in a vertical,
@@ -117,7 +117,7 @@ public interface IGameBoard {
      *
      * @pre [p = "X" OR p = "O"]
      *
-     * @post [Returns true iff last token placed in the 5th consecutive in a horizontal row, returns false
+     * @post [Returns true iff last token placed in the 5th consecutive in a horizontal alignment, returns false
      * iff last placed token was not 5th or in a consecutive row.] AND self = #self
      */
     public default boolean checkHorizWin(BoardPosition pos, char p) {
