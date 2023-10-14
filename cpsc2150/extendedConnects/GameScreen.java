@@ -191,7 +191,7 @@ public class GameScreen {
 
                 //validates user's input for playing another game.
                 do {
-                    System.out.println("Would you like to play again? Y/N" + "");
+                    System.out.println("Would you like to play again? Y/N");
                     Scanner inputChar = new Scanner(System.in);
                     playerInput = inputChar.next().charAt(0);
                 } while (playerInput != 'y' && playerInput != 'n');
