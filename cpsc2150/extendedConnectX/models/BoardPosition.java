@@ -9,6 +9,9 @@ Steven Cabezas (scabeza)
 /**
  * This board position class contains all data related to a possible position on the board.
  * BoardPosition contains a Row and Column number.
+ *
+ * @invariant Row <= 6 AND Row >= 0 AND Column >= 0 AND Column <= 8
+ *
  */
 public class BoardPosition
 {
@@ -79,6 +82,7 @@ public class BoardPosition
     @Override
     public boolean equals(Object obj)
     {
+        //checks that this BoardPosition is equal to the parameter.
         if (this == obj) {
             return true;
         }
@@ -97,6 +101,7 @@ public class BoardPosition
     @Override
     public String toString()
     {
+        //returns the Row and Column values as a String.
         return "<" + this.Row + ">" + "<" + this.Column + ">";
     }
 }

@@ -11,6 +11,14 @@ Steven Cabezas (scabeza)
 
 
  */
+
+/**
+ * This class GameScreen contains the helper functions and the main function for
+ * the program.
+ *
+ * @invariant Column >= 0 AND Column <= 8
+ *
+ */
 public class GameScreen {
 
     private static GameBoard playerBoard;
@@ -21,24 +29,10 @@ public class GameScreen {
      *
      * @pre None
      *
-     * @post playerBoard = #playerBoard
+     * @post [Prints the string created by calling toString] AND self = #self AND isPlayerXTurn = #isPlayerXTurn
      */
     public static void printBoard()
     {
-        /*
-        System.out.println("|0|1|2|3|4|5|6|");
-
-        for (int i = 0; i < playerBoard.getNumRows(); i++) {
-            for (int j = 0; j < playerBoard.getNumColumns(); j++) {
-                BoardPosition currentPos = new BoardPosition(i, j);
-                System.out.print('|');
-                System.out.print(playerBoard.whatsAtPos(currentPos));
-            }
-            System.out.print('|');
-            System.out.print('\n');
-        }
-
-         */
         System.out.println(playerBoard.toString());
     }
 
@@ -47,7 +41,7 @@ public class GameScreen {
      *
      * @pre None
      *
-     * @post isPlayerXTurn = #isPlayerXTurn
+     * @post [Prints the winner of the game to the terminal] AND self = #self AND isPlayerXTurn = #isPlayerXTurn
      */
     public static void printWinner()
     {
@@ -62,11 +56,12 @@ public class GameScreen {
     /**
      * Ask player which column they want their token dropped in.
      *
-     * @return the column in which the player wants the token dropped.
+     * @return the column in which the player wants the token dropped as an int
      *
      * @pre None
      *
-     * @post self = #self
+     * @post [askPlayerForColumn = value for column provided by player] AND self = #self
+     * AND isPlayerXTurn = #isPlayerXTurn
      */
     public static int askPlayerForColumn()
     {
@@ -74,6 +69,7 @@ public class GameScreen {
         boolean invalidColumnNum = true;
         while (invalidColumnNum) {
 
+            //Asks either player, X or O or their column number.
             if (isPlayerXTurn) {
                 System.out.println("Player X, what column do you want to place your marker in?");
             }
@@ -81,18 +77,23 @@ public class GameScreen {
                 System.out.println("Player O, what column do you want to place your marker in?");
             }
 
+            //Gets column number from player.
             Scanner in = new Scanner(System.in);
             column = in.nextInt();
 
+            //Validates that column number is valid.
             if (column < 0) {
                 System.out.println("Column cannot be less than 0");
             }
             else if (column > playerBoard.getNumColumns() - 1) {
                 System.out.println("Column cannot be greater than 6");
             }
+            //Validates that column is empty.
             else if (!playerBoard.checkIfFree(column)) {
                 System.out.println("Column is full");
             }
+
+            //Column determined to be valid.
             else {
                 invalidColumnNum = false;
             }
@@ -104,6 +105,14 @@ public class GameScreen {
 
     }
 
+    /**
+     * Driver for the ConnectX game
+     *
+     * @pre None
+     *
+     * @post [Returns which player won by the end of the game, either X or O, isPlayerName updates according to
+     * which player's turn it is and GameBoard is populated with the values for each player]
+     */
     public static void main(String[] args)
     {
 
@@ -111,6 +120,8 @@ public class GameScreen {
 
         int col = 0;
         char playerInput = 'y';
+
+        //Allows game to continue if player chooses y
         while (playerInput == 'y')
         {
             isPlayerXTurn = true;
@@ -118,9 +129,12 @@ public class GameScreen {
             col = askPlayerForColumn();
             playerBoard.dropToken('X', col);
 
+            //Check to see if a tie has occured
             if (playerBoard.checkTie())
             {
                 printBoard();
+
+                //validates the user's choice
                 do {
                     System.out.println("Tie!");
                     System.out.println("Would you like to play again? y/n");
@@ -133,10 +147,13 @@ public class GameScreen {
                 continue;
             }
 
+            //Checks if a win condition occurs
             if (playerBoard.checkForWin(col))
             {
                 printBoard();
                 printWinner();
+
+                //Makes sure that input is valid entry
                 do {
                     System.out.println("Would you like to play again? y/n");
                     Scanner inputChar = new Scanner(System.in);
@@ -146,14 +163,18 @@ public class GameScreen {
                 continue;
             }
 
+            //Begins getting information from player O
             printBoard();
             isPlayerXTurn = false;
             col = askPlayerForColumn();
             playerBoard.dropToken('O', col);
 
+            //Checks that tie has occured
             if (playerBoard.checkTie()) {
                 printBoard();
                 System.out.println("Tie!");
+
+                //Validates user's choice for playing again.
                 do {
                     System.out.println("Would you like to play again? y/n");
                     Scanner inputChar = new Scanner(System.in);
@@ -163,10 +184,12 @@ public class GameScreen {
                 continue;
             }
 
-
+            //Checks that win condition has occurred
             if (playerBoard.checkForWin(col)) {
                 printBoard();
                 printWinner();
+
+                //validates user's input for playing another game.
                 do {
                     System.out.println("Would you like to play again? y/n");
                     Scanner inputChar = new Scanner(System.in);

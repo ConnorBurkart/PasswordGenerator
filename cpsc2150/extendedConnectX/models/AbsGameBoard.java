@@ -7,6 +7,16 @@ Steven Cabezas (scabeza)
 
 package cpsc2150.extendedConnectX.models;
 
+/**
+ * This AbsGameBoard class implements the interface IGameBoard.
+ * @invariant [GameBoard should be valid 9x7 size board] AND
+ * [Instance variables Row and Column must be ROW = 9 and COLUMN = 7] AND [Player must be "X" or "O"]
+ *
+ * @corresponds num_rows = ROWS
+ * @corresponds num_columns = COLUMNS
+ * @corresponds num_to_win = numToWin
+ *
+ */
 public abstract class AbsGameBoard implements IGameBoard
 {
     /**
@@ -24,17 +34,23 @@ public abstract class AbsGameBoard implements IGameBoard
     @Override
     public String toString() {
 
+        //Begins string with header for the output GameBoard
         String boardString = "|0|1|2|3|4|5|6|\n";
 
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumColumns(); j++) {
+                //Creates a new BoardPosition for current spot on GameBoard
                 BoardPosition currentPos = new BoardPosition(i, j);
                 boardString += ('|');
+
+                //Appends value at currentPos to the String
                 boardString += (whatsAtPos(currentPos));
             }
             boardString += ('|');
             boardString += '\n';
         }
+
+        //Returns the generated String
         return boardString;
     }
 }
