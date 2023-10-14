@@ -137,7 +137,7 @@ public class GameScreen {
                 //validates the user's choice
                 do {
                     System.out.println("Tie!");
-                    System.out.println("Would you like to play again? y/n");
+                    System.out.println("Would you like to play again? Y/N");
                     Scanner inputChar = new Scanner(System.in);
                     playerInput = inputChar.next().charAt(0);
                 } while (playerInput != 'y' && playerInput != 'n');
@@ -155,7 +155,7 @@ public class GameScreen {
 
                 //Makes sure that input is valid entry
                 do {
-                    System.out.println("Would you like to play again? y/n");
+                    System.out.println("Would you like to play again? Y/N");
                     Scanner inputChar = new Scanner(System.in);
                     playerInput = inputChar.next().charAt(0);
                 } while (playerInput != 'y' && playerInput != 'n');
@@ -176,7 +176,7 @@ public class GameScreen {
 
                 //Validates user's choice for playing again.
                 do {
-                    System.out.println("Would you like to play again? y/n");
+                    System.out.println("Would you like to play again? Y/N");
                     Scanner inputChar = new Scanner(System.in);
                     playerInput = inputChar.next().charAt(0);
                 } while (playerInput != 'y' && playerInput != 'n');
@@ -191,7 +191,7 @@ public class GameScreen {
 
                 //validates user's input for playing another game.
                 do {
-                    System.out.println("Would you like to play again? y/n");
+                    System.out.println("Would you like to play again? Y/N" + "");
                     Scanner inputChar = new Scanner(System.in);
                     playerInput = inputChar.next().charAt(0);
                 } while (playerInput != 'y' && playerInput != 'n');
