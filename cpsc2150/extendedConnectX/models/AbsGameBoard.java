@@ -44,7 +44,12 @@ public abstract class AbsGameBoard implements IGameBoard
                 boardString += ('|');
 
                 //Appends value at currentPos to the String
-                boardString += (whatsAtPos(currentPos));
+                if (whatsAtPos(currentPos) != 'X' && whatsAtPos(currentPos) != 'O') {
+                    boardString += ' ';
+                }
+                else {
+                    boardString += (whatsAtPos(currentPos));
+                }
             }
             boardString += ('|');
             boardString += '\n';

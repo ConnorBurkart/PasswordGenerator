@@ -151,8 +151,13 @@ public class GameBoard implements IGameBoard
                 BoardPosition currentPos = new BoardPosition(i, j);
                 boardString += ('|');
 
-                //Appends value at currentPos to the String
-                boardString += (whatsAtPos(currentPos));
+                if (whatsAtPos(currentPos) != 'X' && whatsAtPos(currentPos) != 'O') {
+                    boardString += ' ';
+                }
+                else {
+                    //Appends value at currentPos to the String
+                    boardString += (whatsAtPos(currentPos));
+                }
             }
             boardString += ('|');
             boardString += '\n';
@@ -161,6 +166,7 @@ public class GameBoard implements IGameBoard
         //Returns the generated String
         return boardString;
     }
+
 
     /**
      * Returns the value for ROWS
