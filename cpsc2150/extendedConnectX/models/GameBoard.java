@@ -85,6 +85,7 @@ public class GameBoard implements IGameBoard
      */
     public char whatsAtPos(BoardPosition pos)
     {
+        /*
         //returns what is in the GameBoard at position pos If no marker is there, it returns a blank space char.
         if (playersGameBoard[pos.getRow()][pos.getColumn()] == 'X' || playersGameBoard[pos.getRow()][pos.getColumn()] == 'O') {
             return playersGameBoard[pos.getRow()][pos.getColumn()];
@@ -92,6 +93,8 @@ public class GameBoard implements IGameBoard
         else {
             return ' ';
         }
+         */
+        return playersGameBoard[pos.getRow()][pos.getColumn()];
     }
 
     /**
@@ -111,6 +114,7 @@ public class GameBoard implements IGameBoard
      * gameboard, return true iff the player is not at the corresponding position]
      * ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
      */
+    /*
     public boolean isPlayerAtPos(BoardPosition pos, char player)
     {
         //Returns true if char for player is same as pos on GameBoard.
@@ -121,6 +125,7 @@ public class GameBoard implements IGameBoard
 
         return false;
     }
+     */
 
     /**
      * Creates a string for the GameBoard containing each value within 2D gameboard array.

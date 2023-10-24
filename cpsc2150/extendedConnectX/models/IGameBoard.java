@@ -312,7 +312,13 @@ public interface IGameBoard {
      * gameboard, return true iff the player is not at the corresponding position]
      * AND self = #self AND num_rows = #num_rows AND num_columns = #num_columns AND num_to_win = #num_to_win
      */
-    public boolean isPlayerAtPos(BoardPosition pos, char player);
+    public default boolean isPlayerAtPos(BoardPosition pos, char player) {
+        if (whatsAtPos(pos) == player) {
+            return true;
+        }
+
+        return false;
+    }
 
     /**toStringContract
      * Creates a string containing each value on GameBoard.
