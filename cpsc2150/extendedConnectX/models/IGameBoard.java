@@ -40,7 +40,7 @@ public interface IGameBoard {
     public default boolean checkIfFree(int c) {
 
         //Creates boardPosition at row 0 and column c on GameBoard
-        BoardPosition pos = new BoardPosition(0, c);
+        BoardPosition pos = new BoardPosition(8, c);
 
         //Checks that particular column is not full by checking top position in column
         if (whatsAtPos(pos) == 'X' || whatsAtPos(pos) == 'O') {
