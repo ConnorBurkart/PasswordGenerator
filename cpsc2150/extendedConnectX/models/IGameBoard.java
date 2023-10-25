@@ -39,8 +39,8 @@ public interface IGameBoard {
      */
     public default boolean checkIfFree(int c) {
 
-        //Creates boardPosition at row 0 and column c on GameBoard
-        BoardPosition pos = new BoardPosition(8, c);
+        //Creates boardPosition at row 8 and column c on GameBoard
+        BoardPosition pos = new BoardPosition(getNumRows() - 1, c);
 
         //Checks that particular column is not full by checking top position in column
         if (whatsAtPos(pos) == 'X' || whatsAtPos(pos) == 'O') {
@@ -71,10 +71,10 @@ public interface IGameBoard {
     public default boolean checkForWin(int c) {
 
         //Creates BoardPosition object for position 0,c.
-        BoardPosition pos = new BoardPosition(0, c);
+        BoardPosition pos = new BoardPosition(getNumRows() - 1, c);
         char playerChar = ' ';
 
-        for (int i = 0; i < getNumRows(); i++) {
+        for (int i = getNumRows() - 1; i >= 0; i--) {
 
             //Updates pos to new position going down the row
             pos = new BoardPosition(i, c);
@@ -201,23 +201,24 @@ public interface IGameBoard {
      */
     public default boolean checkVertWin(BoardPosition pos, char p) {
 
+
         int count = 0;
 
         //Makes sure row position does not exceed number of rows
-        while (pos.getRow() < getNumRows() - 1 && count < getNumRows() - 1) {
-            pos = new BoardPosition(pos.getRow() + 1, pos.getColumn());
+        while (pos.getRow() > 0 && count < getNumToWin()) {
+            count++;
 
             //Loop stops if token at pos does not match p
             if (whatsAtPos(pos) != p) {
                 break;
             }
 
-            //count iterates if token at pos and p match.
-            count++;
+            //count iterates if token at pos and p match
+            pos = new BoardPosition(pos.getRow() - 1, pos.getColumn());
         }
 
         //win condition occurs if count = num to win
-        if (count == getNumToWin() - 1) {
+        if (count == getNumToWin()) {
             return true;
         }
 

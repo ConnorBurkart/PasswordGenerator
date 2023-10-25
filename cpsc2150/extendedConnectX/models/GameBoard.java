@@ -94,38 +94,7 @@ public class GameBoard implements IGameBoard
             return ' ';
         }
 
-        //return playersGameBoard[pos.getRow()][pos.getColumn()];
     }
-
-    /**
-     * Determine which player has placed a token at the position
-     * on the Gameboard
-     *
-     * @param pos Indicates current position on the GameBoard
-     *
-     * @param player character of the player [X or O]
-     *
-     * @return [boolean, true iff correct player token is at position
-     * false iff other player is at position]
-     *
-     * @pre [player = "X" OR player = "O"]
-     *
-     * @post [isPlayerAtPos returns true iff the player (x or o) is at the corresponding position on the
-     * gameboard, return true iff the player is not at the corresponding position]
-     * ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
-     */
-    /*
-    public boolean isPlayerAtPos(BoardPosition pos, char player)
-    {
-        //Returns true if char for player is same as pos on GameBoard.
-        if (playersGameBoard[pos.getRow()][pos.getColumn()] == player)
-        {
-            return true;
-        }
-
-        return false;
-    }
-     */
 
     /**
      * Creates a string for the GameBoard containing each value within 2D gameboard array.
@@ -150,16 +119,6 @@ public class GameBoard implements IGameBoard
                 //Creates a new BoardPosition for current spot on GameBoard
                 BoardPosition currentPos = new BoardPosition(i, j);
                 boardString += ('|');
-
-                /*
-                if (whatsAtPos(currentPos) != 'X' && whatsAtPos(currentPos) != 'O') {
-                    boardString += ' ';
-                }
-                else {
-                    //Appends value at currentPos to the String
-                    boardString += (whatsAtPos(currentPos));
-                }
-                 */
                 boardString += (whatsAtPos(currentPos));
             }
             boardString += ('|');
