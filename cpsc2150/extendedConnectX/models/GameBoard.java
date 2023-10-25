@@ -85,7 +85,7 @@ public class GameBoard implements IGameBoard
      */
     public char whatsAtPos(BoardPosition pos)
     {
-        /*
+
         //returns what is in the GameBoard at position pos If no marker is there, it returns a blank space char.
         if (playersGameBoard[pos.getRow()][pos.getColumn()] == 'X' || playersGameBoard[pos.getRow()][pos.getColumn()] == 'O') {
             return playersGameBoard[pos.getRow()][pos.getColumn()];
@@ -93,8 +93,8 @@ public class GameBoard implements IGameBoard
         else {
             return ' ';
         }
-         */
-        return playersGameBoard[pos.getRow()][pos.getColumn()];
+
+        //return playersGameBoard[pos.getRow()][pos.getColumn()];
     }
 
     /**
@@ -151,6 +151,7 @@ public class GameBoard implements IGameBoard
                 BoardPosition currentPos = new BoardPosition(i, j);
                 boardString += ('|');
 
+                /*
                 if (whatsAtPos(currentPos) != 'X' && whatsAtPos(currentPos) != 'O') {
                     boardString += ' ';
                 }
@@ -158,6 +159,8 @@ public class GameBoard implements IGameBoard
                     //Appends value at currentPos to the String
                     boardString += (whatsAtPos(currentPos));
                 }
+                 */
+                boardString += (whatsAtPos(currentPos));
             }
             boardString += ('|');
             boardString += '\n';
