@@ -136,6 +136,32 @@ public interface IGameBoard {
      */
     public default boolean checkHorizWin(BoardPosition pos, char p) {
 
+        BoardPosition origPos = pos;
+        int count = 0;
+
+        while (whatsAtPos(pos) == p && pos.getColumn() < getNumColumns() - 1) {
+            count++;
+            pos = new BoardPosition(pos.getRow(), pos.getColumn() + 1);
+        }
+
+        if (count == getNumToWin()) {
+            return true;
+        }
+
+        pos = origPos;
+
+        while (whatsAtPos(pos) == p && pos.getColumn() > 0) {
+            count++;
+            pos = new BoardPosition(pos.getRow(), pos.getColumn() - 1);
+        }
+
+        if (count == getNumToWin()) {
+            return true;
+        }
+
+        return false;
+
+        /*
         int count = 0;
         //Used to remember original BoardPosition
         BoardPosition originalPos = pos;
@@ -181,6 +207,7 @@ public interface IGameBoard {
         }
 
         return false;
+         */
     }
 
     /**checkVertWinContract
