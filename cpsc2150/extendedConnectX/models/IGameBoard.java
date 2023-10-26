@@ -74,7 +74,7 @@ public interface IGameBoard {
         BoardPosition pos = new BoardPosition(getNumRows() - 1, c);
         char playerChar = ' ';
 
-        for (int i = getNumRows() - 1; i >= 0; i--) {
+        for (int i = pos.getRow(); i >= 0; i--) {
 
             //Updates pos to new position going down the row
             pos = new BoardPosition(i, c);
@@ -201,28 +201,22 @@ public interface IGameBoard {
      */
     public default boolean checkVertWin(BoardPosition pos, char p) {
 
-
         int count = 0;
-
-        //Makes sure row position does not exceed number of rows
-        while (pos.getRow() > 0 && count < getNumToWin()) {
-            count++;
-
-            //Loop stops if token at pos does not match p
+        while (pos.getRow() >= 0 && count < getNumToWin()) {
             if (whatsAtPos(pos) != p) {
-                break;
+                return false;
             }
 
-            //count iterates if token at pos and p match
             pos = new BoardPosition(pos.getRow() - 1, pos.getColumn());
+            count++;
         }
 
-        //win condition occurs if count = num to win
         if (count == getNumToWin()) {
             return true;
         }
 
         return false;
+
     }
 
     /**
