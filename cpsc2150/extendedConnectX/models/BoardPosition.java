@@ -86,6 +86,12 @@ public class BoardPosition
         if (this == obj) {
             return true;
         }
+
+        BoardPosition pos = (BoardPosition) obj;
+
+        if (getRow() == pos.getRow() && getColumn() == pos.getColumn()) {
+            return true;
+        }
         return false;
     }
 

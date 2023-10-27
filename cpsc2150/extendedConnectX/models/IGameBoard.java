@@ -136,78 +136,35 @@ public interface IGameBoard {
      */
     public default boolean checkHorizWin(BoardPosition pos, char p) {
 
-        BoardPosition origPos = pos;
-        int count = 0;
-
-        while (whatsAtPos(pos) == p && pos.getColumn() < getNumColumns() - 1) {
-            count++;
-            pos = new BoardPosition(pos.getRow(), pos.getColumn() + 1);
-        }
-
-        if (count == getNumToWin()) {
-            return true;
-        }
-
-        pos = origPos;
-
-        while (whatsAtPos(pos) == p && pos.getColumn() > 0) {
-            count++;
-            pos = new BoardPosition(pos.getRow(), pos.getColumn() - 1);
-        }
-
-        if (count == getNumToWin()) {
-            return true;
-        }
-
-        return false;
-
-        /*
-        int count = 0;
-        //Used to remember original BoardPosition
         BoardPosition originalPos = pos;
 
-        //Keeps column number from exceeding the number of columns
-        while (pos.getColumn() < getNumColumns() - 1) {
-            //Updates BoardPosition by updating column by 1
-            pos = new BoardPosition(pos.getRow(), pos.getColumn() + 1);
-
-            //count is iterated if token at pos matches p
-            if (whatsAtPos(pos) == p) {
-                count++;
+        int rightCount = 0;
+        for (int i = pos.getColumn() + 1; i < getNumColumns(); i++) {
+            pos = new BoardPosition(pos.getRow(), i);
+            if (!isPlayerAtPos(pos, p)) {
+                break;
             }
 
+            rightCount++;
         }
 
-        //Win occurs if count matches number to win
-        if (count == getNumToWin() - 1) {
-            return true;
-        }
+        int leftCount = 0;
+        for (int i = originalPos.getColumn() - 1; i >= 0; i--) {
+            originalPos = new BoardPosition(originalPos.getRow(), i);
 
-        //Resets count and pos for checking columns backwards
-        count = 0;
-        pos = originalPos;
-
-        //Makes sure column value does not go below 0.
-        while(pos.getColumn() > 0) {
-
-            //pos is moved left 1 position.
-            pos = new BoardPosition(pos.getRow(), pos.getColumn() - 1);
-
-            //count iterates if token at pos matches p
-            if (whatsAtPos(pos) == p) {
-                count++;
+            if (!isPlayerAtPos(originalPos, p)) {
+                break;
             }
 
-
+            leftCount++;
         }
 
-        //win condition occurs if count matches num to win
-        if (count == getNumToWin() - 1) {
+        if (leftCount + rightCount == getNumToWin() - 1) {
             return true;
         }
 
         return false;
-         */
+
     }
 
     /**checkVertWinContract
@@ -264,6 +221,32 @@ public interface IGameBoard {
      */
     public default boolean checkDiagWin(BoardPosition pos, char p) {
 
+        BoardPosition origPos = pos;
+        int count = 0;
+
+        while (whatsAtPos(pos) == p && (pos.getRow() < getNumColumns() - 1 && pos.getColumn() < getNumColumns() - 1)) {
+            count++;
+            pos = new BoardPosition(pos.getRow() + 1, pos.getColumn() + 1);
+        }
+
+        if (count == getNumToWin()) {
+            return true;
+        }
+
+        pos = origPos;
+
+        while (whatsAtPos(pos) == p && (pos.getRow() > 0 && pos.getColumn() > 0)) {
+            count++;
+            pos = new BoardPosition(pos.getRow() - 1, pos.getColumn() - 1);
+        }
+
+        if (count == getNumToWin()) {
+            return true;
+        }
+
+        return false;
+
+        /*
         int count = 0;
         BoardPosition originalPos = pos;
 
@@ -301,6 +284,7 @@ public interface IGameBoard {
         }
 
         return false;
+         */
     }
 
     /**whatsAtPosContract
