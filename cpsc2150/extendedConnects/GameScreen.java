@@ -187,6 +187,26 @@ public class GameScreen {
             }
             valid = false;
         }
+    // Ask user if they want speed or efficiency
+        valid = true;
+        char efficiency;
+        while (valid) {
+            System.out.println("Would you like a Fast Game (F/f) or a Memory Efficient Game (M/m)?");
+            Scanner speed = new Scanner(System.in);
+            efficiency = speed.next().charAt(0);
+            if (efficiency == 'F' || efficiency == 'f') {
+                // Need to finish GameBoardMem first
+                valid = false;
+            }
+            else if (efficiency == 'M' || efficiency == 'm') {
+                // Need to finish GameBoardMem first
+                valid = false;
+            }
+            else {
+                System.out.println("Invalid option! Choice must be (F/f) or (M/m)");
+            }
+        }
+
 
 
         playerBoard = new GameBoard(numOfRows, numOfColumns, numberToWin);
