@@ -24,6 +24,11 @@ package cpsc2150.extendedConnectX.models;
  */
 public interface IGameBoard {
 
+// Helpful constants
+    int MAX_ROWS = 100;
+    int MAX_TO_WIN = 25;
+    int MIN_TO_WIN = 3;
+
     /**checkIfFreeContract
      * Returns true if column contains free space
      *

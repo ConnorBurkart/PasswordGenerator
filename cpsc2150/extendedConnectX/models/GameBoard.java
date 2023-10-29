@@ -35,11 +35,13 @@ public class GameBoard implements IGameBoard
      * @post [Creates instance of empty 2D array to represent gameBoard of size ROWSxCOLUMNS]
      * AND ROWS = 9 AND COLUMNS = 7 AND numToWin = 5
      */
-    public GameBoard()
+    public GameBoard(int aRow, int aCol, int numWin)
     {
-        ROWS = 9;
-        COLUMNS = 7;
-        numToWin = 5;
+    // -------- Need to update contract ------- //
+
+        ROWS = aRow;
+        COLUMNS = aCol;
+        numToWin = numWin;
         playersGameBoard = new char[ROWS][COLUMNS];
     }
 

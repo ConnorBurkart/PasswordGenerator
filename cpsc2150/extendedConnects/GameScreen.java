@@ -115,8 +115,81 @@ public class GameScreen {
      */
     public static void main(String[] args)
     {
+    // Input validation for the amount of players
+        boolean valid = true;
+        int numOfPlayers = 0;
+        while (valid) {
+            System.out.println("How many players?");
+            Scanner playerAmount = new Scanner(System.in);
+            numOfPlayers = playerAmount.nextInt();
+            if (numOfPlayers > 10) {
+                System.out.println("Must be 10 players or fewer");
+            }
+            else if (numOfPlayers < 2) {
+                System.out.println("Must be at least 2 players");
+            }
+            else {
+                valid = false;
+            }
+        }
+    // Assigning character values to each player
+        char[] playerCharacters = new char[numOfPlayers];
+        for (int i = 1; i <= numOfPlayers; i++) {
+            char playerChar;
 
-        playerBoard = new GameBoard();
+            do {
+                valid = true;
+                System.out.println("Enter the character to represent player " + i);
+                Scanner scan = new Scanner(System.in);
+                playerChar = scan.next().charAt(0);
+                playerChar = Character.toUpperCase(playerChar);
+                for (int j = 0; j < i; j++) {
+                    if (playerChar == playerCharacters[j]) {
+                        System.out.println(playerChar + "is already taken as a player token!");
+                        valid = false;
+                        break;
+                    }
+                }
+            } while(valid);
+            playerCharacters[i] = playerChar;
+        }
+    // Determine number of rows, columns, and number of tokens in a row to win for the game
+        int numOfRows = 0;
+        int numOfColumns = 0;
+        int numberToWin = 0;
+        valid = true;
+
+        System.out.println("How many rows should be on the board?");
+        Scanner input = new Scanner(System.in);
+        numOfRows = input.nextInt();
+        while (valid) {
+            if (numOfRows > 100 || numOfRows < 3) {
+                System.out.println("Amount of rows must be between 3 - 100");
+                numOfRows = input.nextInt();
+            }
+            valid = false;
+        }
+        valid = true;
+        System.out.println("How many columns should be on the board?");
+        numOfColumns = input.nextInt();
+        while (valid) {
+            if (numOfColumns > 100 || numOfColumns < 3) {
+                System.out.println("Amount of columns must be between 3 - 100");
+            }
+            valid = false;
+        }
+        valid = true;
+        System.out.println("How many in a row to win?");
+        numberToWin = input.nextInt();
+        while (valid) {
+            if (numberToWin > 25 || numberToWin < 3) {
+                System.out.println("Number of tokens in a row to win must be between 3 - 25");
+            }
+            valid = false;
+        }
+
+
+        playerBoard = new GameBoard(numOfRows, numOfColumns, numberToWin);
 
         int col = 0;
         char playerInput = 'y';
