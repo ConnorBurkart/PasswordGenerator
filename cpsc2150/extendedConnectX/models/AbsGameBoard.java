@@ -35,7 +35,11 @@ public abstract class AbsGameBoard implements IGameBoard
     public String toString() {
 
         //Begins string with header for the output GameBoard
-        String boardString = "|0|1|2|3|4|5|6|\n";
+        String boardString = "";
+        for (int i = 0; i < getNumRows(); i++) {
+            boardString += ('|' + i + '|');
+        }
+
 
         for (int i = getNumRows() - 1; i >= 0; i--) {
             for (int j = 0; j < getNumColumns(); j++) {
