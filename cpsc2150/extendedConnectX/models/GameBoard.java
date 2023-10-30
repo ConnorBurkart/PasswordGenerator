@@ -110,6 +110,7 @@ public class GameBoard implements IGameBoard
      * AND self = #self
      * 
      */
+    /*
     @Override
     public String toString()
     {
@@ -130,6 +131,7 @@ public class GameBoard implements IGameBoard
         //Returns the generated String
         return boardString;
     }
+     */
 
 
     /**

@@ -36,10 +36,17 @@ public abstract class AbsGameBoard implements IGameBoard
 
         //Begins string with header for the output GameBoard
         String boardString = "";
-        for (int i = 0; i < getNumRows(); i++) {
-            boardString += ('|' + i + '|');
+        for (int i = 0; i < getNumColumns(); i++) {
+            if (i < 10) {
+                boardString += "| ";
+            }
+            else {
+                boardString += '|';
+            }
+            boardString += i;
         }
 
+        boardString += "|\n";
 
         for (int i = getNumRows() - 1; i >= 0; i--) {
             for (int j = 0; j < getNumColumns(); j++) {
@@ -49,10 +56,11 @@ public abstract class AbsGameBoard implements IGameBoard
 
                 //Appends value at currentPos to the String
                 if (whatsAtPos(currentPos) != 'X' && whatsAtPos(currentPos) != 'O') {
-                    boardString += ' ';
+                    boardString += "  ";
                 }
                 else {
                     boardString += (whatsAtPos(currentPos));
+                    boardString += ' ';
                 }
             }
             boardString += ('|');
