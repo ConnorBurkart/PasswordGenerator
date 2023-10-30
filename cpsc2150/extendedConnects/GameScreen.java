@@ -31,11 +31,9 @@ public class GameScreen {
      * Prints the board in current relation to the playerBoard object.
      *
      * @pre None
-     *
      * @post [Prints the string created by calling toString] AND self = #self AND isPlayerXTurn = #isPlayerXTurn
      */
-    public static void printBoard()
-    {
+    public static void printBoard() {
         System.out.println(playerBoard.toString());
     }
 
@@ -43,15 +41,12 @@ public class GameScreen {
      * Prints the winner of the game.
      *
      * @pre None
-     *
      * @post [Prints the winner of the game to the terminal] AND self = #self AND isPlayerXTurn = #isPlayerXTurn
      */
-    public static void printWinner()
-    {
+    public static void printWinner() {
         if (isPlayerXTurn) {
             System.out.println("Player X Won!");
-        }
-        else {
+        } else {
             System.out.println("Player O Won!");
         }
     }
@@ -60,14 +55,11 @@ public class GameScreen {
      * Ask player which column they want their token dropped in.
      *
      * @return the column in which the player wants the token dropped as an int
-     *
      * @pre None
-     *
      * @post [askPlayerForColumn = value for column provided by player] AND self = #self
      * AND isPlayerXTurn = #isPlayerXTurn
      */
-    public static int askPlayerForColumn()
-    {
+    public static int askPlayerForColumn() {
         int column = 0;
         boolean invalidColumnNum = true;
         while (invalidColumnNum) {
@@ -75,8 +67,7 @@ public class GameScreen {
             //Asks either player, X or O or their column number.
             if (isPlayerXTurn) {
                 System.out.println("Player X, what column do you want to place your marker in?");
-            }
-            else {
+            } else {
                 System.out.println("Player O, what column do you want to place your marker in?");
             }
 
@@ -87,8 +78,7 @@ public class GameScreen {
             //Validates that column number is valid.
             if (column < 0) {
                 System.out.println("Column cannot be less than 0");
-            }
-            else if (column > playerBoard.getNumColumns() - 1) {
+            } else if (column > playerBoard.getNumColumns() - 1) {
                 System.out.println("Column cannot be greater than 6");
             }
             //Validates that column is empty.
@@ -112,13 +102,11 @@ public class GameScreen {
      * Driver for the ConnectX game
      *
      * @pre None
-     *
      * @post [Returns which player won by the end of the game, either X or O, isPlayerName updates according to
      * which player's turn it is and GameBoard is populated with the values for each player]
      */
-    public static void main(String[] args)
-    {
-    // Input validation for the amount of players
+    public static void main(String[] args) {
+        // Input validation for the amount of players
         boolean valid = true;
         int numOfPlayers = 0;
         while (valid) {
@@ -127,36 +115,35 @@ public class GameScreen {
             numOfPlayers = playerAmount.nextInt();
             if (numOfPlayers > 10) {
                 System.out.println("Must be 10 players or fewer");
-            }
-            else if (numOfPlayers < 2) {
+            } else if (numOfPlayers < 2) {
                 System.out.println("Must be at least 2 players");
-            }
-            else {
+            } else {
                 valid = false;
             }
         }
-    // Assigning character values to each player
+        // Assigning character values to each player
         char[] playerCharacters = new char[numOfPlayers];
-        for (int i = 1; i <= numOfPlayers; i++) {
+        for (int i = 0; i < numOfPlayers; i++) {
             char playerChar;
 
             do {
                 valid = true;
-                System.out.println("Enter the character to represent player " + i);
+                System.out.println("Enter the character to represent player " + (i + 1));
                 Scanner scan = new Scanner(System.in);
                 playerChar = scan.next().charAt(0);
                 playerChar = Character.toUpperCase(playerChar);
-                for (int j = 0; j < i; j++) {
+                for (int j = 0; j <= i; j++) {
                     if (playerChar == playerCharacters[j]) {
                         System.out.println(playerChar + "is already taken as a player token!");
-                        valid = false;
+
                         break;
                     }
+                    valid = false;
                 }
-            } while(valid);
+            } while (valid);
             playerCharacters[i] = playerChar;
         }
-    // Determine number of rows, columns, and number of tokens in a row to win for the game
+        // Determine number of rows, columns, and number of tokens in a row to win for the game
         int numOfRows = 0;
         int numOfColumns = 0;
         int numberToWin = 0;
@@ -190,7 +177,7 @@ public class GameScreen {
             }
             valid = false;
         }
-    // Ask user if they want speed or efficiency
+        // Ask user if they want speed or efficiency
         valid = true;
         char efficiency;
         while (valid) {
@@ -200,19 +187,20 @@ public class GameScreen {
             if (efficiency == 'F' || efficiency == 'f') {
                 playerBoard = new GameBoard(numOfRows, numOfColumns, numberToWin);
                 valid = false;
-            }
-            else if (efficiency == 'M' || efficiency == 'm') {
+            } else if (efficiency == 'M' || efficiency == 'm') {
                 playerBoard = new GameBoardMem(numOfRows, numOfColumns, numberToWin);
                 valid = false;
-            }
-            else {
+            } else {
                 System.out.println("Invalid option! Choice must be (F/f) or (M/m)");
             }
         }
+        printBoard();
+    }
+}
 
 
 
-        playerBoard = new GameBoard(numOfRows, numOfColumns, numberToWin);
+/*        playerBoard = new GameBoard(numOfRows, numOfColumns, numberToWin);
 
         int col = 0;
         char playerInput = 'y';
@@ -299,4 +287,4 @@ public class GameScreen {
 
     }
 
-}
+}*/
