@@ -2,6 +2,8 @@ package cpsc2150.extendedConnects;
 
 import cpsc2150.extendedConnectX.models.BoardPosition;
 import cpsc2150.extendedConnectX.models.GameBoard;
+import cpsc2150.extendedConnectX.models.GameBoardMem;
+
 import java.util.Scanner;
 
 /*GROUP MEMBER NAMES AND GITHUB USERNAMES SHOULD GO HERE
@@ -195,11 +197,11 @@ public class GameScreen {
             Scanner speed = new Scanner(System.in);
             efficiency = speed.next().charAt(0);
             if (efficiency == 'F' || efficiency == 'f') {
-                // Need to finish GameBoardMem first
+                playerBoard = new GameBoard(numOfRows, numOfColumns, numberToWin);
                 valid = false;
             }
             else if (efficiency == 'M' || efficiency == 'm') {
-                // Need to finish GameBoardMem first
+                playerBoard = new GameBoardMem();
                 valid = false;
             }
             else {
