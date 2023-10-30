@@ -3,6 +3,7 @@ package cpsc2150.extendedConnects;
 import cpsc2150.extendedConnectX.models.BoardPosition;
 import cpsc2150.extendedConnectX.models.GameBoard;
 import cpsc2150.extendedConnectX.models.GameBoardMem;
+import cpsc2150.extendedConnectX.models.IGameBoard;
 
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ Steven Cabezas (scabeza)
  */
 public class GameScreen {
 
-    private static GameBoard playerBoard;
+    private static IGameBoard playerBoard;
     private static boolean isPlayerXTurn = true;
 
     /**
@@ -201,7 +202,7 @@ public class GameScreen {
                 valid = false;
             }
             else if (efficiency == 'M' || efficiency == 'm') {
-                playerBoard = new GameBoardMem();
+                playerBoard = new GameBoardMem(numOfRows, numOfColumns, numberToWin);
                 valid = false;
             }
             else {
