@@ -3,6 +3,7 @@ package cpsc2150.extendedConnectX.models;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class GameBoardMem extends AbsGameBoard implements IGameBoard {
 
@@ -44,6 +45,12 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
     @Override
     public void dropToken(char p, int c) {
 
+        /*
+            Loop through key values for gameMap.
+            call checkIfFree for each key value to see if token for any key value is in that column.
+            if p == gameMap.key.
+
+         */
     }
 
     @Override
