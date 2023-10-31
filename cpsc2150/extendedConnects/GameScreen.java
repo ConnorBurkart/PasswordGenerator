@@ -195,6 +195,12 @@ public class GameScreen {
             }
         }
         printBoard();
+        int col = askPlayerForColumn();
+        playerBoard.dropToken('X', col);
+        printBoard();
+        col = askPlayerForColumn();
+        playerBoard.dropToken('O', col);
+        printBoard();
     }
 }
 

@@ -63,7 +63,7 @@ public class GameBoard implements IGameBoard
     {
         //places the character p in column c. The token will be placed in the lowest available row in column c.
         for (int i = 0; i < getNumRows(); i++) {
-            if (playersGameBoard[i][c] == 'X' || playersGameBoard[i][c] == 'O' ) {
+            if (playersGameBoard[i][c] != ' ') {
                 continue;
             }
             else {

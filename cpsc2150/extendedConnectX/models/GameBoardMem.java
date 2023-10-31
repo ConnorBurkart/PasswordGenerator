@@ -1,8 +1,6 @@
 package cpsc2150.extendedConnectX.models;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 public class GameBoardMem extends AbsGameBoard implements IGameBoard {
 
@@ -23,6 +21,7 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
         if (!gameMap.containsKey(key)) {
             gameMap.put(key, new ArrayList<>());
         }
+
         gameMap.get(key).add(value);
     }
 
@@ -43,6 +42,29 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
 
     @Override
     public void dropToken(char p, int c) {
+
+        //Initilizes a BoardPosition object and List for key,value pair
+        BoardPosition pos = new BoardPosition(0, c);
+        List<BoardPosition> positList = gameMap.get(p);
+
+        //Updates pos until blank space is found.
+        if (whatsAtPos(pos) != ' ') {
+            while (whatsAtPos(pos) != ' ') {
+                pos = new BoardPosition(pos.getRow() + 1, c);
+            }
+        }
+
+        //Initilizes list if one does not exist
+        if (positList == null) {
+            positList = new ArrayList<BoardPosition>();
+        }
+
+        //Makes sure position is not already on the list.
+        if (!positList.contains(pos)) {
+            positList.add(pos);
+            gameMap.put(p, positList);
+        }
+
 
     }
 
