@@ -49,7 +49,6 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
 
         //Initilizes a BoardPosition object and List for key,value pair
         BoardPosition pos = new BoardPosition(0, c);
-        List<BoardPosition> positList = gameMap.get(p);
 
         //Updates pos until blank space is found.
         if (whatsAtPos(pos) != ' ') {
@@ -58,10 +57,7 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
             }
         }
 
-        //Initilizes list if one does not exist
-        if (positList == null) {
-            positList = new ArrayList<BoardPosition>();
-        }
+        List<BoardPosition> positList = new ArrayList<BoardPosition>();
 
         //Makes sure position is not already on the list.
         positList.add(pos);

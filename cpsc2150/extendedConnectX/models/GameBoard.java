@@ -19,7 +19,7 @@ Steven Cabezas (scabeza)
  * @corresponds num_to_win = numToWin
  *
  */
-public class GameBoard implements IGameBoard
+public class GameBoard extends AbsGameBoard implements IGameBoard
 {
     private static int ROWS;
     private static int COLUMNS;
@@ -63,10 +63,7 @@ public class GameBoard implements IGameBoard
     {
         //places the character p in column c. The token will be placed in the lowest available row in column c.
         for (int i = 0; i < getNumRows(); i++) {
-            if (playersGameBoard[i][c] != ' ') {
-                continue;
-            }
-            else {
+            if (!Character.isLetter(playersGameBoard[i][c])) {
                 playersGameBoard[i][c] = p;
                 return;
             }
@@ -89,7 +86,7 @@ public class GameBoard implements IGameBoard
     {
 
         //returns what is in the GameBoard at position pos If no marker is there, it returns a blank space char.
-        if (playersGameBoard[pos.getRow()][pos.getColumn()] == 'X' || playersGameBoard[pos.getRow()][pos.getColumn()] == 'O') {
+        if (Character.isLetter(playersGameBoard[pos.getRow()][pos.getColumn()])) {
             return playersGameBoard[pos.getRow()][pos.getColumn()];
         }
         else {

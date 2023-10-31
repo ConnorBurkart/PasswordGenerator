@@ -48,7 +48,7 @@ public interface IGameBoard {
         BoardPosition pos = new BoardPosition(getNumRows() - 1, c);
 
         //Checks that particular column is not full by checking top position in column
-        if (whatsAtPos(pos) == 'X' || whatsAtPos(pos) == 'O') {
+        if (whatsAtPos(pos) != ' ') {
             return false;
         }
 

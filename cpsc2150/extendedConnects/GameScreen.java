@@ -194,12 +194,12 @@ public class GameScreen {
                 System.out.println("Invalid option! Choice must be (F/f) or (M/m)");
             }
         }
-        printBoard();
-        int col = askPlayerForColumn();
-        playerBoard.dropToken('X', col);
-        printBoard();
-        col = askPlayerForColumn();
-        playerBoard.dropToken('O', col);
+
+        for (int i = 0; i < numOfPlayers; i++) {
+            printBoard();
+            int col = askPlayerForColumn();
+            playerBoard.dropToken(playerCharacters[i], col);
+        }
         printBoard();
     }
 }
