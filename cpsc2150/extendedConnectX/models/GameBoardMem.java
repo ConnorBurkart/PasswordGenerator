@@ -64,10 +64,8 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
         }
 
         //Makes sure position is not already on the list.
-        if (!positList.contains(pos)) {
-            positList.add(pos);
-            gameMap.put(p, positList);
-        }
+        positList.add(pos);
+        gameMap.put(p, positList);
 
     }
 
