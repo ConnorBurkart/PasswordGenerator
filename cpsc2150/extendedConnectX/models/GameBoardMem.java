@@ -1,6 +1,10 @@
 package cpsc2150.extendedConnectX.models;
 
 import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class GameBoardMem extends AbsGameBoard implements IGameBoard {
 
@@ -64,7 +68,6 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
             positList.add(pos);
             gameMap.put(p, positList);
         }
-
 
     }
 
