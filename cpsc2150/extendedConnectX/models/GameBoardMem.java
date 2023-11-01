@@ -21,13 +21,6 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
         numToWin = numWin;
     }
 
-    public void addEntry(char key, BoardPosition value) {
-        if (!gameMap.containsKey(key)) {
-            gameMap.put(key, new ArrayList<>());
-        }
-
-        gameMap.get(key).add(value);
-    }
 
     @Override
     public char whatsAtPos(BoardPosition pos) {
@@ -47,7 +40,7 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
     @Override
     public void dropToken(char p, int c) {
 
-        //Initilizes a BoardPosition object and List for key,value pair
+        //Initializes a BoardPosition object and List for key,value pair
         BoardPosition pos = new BoardPosition(0, c);
 
         //Updates pos until blank space is found.

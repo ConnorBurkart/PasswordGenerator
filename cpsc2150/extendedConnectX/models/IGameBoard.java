@@ -86,10 +86,14 @@ public interface IGameBoard {
 
             //Loop stops once last placed token is found.
             //Last placed token should be the uppermost token in column.
-            if (whatsAtPos(pos) == 'X' || whatsAtPos(pos) == 'O') {
+            if (whatsAtPos(pos) != ' ') {
                 playerChar = whatsAtPos(pos);
                 break;
             }
+            /*if (whatsAtPos(pos) == 'X' || whatsAtPos(pos) == 'O') {
+                playerChar = whatsAtPos(pos);
+                break;
+            }*/
         }
 
         //Checks if last placed token resulted in any valid win state
@@ -141,21 +145,51 @@ public interface IGameBoard {
      */
     public default boolean checkHorizWin(BoardPosition pos, char p) {
 
-        BoardPosition originalPos = pos;
+        // Initialize count to 1 because we have the current position.
+        int count = 1;
 
+        // Check to the left of the current position.
+        int column = pos.getColumn() - 1;
+        while (column >= 0 && count < getNumToWin() && whatsAtPos(pos)
+                == whatsAtPos(new BoardPosition(pos.getRow(), column))) {
+            count++;
+            column--;
+        }
+
+        // Check to the right of the current position.
+        column = pos.getColumn() + 1;
+        while (column < getNumColumns() && count < getNumToWin() && whatsAtPos(pos)
+                == whatsAtPos(new BoardPosition(pos.getRow(), column))) {
+            count++;
+            column++;
+        }
+
+        return count >= getNumToWin();
+        /*BoardPosition originalPos = pos;
         int rightCount = 0;
-        for (int i = pos.getColumn() + 1; i < getNumColumns(); i++) {
+        int leftCount = 0;
+        //for (int i = pos.getColumn() + 1; i < getNumColumns(); i++) {
+        for (int i = pos.getColumn(); i < getNumColumns(); i++) {
             pos = new BoardPosition(pos.getRow(), i);
+
+            if (leftCount + rightCount == getNumToWin()) {
+                return true;
+            }
+
             if (!isPlayerAtPos(pos, p)) {
                 break;
             }
 
             rightCount++;
         }
-
-        int leftCount = 0;
-        for (int i = originalPos.getColumn() - 1; i >= 0; i--) {
+        //int leftCount = 0;
+        for (int i = originalPos.getColumn(); i >= 0; i--) {
+        //for (int i = originalPos.getColumn() - 1; i >= 0; i--) {
             originalPos = new BoardPosition(originalPos.getRow(), i);
+
+            if (leftCount + rightCount == getNumToWin()) {
+                return true;
+            }
 
             if (!isPlayerAtPos(originalPos, p)) {
                 break;
@@ -163,13 +197,11 @@ public interface IGameBoard {
 
             leftCount++;
         }
-
         if (leftCount + rightCount == getNumToWin() - 1) {
             return true;
         }
 
-        return false;
-
+        return false;*/
     }
 
     /**checkVertWinContract
@@ -226,7 +258,7 @@ public interface IGameBoard {
      */
     public default boolean checkDiagWin(BoardPosition pos, char p) {
 
-        BoardPosition origPos = pos;
+        /*BoardPosition origPos = pos;
         int count = 0;
 
         while (whatsAtPos(pos) == p && (pos.getRow() < getNumColumns() - 1 && pos.getColumn() < getNumColumns() - 1)) {
@@ -249,7 +281,58 @@ public interface IGameBoard {
             return true;
         }
 
-        return false;
+        return false;*/
+
+        // Initialize the count to 1 because we have the current position.
+        int count = 1;
+
+        // Check the up right diagonal direction
+        BoardPosition currentPos = new BoardPosition(pos.getRow() + 1,
+                pos.getColumn() + 1);
+        while (currentPos.getRow() < getNumRows() && currentPos.getColumn() < getNumColumns()
+                && whatsAtPos(currentPos) == p) {
+            count++;
+            currentPos = new BoardPosition(currentPos.getRow() + 1,
+                    currentPos.getColumn() + 1);
+        }
+        if (count == getNumToWin()) {
+            return true;
+        }
+
+        // Check the down left diagonal direction
+        currentPos = new BoardPosition(pos.getRow() - 1, pos.getColumn() - 1);
+        while (currentPos.getRow() >= 0 && currentPos.getColumn() >= 0
+                && whatsAtPos(currentPos) == p) {
+            count++;
+            currentPos = new BoardPosition(currentPos.getRow() - 1,
+                    currentPos.getColumn() - 1);
+        }
+        if (count == getNumToWin()) {
+            return true;
+        }
+
+        // Check the up left diagonal direction
+        currentPos = new BoardPosition(pos.getRow() + 1, pos.getColumn() - 1);
+        while (currentPos.getRow() < getNumRows() && currentPos.getColumn() >= 0
+                && whatsAtPos(currentPos) == p) {
+            count++;
+            currentPos = new BoardPosition(currentPos.getRow() + 1,
+                    currentPos.getColumn() - 1);
+        }
+        if (count == getNumToWin()) {
+            return true;
+        }
+
+        // Check the down right diagonal direction
+        currentPos = new BoardPosition(pos.getRow() - 1, pos.getColumn() + 1);
+        while (currentPos.getRow() >= 0 && currentPos.getColumn() < getNumColumns()
+                && whatsAtPos(currentPos) == p) {
+            count++;
+            currentPos = new BoardPosition(currentPos.getRow() - 1,
+                    currentPos.getColumn() + 1);
+        }
+
+        return count >= getNumToWin();
 
         /*
         int count = 0;

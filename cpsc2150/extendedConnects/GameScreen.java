@@ -171,7 +171,7 @@ public class GameScreen {
 
                     boolean validCol = false;
                     printBoard();
-                    System.out.println("Player" + playerCharacters[i] + ", what column do you want to place your marker in?");
+                    System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
                     int col = askPlayerForColumn();
 
                     if (col < 0) {
