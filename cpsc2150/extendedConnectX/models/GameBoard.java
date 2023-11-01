@@ -94,7 +94,7 @@ public class GameBoard extends AbsGameBoard implements IGameBoard
         }
 
     }
-    
+
     /**
      * Returns the value for ROWS
      *
