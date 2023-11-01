@@ -19,6 +19,7 @@ package cpsc2150.extendedConnectX.models;
  */
 public abstract class AbsGameBoard implements IGameBoard
 {
+    public static final int DoubleDigit = 10;
     /**
      * Creates a string for the GameBoard containing each value within 2D gameboard array.
      *
@@ -37,7 +38,7 @@ public abstract class AbsGameBoard implements IGameBoard
         //Begins string with header for the output GameBoard
         String boardString = "";
         for (int i = 0; i < getNumColumns(); i++) {
-            if (i < 10) {
+            if (i < DoubleDigit) {
                 boardString += "| ";
             }
             else {
