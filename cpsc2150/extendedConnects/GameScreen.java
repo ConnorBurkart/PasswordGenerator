@@ -27,7 +27,7 @@ public class GameScreen {
     private static IGameBoard playerBoard;
     private static char winningChar = 'a';
     public static final int maxPlayers = 10;
-    public static final int minPlayers = 3;
+    public static final int minPlayers = 2;
     public static final int maxRowsCol = 100;
     public static final int minRowsCol = 3;
 
@@ -98,6 +98,26 @@ public class GameScreen {
             char[] playerCharacters = new char[numOfPlayers];
             for (int i = 0; i < numOfPlayers; i++) {
                 char playerChar;
+                System.out.println("Enter the character to represent player " + (i + 1));
+                Scanner scan = new Scanner(System.in);
+                playerChar = scan.next().charAt(0);
+                playerChar = Character.toUpperCase(playerChar);
+
+                for (int j = 0; j < numOfPlayers; j++) {
+                    while (playerCharacters[j] == playerChar) {
+                        System.out.println(playerChar + "is already taken as a player token!");
+                        System.out.println("Enter the character to represent player " + (i + 1));
+                        playerChar = scan.next().charAt(0);
+                        playerChar = Character.toUpperCase(playerChar);
+                    }
+                }
+
+                playerCharacters[i] = playerChar;
+
+            }
+            /*
+            for (int i = 0; i < numOfPlayers; i++) {
+                char playerChar;
 
                 do {
                     valid = true;
@@ -116,6 +136,8 @@ public class GameScreen {
                 } while (valid);
                 playerCharacters[i] = playerChar;
             }
+
+             */
             // Determine number of rows, columns, and number of tokens in a row to win for the game
             int numOfRows = 0;
             int numOfColumns = 0;
@@ -125,6 +147,59 @@ public class GameScreen {
             System.out.println("How many rows should be on the board?");
             Scanner input = new Scanner(System.in);
             numOfRows = input.nextInt();
+
+            while (numOfRows < minRowsCol) {
+                System.out.println("Amount of rows must be between 3 - 100");
+                numOfRows = input.nextInt();
+            }
+
+            while (numOfRows > maxRowsCol) {
+                System.out.println("Amount of rows must be between 3 - 100");
+                numOfRows = input.nextInt();
+            }
+
+            System.out.println("How many columns should be on the board?");
+            numOfColumns = input.nextInt();
+
+            while (numOfColumns < minRowsCol) {
+                System.out.println("Amount of columns must be between 3 - 100");
+                numOfColumns = input.nextInt();
+            }
+
+            while (numOfColumns > maxRowsCol) {
+                System.out.println("Amount of columns must be between 3 - 100");
+                numOfColumns = input.nextInt();
+            }
+
+            System.out.println("How many in a row to win?");
+            numberToWin = input.nextInt();
+
+            if (numOfColumns > numOfRows) {
+                while (numberToWin > numOfColumns) {
+                    System.out.println("Number of tokens to win must be between 3 and " + numOfColumns);
+                    numberToWin = input.nextInt();
+                }
+
+                while (numberToWin < minRowsCol) {
+                    System.out.println("Number of tokens to win must be between 3 and " + numOfColumns);
+                    numberToWin = input.nextInt();
+                }
+            }
+            if (numOfColumns <= numOfRows) {
+                while (numberToWin > numOfRows) {
+                    System.out.println("Number of tokens to win must be between 3 and " + numOfRows);
+                    numberToWin = input.nextInt();
+                }
+
+                while (numberToWin < minRowsCol) {
+                    System.out.println("Number of tokens to win must be between 3 and " + numOfColumns);
+                    numberToWin = input.nextInt();
+                }
+            }
+
+
+
+            /*
             while (valid) {
                 if (numOfRows > maxRowsCol || numOfRows < minRowsCol) {
                     System.out.println("Amount of rows must be between 3 - 100");
@@ -132,6 +207,8 @@ public class GameScreen {
                 }
                 valid = false;
             }
+
+
             valid = true;
             System.out.println("How many columns should be on the board?");
             numOfColumns = input.nextInt();
@@ -141,6 +218,8 @@ public class GameScreen {
                 }
                 valid = false;
             }
+
+
             valid = true;
             System.out.println("How many in a row to win?");
             numberToWin = input.nextInt();
@@ -150,9 +229,30 @@ public class GameScreen {
                 }
                 valid = false;
             }
+
+             */
             // Ask user if they want speed or efficiency
             valid = true;
-            char efficiency;
+            char efficiency = 'a';
+
+            while (efficiency != 'M' && efficiency != 'F') {
+                System.out.println("Would you like a Fast Game (F/f) or a Memory Efficient Game (M/m)?");
+                Scanner speed = new Scanner(System.in);
+                efficiency = speed.next().charAt(0);
+                efficiency = Character.toUpperCase(efficiency);
+
+                if (efficiency != 'M' && efficiency != 'F') {
+                    System.out.println("Invalid option! Choice must be (F/f) or (M/m)");
+                }
+            }
+
+            if (efficiency == 'F') {
+                playerBoard = new GameBoard(numOfRows, numOfColumns, numberToWin);
+            }
+            else {
+                playerBoard = new GameBoardMem(numOfRows, numOfColumns, numberToWin);
+            }
+            /*
             while (valid) {
                 System.out.println("Would you like a Fast Game (F/f) or a Memory Efficient Game (M/m)?");
                 Scanner speed = new Scanner(System.in);
@@ -167,6 +267,7 @@ public class GameScreen {
                     System.out.println("Invalid option! Choice must be (F/f) or (M/m)");
                 }
             }
+             */
 
             boolean gameNotOver = true;
             while (gameNotOver) {
@@ -178,28 +279,47 @@ public class GameScreen {
                     System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
                     int col = askPlayerForColumn();
 
+                    if (col > 0 && col < playerBoard.getNumColumns() - 1) {
+                        validCol = true;
+                    }
+
+                    if (!playerBoard.checkIfFree(col)) {
+                        validCol = false;
+                    }
+
+                    /*
                     if (col < 0) {
                         System.out.println("Column cannot be less than 0");
+                        System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
                     } else if (col > playerBoard.getNumColumns() - 1) {
                         System.out.println("Column cannot be greater than " + (playerBoard.getNumColumns() - 1));
+                        System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
                     }
                     //Validates that column is empty.
                     else if (!playerBoard.checkIfFree(col)) {
                         System.out.println("Column is full");
+                        System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
                     } else {
                         validCol = true;
                     }
 
+                     */
+
                     while (!validCol) {
-                        col = askPlayerForColumn();
                         if (col < 0) {
                             System.out.println("Column cannot be less than 0");
+                            System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
+                            col = askPlayerForColumn();
                         } else if (col > playerBoard.getNumColumns() - 1) {
                             System.out.println("Column cannot be greater than " + (playerBoard.getNumColumns() - 1));
+                            System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
+                            col = askPlayerForColumn();
                         }
                         //Validates that column is empty.
                         else if (!playerBoard.checkIfFree(col)) {
                             System.out.println("Column is full");
+                            System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
+                            col = askPlayerForColumn();
                         } else {
                             validCol = true;
                         }
@@ -216,7 +336,8 @@ public class GameScreen {
                             System.out.println("Would you like to play again? Y/N");
                             Scanner inputChar = new Scanner(System.in);
                             playerInput = inputChar.next().charAt(0);
-                        } while (playerInput != 'y' && playerInput != 'n');
+                            playerInput = Character.toUpperCase(playerInput);
+                        } while (playerInput != 'Y' && playerInput != 'N');
                         gameNotOver = false;
                         break;
                     }
@@ -229,13 +350,14 @@ public class GameScreen {
                             System.out.println("Would you like to play again? Y/N");
                             Scanner inputChar = new Scanner(System.in);
                             playerInput = inputChar.next().charAt(0);
-                        } while (playerInput != 'y' && playerInput != 'n');
+                            playerInput = Character.toUpperCase(playerInput);
+                        } while (playerInput != 'Y' && playerInput != 'N');
                         gameNotOver = false;
                         break;
                     }
 
                 }
             }
-        } while (playerInput == 'y');
+        } while (playerInput == 'Y');
     }
 }

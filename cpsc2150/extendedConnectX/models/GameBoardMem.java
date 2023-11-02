@@ -38,6 +38,17 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
     }
 
     @Override
+    public boolean isPlayerAtPos(BoardPosition pos, char player) {
+        if (gameMap.containsKey(player)) {
+            if (gameMap.get(player).contains(pos)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
     public void dropToken(char p, int c) {
 
         //Initializes a BoardPosition object and List for key,value pair
