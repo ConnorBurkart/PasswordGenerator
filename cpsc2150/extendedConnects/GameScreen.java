@@ -26,6 +26,10 @@ public class GameScreen {
 
     private static IGameBoard playerBoard;
     private static char winningChar = 'a';
+    public static final int maxPlayers = 10;
+    public static final int minPlayers = 3;
+    public static final int maxRowsCol = 100;
+    public static final int minRowsCol = 3;
 
     /**
      * Prints the board in current relation to the playerBoard object.
@@ -82,9 +86,9 @@ public class GameScreen {
                 System.out.println("How many players?");
                 Scanner playerAmount = new Scanner(System.in);
                 numOfPlayers = playerAmount.nextInt();
-                if (numOfPlayers > 10) {
+                if (numOfPlayers > maxPlayers) {
                     System.out.println("Must be 10 players or fewer");
-                } else if (numOfPlayers < 2) {
+                } else if (numOfPlayers < minPlayers) {
                     System.out.println("Must be at least 2 players");
                 } else {
                     valid = false;
@@ -122,7 +126,7 @@ public class GameScreen {
             Scanner input = new Scanner(System.in);
             numOfRows = input.nextInt();
             while (valid) {
-                if (numOfRows > 100 || numOfRows < 3) {
+                if (numOfRows > maxRowsCol || numOfRows < minRowsCol) {
                     System.out.println("Amount of rows must be between 3 - 100");
                     numOfRows = input.nextInt();
                 }
@@ -132,7 +136,7 @@ public class GameScreen {
             System.out.println("How many columns should be on the board?");
             numOfColumns = input.nextInt();
             while (valid) {
-                if (numOfColumns > 100 || numOfColumns < 3) {
+                if (numOfColumns > maxRowsCol || numOfColumns < minRowsCol) {
                     System.out.println("Amount of columns must be between 3 - 100");
                 }
                 valid = false;
