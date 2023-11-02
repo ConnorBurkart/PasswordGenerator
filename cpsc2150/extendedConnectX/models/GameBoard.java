@@ -10,9 +10,7 @@ Steven Cabezas (scabeza)
  * This class contains the methods that can be done by the game in order to validate token positions
  * and to advance the game.
  *
- * @invariant [GameBoard should be valid 9x7 size board] AND
- * [Instance variables Row and Column must be ROW = 9 and COLUMN = 7]
- * AND [Player must be "X" or "O"]
+ * @invariant
  *
  * @corresponds num_rows = ROWS
  * @corresponds num_columns = COLUMNS
@@ -27,13 +25,18 @@ public class GameBoard extends AbsGameBoard implements IGameBoard
     private static char[][] playersGameBoard;
 
     /**
-     * Constructs a GameBoard that is a size of 9x7 and contains
-     * blank spaces for each position in the 9x7
+     * Constructs a speed efficient GameBoard that is a 2D array with a size
+     * specified by the parameters and contains a blank space for every position
+     * on the GameBoard
      *
-     * @pre None
+     * @param aRow number of rows for the GameBoard
+     * @param aCol number of columns for the GameBoard
+     * @param numWin number required to win the game
+     *
+     * @pre 3 <= aRow <= 100 AND 3 <= aCol <= 100 And 3<= numWin <= 25
      *
      * @post [Creates instance of empty 2D array to represent gameBoard of size ROWSxCOLUMNS]
-     * AND ROWS = 9 AND COLUMNS = 7 AND numToWin = 5
+     * AND ROWS = aRow AND COLUMNS = aCol AND numToWin = numWin
      */
     public GameBoard(int aRow, int aCol, int numWin)
     {
@@ -49,13 +52,13 @@ public class GameBoard extends AbsGameBoard implements IGameBoard
      * Drops a token to the bottom of the board in the specified
      * column
      * 
-     * @param p indicates player's character [player character is 'x' or 'o']
+     * @param p indicates player's character
      *  
      * @param c indicates the column number
      * 
-     * @pre c > 0 AND c <= 7 AND [checkIfFree() for column, c, should return true.]
+     * @pre 3 <= c <= COLUMNS AND [checkIfFree() for column, c, should return true.]
      * 
-     * @post [GameBoard array at column, c, contains player character ('x' or 'o')]
+     * @post [GameBoard array at column c, contains player character]
      * AND [Instance variables Row = #row AND Column = #Column]
      * ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
      */
@@ -71,15 +74,15 @@ public class GameBoard extends AbsGameBoard implements IGameBoard
     }
 
     /**
-     * Check which character is at any position on the Gameboard and returns said character.
+     * Check which character is at any position on the GameBoard and returns said character.
      *
-     * @param pos Current position on the gameboard array.
+     * @param pos Current position in the GameBoard array.
      *
      * @return Player token that is at desired position as a Character
      *
      * @pre None
      *
-     * @post [whatsAtPos returns which player's character (X or O) is at the current position on the game board
+     * @post [whatsAtPos returns which player's character is at the current position on the game board
      * array] ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
      */
     public char whatsAtPos(BoardPosition pos)

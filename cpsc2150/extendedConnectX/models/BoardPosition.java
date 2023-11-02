@@ -10,7 +10,7 @@ Steven Cabezas (scabeza)
  * This board position class contains all data related to a possible position on the board.
  * BoardPosition contains a Row and Column number.
  *
- * @invariant Row <= 6 AND Row >= 0 AND Column >= 0 AND Column <= 8
+ * @invariant 2 <= Row <= 99 AND 2 <= Column <= 99
  *
  */
 public class BoardPosition
