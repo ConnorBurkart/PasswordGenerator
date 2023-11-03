@@ -148,7 +148,7 @@ public class GameScreen {
                 efficiency = Character.toUpperCase(efficiency);
 
                 if (efficiency != 'M' && efficiency != 'F') {
-                    System.out.println("Invalid option! Choice must be (F/f) or (M/m)");
+                    System.out.println("Please enter F or M");
                 }
             }
 
@@ -171,6 +171,26 @@ public class GameScreen {
 
                     if (col > 0 && col < playerBoard.getNumColumns() - 1) {
                         validCol = true;
+                    }
+
+                    while (!validCol) {
+                        if (col < 0) {
+                            System.out.println("Column cannot be less than 0");
+                            System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
+                            col = askPlayerForColumn();
+                        } else if (col > playerBoard.getNumColumns() - 1) {
+                            System.out.println("Column cannot be greater than " + (playerBoard.getNumColumns() - 1));
+                            System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
+                            col = askPlayerForColumn();
+                        }
+                        //Validates that column is empty.
+                        else if (!playerBoard.checkIfFree(col)) {
+                            System.out.println("Column is full");
+                            System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
+                            col = askPlayerForColumn();
+                        } else {
+                            validCol = true;
+                        }
                     }
 
                     if (!playerBoard.checkIfFree(col)) {
