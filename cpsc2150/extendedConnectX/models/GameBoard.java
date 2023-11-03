@@ -10,7 +10,9 @@ Steven Cabezas (scabeza)
  * This class contains the methods that can be done by the game in order to validate token positions
  * and to advance the game.
  *
- * @invariant 3 <= ROWS <= 100 AND 3 <= COLUMNS <= 100 And 3 <= numToWin <= 25
+ * @invariant ROWS >= 3 AND ROWS <= 100 AND 3 <= COLUMNS AND COLUMNS <= 100 And 3 <= numToWin AND
+ * [numToWin <= 25 or numToWin <= 25 iff COLUMNS <= 25 or ROWS <= 25 else numToWin <= ROWS or numToWin <= COLUMNS] AND
+ * [GameBoard should be a 2-D array that is of size ROWS x COLUMNS specified by the user]
  *
  * @corresponds num_rows = ROWS
  * @corresponds num_columns = COLUMNS
@@ -33,14 +35,13 @@ public class GameBoard extends AbsGameBoard implements IGameBoard
      * @param aCol number of columns for the GameBoard
      * @param numWin number required to win the game
      *
-     * @pre 3 <= aRow <= 100 AND 3 <= aCol <= 100 And 3<= numWin <= 25
+     * @pre 3 <= aRow AND aRow <= 100 AND 3 <= aCol AND aCol <= 100 AND 3<= numWin AND numWin <= 25
      *
      * @post [Creates instance of empty 2D array to represent gameBoard of size ROWSxCOLUMNS]
      * AND ROWS = aRow AND COLUMNS = aCol AND numToWin = numWin
      */
     public GameBoard(int aRow, int aCol, int numWin)
     {
-    // -------- Need to update contract ------- //
 
         ROWS = aRow;
         COLUMNS = aCol;
@@ -56,10 +57,9 @@ public class GameBoard extends AbsGameBoard implements IGameBoard
      *  
      * @param c indicates the column number
      * 
-     * @pre 3 <= c <= COLUMNS AND [checkIfFree() for column, c, should return true.]
+     * @pre 3 <= c AND c <= COLUMNS AND [checkIfFree() for column, c, should return true.]
      * 
-     * @post [GameBoard array at column c, contains player character]
-     * AND [Instance variables Row = #row AND Column = #Column]
+     * @post [Drops token on GameBoard array at column c, contains player character] AND
      * ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
      */
     public void dropToken(char p, int c)
@@ -82,7 +82,7 @@ public class GameBoard extends AbsGameBoard implements IGameBoard
      *
      * @pre None
      *
-     * @post [whatsAtPos returns which player's character is at the current position on the game board
+     * @post whatsAtPos = [whatsAtPos returns which player's character is at the current position on the game board
      * array] ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
      */
     public char whatsAtPos(BoardPosition pos)

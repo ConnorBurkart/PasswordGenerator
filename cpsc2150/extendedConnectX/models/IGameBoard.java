@@ -18,7 +18,7 @@ package cpsc2150.extendedConnectX.models;
  *          num_columns : z
  *          num_to_win : z
  *
- *@constraints: |self| = num_rows x num_columns AND [num_to_win indicates number of consecutive matches to win the game]
+ *@constraints: [|self| = num_rows x num_columns] AND [num_to_win indicates number of consecutive matches to win the game]
  *
  */
 public interface IGameBoard {

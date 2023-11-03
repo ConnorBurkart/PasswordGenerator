@@ -10,7 +10,7 @@ Steven Cabezas (scabeza)
  * This board position class contains all data related to a possible position on the board.
  * BoardPosition contains a Row and Column number.
  *
- * @invariant 2 <= Row <= 99 AND 2 <= Column <= 99
+ * @invariant 0 <= Row AND ROW <= 100 AND 0 <= Column AND <= 100
  *
  */
 public class BoardPosition
@@ -25,7 +25,7 @@ public class BoardPosition
      * @param aRow number of Rows
      * @param aColumn number of Columns
      *
-     * @pre aRow > 0 AND aRow <= 9 AND aColumn > 0 AND aColumn <= 7
+     * @pre aRow > 0 AND aRow <= 100 AND aColumn > 0 AND aColumn <= 100
      *
      * @post Row = aRow AND Column = aColumn
      */
@@ -39,7 +39,7 @@ public class BoardPosition
     /**
      * returns the row number for BoardPosition
      *
-     * @return The row number as an integer.
+     * @return The row number as an int.
      *
      * @pre None
      * 
@@ -53,7 +53,7 @@ public class BoardPosition
     /**
      * returns the column number for BoardPosition
      *
-     * @return The column number as an integer.
+     * @return The column number as an int.
      *
      * @pre None
      * 

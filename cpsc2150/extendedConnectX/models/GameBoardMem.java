@@ -17,7 +17,11 @@ import java.util.Map;
  * This class contains the methods that can be done by the game in order to validate token positions
  * and to advance the game for the memory efficient option.
  *
- * @invariant
+ * @invariant [GameBoard should be of size ROWS x COLUMNS specified by the user]
+ * AND ROWS >= 3 AND ROWS <= 100 AND COLUMNS >= 3 AND
+ * Columns <= 100 AND numToWin >= 3 AND [numToWin <= 25 or numToWin <= 25 iff COLUMNS <= 25 or ROWS <= 25 else
+ * numToWin <= ROWS or numToWin <= COLUMNS] AND
+ *[GameBoard cannot contain blank ' ' between two indicies of player token]
  *
  * @corresponds num_rows = ROWS
  * @corresponds num_columns = COLUMNS
@@ -39,7 +43,7 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
      * @param aCol number of columns for the GameBoard
      * @param numWin number required to win the game
      *
-     * @pre 3 <= aRow <= 100 AND 3 <= aCol <= 100 AND 3 <= numWin <= 25
+     * @pre [3 <= aRow <= 100] AND [3 <= aCol <= 100] AND [3 <= numWin <= 25]
      * @post ROWS = aRow AND COLUMNS = aCol AND numToWin = numWin
      */
     public GameBoardMem(int aRow, int aCol, int numWin) {
@@ -59,8 +63,8 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
      *
      * @pre None
      *
-     * @post [whatsAtPos returns which player's character is at the current position on the game board
-     * array] ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
+     * @post whatsAtPos = [whatsAtPos returns which player's character is at the current position on the game board
+     * array] AND ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
      */
     @Override
     public char whatsAtPos(BoardPosition pos) {
@@ -89,9 +93,9 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
      *
      * @pre None
      *
-     * @post [isPlayerAtPos returns true iff the player is at the corresponding position on the
+     * @post isPlayerAtPos = [isPlayerAtPos returns true iff the player is at the corresponding position on the
      * GameBoard, return true iff the player is at the corresponding position]
-     * AND self = #self AND num_rows = #num_rows AND num_columns = #num_columns AND num_to_win = #num_to_win
+     * AND self = #self AND ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin
      */
     @Override
     public boolean isPlayerAtPos(BoardPosition pos, char player) {
@@ -112,11 +116,10 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
      *
      * @param c indicates the column number
      *
-     * @pre 3 <= c <= ROWS
+     * @pre [p is valid player token current in play] AND c >= 3 AND [c <= getNumColumns - 1]
      *
-     * @post [GameBoard array at column c, contains player character]
-     * AND [Instance variables Row = #row AND Column = #Column]
-     * ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
+     * @post [Drops token on GameBoard at column c, contains player character]
+     * AND ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
      */
     @Override
     public void dropToken(char p, int c) {

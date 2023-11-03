@@ -9,8 +9,8 @@ package cpsc2150.extendedConnectX.models;
 
 /**
  * This AbsGameBoard class implements the interface IGameBoard.
- * @invariant [GameBoard should be valid 9x7 size board] AND
- * [Instance variables Row and Column must be ROW = 9 and COLUMN = 7] AND [Player must be "X" or "O"]
+ * @invariant [GameBoard should be valid board of size specified by the user.] AND
+ * [Rows and columns must be greater than 3 and less than 100] AND [Player token must be a letter]
  *
  * @corresponds num_rows = ROWS
  * @corresponds num_columns = COLUMNS
@@ -21,13 +21,13 @@ public abstract class AbsGameBoard implements IGameBoard
 {
     public static final int DoubleDigit = 10;
     /**
-     * Creates a string for the GameBoard containing each value within 2D gameboard array.
+     * Creates a string for the GameBoard containing each value within the GameBoard.
      *
      * @return the GameBoard array as a String.
      *
      * @pre None
      *
-     * @post [toString returns each value contained within the 2D GameBoard array
+     * @post [toString returns each value contained within the GameBoard
      * as a string formatted as the GameBoard] AND ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin
      * AND self = #self
      *
