@@ -87,8 +87,10 @@ public class BoardPosition
             return true;
         }
 
+        //Casts obj to BoardPosition type
         BoardPosition pos = (BoardPosition) obj;
 
+        //Returns true if this rows and columns equals pos rows and cols
         if (getRow() == pos.getRow() && getColumn() == pos.getColumn()) {
             return true;
         }

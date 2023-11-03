@@ -69,14 +69,20 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
     @Override
     public char whatsAtPos(BoardPosition pos) {
 
+        //Iterates through each key in gameMap
         for (char c : gameMap.keySet()) {
+
+            //Check each element in the list value in gameMap
             for (BoardPosition p : gameMap.get(c)) {
+
+                //returns element found at pos.
                 if (p.equals(pos)) {
                     return c;
                 }
             }
         }
 
+        //returns blank if key is never found in gameMap
         return ' ';
     }
 
@@ -99,6 +105,8 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
      */
     @Override
     public boolean isPlayerAtPos(BoardPosition pos, char player) {
+
+        //returns true if gameMap contains Key and List contains position
         if (gameMap.containsKey(player)) {
             if (gameMap.get(player).contains(pos)) {
                 return true;
@@ -141,6 +149,7 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
             positList.add(pos);
             gameMap.put(p, positList);
         }
+        //Simply adds pos to list if key does exist.
         else {
             gameMap.get(p).add(pos);
         }

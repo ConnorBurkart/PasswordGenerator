@@ -14,6 +14,7 @@ Steven Cabezas (scabeza)
 
 public class GameScreen {
 
+    //Useful constants
     private static IGameBoard playerBoard;
     private static char winningChar = 'a';
     public static final int maxPlayers = 10;
@@ -42,6 +43,8 @@ public class GameScreen {
     public static void main(String[] args) {
         // Input validation for the amount of players
         char playerInput = 'y';
+
+        //Loop iterates until valid number of players is entered
         do {
             boolean valid = true;
             int numOfPlayers = 0;
@@ -57,8 +60,11 @@ public class GameScreen {
                     valid = false;
                 }
             }
+
             // Assigning character values to each player
             char[] playerCharacters = new char[numOfPlayers];
+
+            //Gets player's token from each player.
             for (int i = 0; i < numOfPlayers; i++) {
                 char playerChar;
                 System.out.println("Enter the character to represent player " + (i + 1));
@@ -66,7 +72,10 @@ public class GameScreen {
                 playerChar = scan.next().charAt(0);
                 playerChar = Character.toUpperCase(playerChar);
 
+                //Checks to make sure entered token does not already exist.
                 for (int j = 0; j < numOfPlayers; j++) {
+
+                    //Loop iterates until player enters different character.
                     while (playerCharacters[j] == playerChar) {
                         System.out.println(playerChar + " is already taken as a player token!");
                         System.out.println("Enter the character to represent player " + (i + 1));
@@ -75,6 +84,7 @@ public class GameScreen {
                     }
                 }
 
+                //Adds player character to player array.
                 playerCharacters[i] = playerChar;
 
             }
@@ -88,6 +98,7 @@ public class GameScreen {
             Scanner input = new Scanner(System.in);
             numOfRows = input.nextInt();
 
+            //Validates user input for Rows
             while (numOfRows < minRowsCol) {
                 System.out.println("Amount of rows must be between 3 - 100");
                 numOfRows = input.nextInt();
@@ -101,6 +112,7 @@ public class GameScreen {
             System.out.println("How many columns should be on the board?");
             numOfColumns = input.nextInt();
 
+            //Validates user input for number of columns
             while (numOfColumns < minRowsCol) {
                 System.out.println("Amount of columns must be between 3 - 100");
                 numOfColumns = input.nextInt();
@@ -114,6 +126,7 @@ public class GameScreen {
             System.out.println("How many in a row to win?");
             numberToWin = input.nextInt();
 
+            //Validates user input for number to win
             if (numOfColumns > numOfRows) {
                 while (numberToWin > numOfColumns) {
                     System.out.println("Number of tokens to win must be between 3 and " + numOfColumns);
@@ -140,6 +153,7 @@ public class GameScreen {
 
             char efficiency = 'a';
 
+            //Gets user input for choice of gameType, loops until they enter valid choice.
             while (efficiency != 'M' && efficiency != 'F') {
                 System.out.println("Would you like a Fast Game (F/f) or a Memory Efficient Game (M/m)?");
                 Scanner speed = new Scanner(System.in);
@@ -151,16 +165,22 @@ public class GameScreen {
                 }
             }
 
+            //Creates GameBoard fast implementation for choice F.
             if (efficiency == 'F') {
                 playerBoard = new GameBoard(numOfRows, numOfColumns, numberToWin);
             }
+
+            //Creates GameBoardMem implementation for choice M.
             else {
                 playerBoard = new GameBoardMem(numOfRows, numOfColumns, numberToWin);
             }
 
             boolean gameNotOver = true;
+
+            //Loops until game is over.
             while (gameNotOver) {
 
+                //Loops for each player in the game.
                 for (int i = 0; i < numOfPlayers; i++) {
 
                     boolean validCol = false;
@@ -168,10 +188,12 @@ public class GameScreen {
                     System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
                     int col = askPlayerForColumn();
 
+                    //Determines if column entered is valid.
                     if (col > 0 && col < playerBoard.getNumColumns() - 1) {
                         validCol = true;
                     }
 
+                    //Loops until valid column number is entered.
                     while (!validCol) {
                         if (col < 0) {
                             System.out.println("Column cannot be less than 0");
@@ -218,6 +240,7 @@ public class GameScreen {
 
                     playerBoard.dropToken(playerCharacters[i], col);
 
+                    //Checks if a tie has occured
                     if (playerBoard.checkTie()) {
                         printBoard();
 
@@ -233,10 +256,13 @@ public class GameScreen {
                         break;
                     }
 
+                    //Checks if a win state has occured.
                     if (playerBoard.checkForWin(col)) {
                         printBoard();
                         winningChar = playerCharacters[i];
                         printWinner();
+
+                        //Validates user's input, loops until valid choice is entered.
                         do {
                             System.out.println("Would you like to play again? Y/N");
                             Scanner inputChar = new Scanner(System.in);
