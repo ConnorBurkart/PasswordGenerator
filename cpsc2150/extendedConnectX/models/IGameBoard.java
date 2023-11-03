@@ -251,6 +251,8 @@ public interface IGameBoard {
             return true;
         }
 
+        count = 1;
+
         // Check the up left diagonal direction
         currentPos = new BoardPosition(pos.getRow() + 1, pos.getColumn() - 1);
         while (currentPos.getRow() < getNumRows() && currentPos.getColumn() >= 0
