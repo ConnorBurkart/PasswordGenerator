@@ -242,7 +242,7 @@ public class GameScreen {
                 efficiency = Character.toUpperCase(efficiency);
 
                 if (efficiency != 'M' && efficiency != 'F') {
-                    System.out.println("Invalid option! Choice must be (F/f) or (M/m)");
+                    System.out.println("Please enter F or M");
                 }
             }
 
