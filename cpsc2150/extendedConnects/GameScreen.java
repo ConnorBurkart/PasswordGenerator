@@ -105,7 +105,7 @@ public class GameScreen {
 
                 for (int j = 0; j < numOfPlayers; j++) {
                     while (playerCharacters[j] == playerChar) {
-                        System.out.println(playerChar + "is already taken as a player token!");
+                        System.out.println(playerChar + " is already taken as a player token!");
                         System.out.println("Enter the character to represent player " + (i + 1));
                         playerChar = scan.next().charAt(0);
                         playerChar = Character.toUpperCase(playerChar);
