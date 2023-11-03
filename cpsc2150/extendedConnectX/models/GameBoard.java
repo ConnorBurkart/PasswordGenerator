@@ -10,7 +10,7 @@ Steven Cabezas (scabeza)
  * This class contains the methods that can be done by the game in order to validate token positions
  * and to advance the game.
  *
- * @invariant
+ * @invariant 3 <= ROWS <= 100 AND 3 <= COLUMNS <= 100 And 3 <= numToWin <= 25
  *
  * @corresponds num_rows = ROWS
  * @corresponds num_columns = COLUMNS

@@ -18,16 +18,10 @@ package cpsc2150.extendedConnectX.models;
  *          num_columns : z
  *          num_to_win : z
  *
- *@constraints: |self| = num_rows x num_columns AND [GameBoard cannot contain any characters besides an 'X', 'O',
- *or '' at any point.] AND [num_to_win indicates number of consecutive matches to win the game, this must be equal to 5]
+ *@constraints: |self| = num_rows x num_columns AND [num_to_win indicates number of consecutive matches to win the game]
  *
  */
 public interface IGameBoard {
-
-// Helpful constants
-    int MAX_ROWS = 100;
-    int MAX_TO_WIN = 25;
-    int MIN_TO_WIN = 3;
 
     /**checkIfFreeContract
      * Returns true if column contains free space
@@ -63,10 +57,10 @@ public interface IGameBoard {
      *
      * @param c indicates column number to check.
      *
-     * @return [returns true iff 5 of the same players tokens (X or Y) are placed in a consecutive
+     * @return [returns true iff 5 of the same players tokens are placed in a consecutive
      * horizontal, vertical, or diagonal row. False iff 5 tokens are not consecutively placed.]
      *
-     * @pre c >= 0 AND c <= num_of_columns - 1
+     * @pre c >= 3 AND c <= num_of_columns - 1
      *
      * @post [checkForWin returns true iff the last placed token is the 5th consecutive token in a vertical,
      * horizontal, or diagonal row. False iff the last placed token is not 5th or consecutive in a vertical,
