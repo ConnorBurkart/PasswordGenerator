@@ -30,7 +30,7 @@ public interface IGameBoard {
      *
      *@return [boolean, true IFF column contains ' ', false otherwise]
      *
-     *@pre c < num_columns
+     *@pre 3 <= c < num_columns
      *
      *@post [self = #self AND returns true IFF column contains a ' ' and returns
      * false otherwise] AND num_rows = #num_rows AND num_columns = #num_columns AND num_to_win = #num_to_win
@@ -119,15 +119,15 @@ public interface IGameBoard {
     }
 
     /**checkHorizWinContract
-     * Check if either player has 5 tokens connected horizontally
+     * Check if either player has num_to_win tokens connected horizontally
      *
      * @param pos Indicates current position on the board
      *
-     * @param p Indicates the player's character [X's or O's]
+     * @param p Indicates the player's character
      *
      * @return [Boolean, returns true iff player has horizontal win, false iff they do not have horizontal win.]
      *
-     * @pre [p = "X" OR p = "O"]
+     * @pre [pos is Valid BoardPosition object]
      *
      * @post [Returns true iff last token placed in the 5th consecutive in a horizontal alignment, returns false
      * iff last placed token was not 5th or in a consecutive row.] AND self = #self
@@ -161,16 +161,16 @@ public interface IGameBoard {
     }
 
     /**checkVertWinContract
-     * Check if either player has 5 tokens connected vertically
+     * Check if either player has num_to_win tokens connected vertically
      *
      * @param pos Indicates the position on the gameBoard
      *
-     * @param p Indicates the player's character [X's or O's]
+     * @param p Indicates the player's character
      *
      * @return [Boolean, returns true iff player wins at vertical position, false iff player
      * does not win at vertical position.]
      *
-     * @pre [p = "X" OR p = "O"]
+     * @pre [pos is Valid BoardPosition object]
      *
      * @post [checkVertWin returns true iff last placed token was 5th consecutive token in a vertical alignment.
      * returns false iff last placed token was not 5th or in a consecutive row.]
@@ -198,19 +198,19 @@ public interface IGameBoard {
     }
 
     /**
-     * Check if either player has 5 tokens connected diagonally
+     * Check if either player has num_to_win tokens connected diagonally
      *
      * @param pos Indicates position on gameBoard
      *
-     * @param p Indicates the player's character [X's or O's]
+     * @param p Indicates the player's character
      *
      * @return [Boolean, returns true iff player wins at diagonal position and false iff player
      * does not win at vertical position.]
      *
-     * @pre [p = "X" OR p = "O"]
+     * @pre [pos is Valid BoardPosition object]
      *
-     * @post [checkDiagWin returns true iff last placed token was 5th consecutive token in a diagonal alignment.
-     * returns false iff last placed token was not 5th or in a consecutive row.]
+     * @post [checkDiagWin returns true iff last placed token was num_to_win consecutive token in a diagonal alignment.
+     * returns false iff last placed token was not num_to_win or in a consecutive row.]
      * AND self = #self AND num_rows = #num_rows AND num_columns = #num_columns AND num_to_win = #num_to_win
      */
     public default boolean checkDiagWin(BoardPosition pos, char p) {
@@ -279,11 +279,11 @@ public interface IGameBoard {
      *
      * @param pos Indicates position on gameBoard
      *
-     * @return player's character (X or O or ' ') as a char.
+     * @return player's character as a char.
      *
      * @pre [pos is Valid BoardPosition object]
      *
-     * @post [whatsAtPos returns the character (X, O, or ' ') at the provided BoardPosition]
+     * @post [whatsAtPos returns the character at the provided BoardPosition]
      * AND self = #self AND num_rows = #num_rows AND num_columns = #num_columns AND num_to_win = #num_to_win
      */
     public char whatsAtPos(BoardPosition pos);
