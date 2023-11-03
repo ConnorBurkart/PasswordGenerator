@@ -283,6 +283,26 @@ public class GameScreen {
                         validCol = true;
                     }
 
+                    while (!validCol) {
+                        if (col < 0) {
+                            System.out.println("Column cannot be less than 0");
+                            System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
+                            col = askPlayerForColumn();
+                        } else if (col > playerBoard.getNumColumns() - 1) {
+                            System.out.println("Column cannot be greater than " + (playerBoard.getNumColumns() - 1));
+                            System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
+                            col = askPlayerForColumn();
+                        }
+                        //Validates that column is empty.
+                        else if (!playerBoard.checkIfFree(col)) {
+                            System.out.println("Column is full");
+                            System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
+                            col = askPlayerForColumn();
+                        } else {
+                            validCol = true;
+                        }
+                    }
+
                     if (!playerBoard.checkIfFree(col)) {
                         validCol = false;
                     }
