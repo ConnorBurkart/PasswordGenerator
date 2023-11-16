@@ -1,5 +1,6 @@
 package cpsc2150.extendedConnectX.tests;
 
+import cpsc2150.extendedConnectX.models.BoardPosition;
 import cpsc2150.extendedConnectX.models.GameBoard;
 import cpsc2150.extendedConnectX.models.IGameBoard;
 import org.junit.Test;
@@ -145,6 +146,75 @@ public class TestGameBoard {
     }
 
     //checkHorizWin tests
+    @Test
+    public void test_0_5_checkHorizWin() {
+        int numRows = 25;
+        int numColumns = 25;
+        int numToWin = 5;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+
+        for (int i = 0; i < numToWin; i++) {
+            gb.dropToken('X', i);
+        }
+        BoardPosition positionToCheck = new BoardPosition(0, 5);
+
+        assertTrue(gb.checkHorizWin(positionToCheck, 'X'));
+    }
+
+    //whatsAtPos tests
+    @Test
+    public void test_0_0_whatsAtPos() {
+        int numRows = 100;
+        int numColumns = 100;
+        int numToWin = 25;
+
+        int ColumnToDrop = 0;
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+
+        gb.dropToken('X', ColumnToDrop);
+        BoardPosition positionToCheck = new BoardPosition(0, 0);
+
+        assertEquals('X', gb.whatsAtPos(positionToCheck));
+
+    }
+
+    @Test
+    public void test_25_4_FULLBOARD_whatsAtPos() {
+        int numRows = 30;
+        int numColumns = 25;
+        int numToWin = 10;
+
+        BoardPosition positionToCheck = new BoardPosition(25, 4);
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numColumns; j++) {
+                if (j % 2 == 0) {
+                    gb.dropToken('O', j);
+                }
+                else {
+                    gb.dropToken('X', j);
+                }
+            }
+        }
+
+        assertEquals('O', gb.whatsAtPos(positionToCheck));
+    }
+
+    @Test
+    public void test_75_99_BLANK_whatsAtPos() {
+        int numRows = 100;
+        int numColumns = 100;
+        int numToWin = 25;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+
+        BoardPosition positionToCheck = new BoardPosition(75, 99);
+
+        assertEquals(' ', gb.whatsAtPos(positionToCheck));
+
+    }
 
 
 
