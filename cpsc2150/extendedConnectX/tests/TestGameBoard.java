@@ -27,7 +27,7 @@ public class TestGameBoard {
 
         expectedBoard += "|\n";
 
-        for (int i = 0; i < numRows; i++) {
+        for (int i = numRows - 1; i >= 0; i--) {
             for (int j = 0; j < numColumns; j++) {
                 expectedBoard += '|';
 
@@ -82,7 +82,7 @@ public class TestGameBoard {
     }
 
     @Test
-    public void test_100_100_25_GameBoard() {
+    public void test_MaxSize_MaxNumToWin_GameBoard() {
         int numRows = 100;
         int numColumns = 100;
         int numToWin = 25;
@@ -106,8 +106,11 @@ public class TestGameBoard {
 
         int ColumnToDrop = 3;
         IGameBoard gb = GameBoardFactory(numRows, numColums, numToWin);
+        char[][] expectedBoard = new char[numRows][numColums];
+        String blankBoard = makeExpectedGameBoard(expectedBoard, numRows, numColums);
 
         assertTrue(gb.checkIfFree(ColumnToDrop));
+        assertTrue(gb.toString().equals(blankBoard));
     }
 
     @Test
@@ -118,12 +121,24 @@ public class TestGameBoard {
 
         int ColumnToDrop = 0;
         IGameBoard gb = GameBoardFactory(numRows, numColums, numToWin);
+        char[][] expectedBoard = new char[numRows][numColums];
 
         for (int i = 0; i < (numRows / 2); i++) {
-            gb.dropToken('X', ColumnToDrop);
+            if (i % 2 == 0) {
+                gb.dropToken('O', ColumnToDrop);
+                expectedBoard[i][ColumnToDrop] = 'O';
+            }
+            else {
+                gb.dropToken('X', ColumnToDrop);
+                expectedBoard[i][ColumnToDrop] = 'X';
+            }
         }
 
+        String expectedString = makeExpectedGameBoard(expectedBoard, numRows, numColums);
+
         assertTrue(gb.checkIfFree(ColumnToDrop));
+        assertTrue(gb.toString().equals(expectedString));
+
     }
 
     @Test
@@ -132,16 +147,27 @@ public class TestGameBoard {
         int numColums = 10;
         int numToWin = 5;
 
-        int ColumnToDrop = 2;
+        int ColumnToCheck = 2;
         IGameBoard gb = GameBoardFactory(numRows, numColums, numToWin);
+        char[][] expectedBoard = new char[numRows][numColums];
 
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numColums; j++) {
-                gb.dropToken('X', j);
+                if (i % 2 == 0) {
+                    gb.dropToken('O', j);
+                    expectedBoard[i][j] = 'O';
+                }
+                else {
+                    gb.dropToken('X', j);
+                    expectedBoard[i][j] = 'X';
+                }
             }
         }
 
-        assertTrue(!gb.checkIfFree(ColumnToDrop));
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColums);
+
+        assertTrue(!gb.checkIfFree(ColumnToCheck));
+        assertTrue(gb.toString().equals(expectedBoardString));
 
     }
 
@@ -153,29 +179,41 @@ public class TestGameBoard {
         int numToWin = 5;
 
         IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
 
         for (int i = 0; i < numToWin; i++) {
             gb.dropToken('X', i);
+            expectedBoard[0][i] = 'X';
         }
         BoardPosition positionToCheck = new BoardPosition(0, 5);
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
 
         assertTrue(gb.checkHorizWin(positionToCheck, 'X'));
+        assertTrue(gb.toString().equals(expectedBoardString));
     }
 
     //whatsAtPos tests
     @Test
-    public void test_0_0_whatsAtPos() {
-        int numRows = 100;
-        int numColumns = 100;
-        int numToWin = 25;
+    public void test_MinRow_MinCol_whatsAtPos() {
+        int numRows = 3;
+        int numColumns = 3;
+        int numToWin = 3;
 
         int ColumnToDrop = 0;
+        int RowToDrop = 0;
         IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
 
         gb.dropToken('X', ColumnToDrop);
-        BoardPosition positionToCheck = new BoardPosition(0, 0);
+        expectedBoard[RowToDrop][ColumnToDrop] = 'X';
+        BoardPosition positionToCheck = new BoardPosition(RowToDrop, ColumnToDrop);
+
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
 
         assertEquals('X', gb.whatsAtPos(positionToCheck));
+        assertTrue(gb.toString().equals(expectedBoardString));
+
 
     }
 
@@ -185,21 +223,29 @@ public class TestGameBoard {
         int numColumns = 25;
         int numToWin = 10;
 
-        BoardPosition positionToCheck = new BoardPosition(25, 4);
+        int RowToCheck = 25;
+        int ColumnToCheck = 4;
+        BoardPosition positionToCheck = new BoardPosition(RowToCheck, ColumnToCheck);
         IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
 
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numColumns; j++) {
                 if (j % 2 == 0) {
                     gb.dropToken('O', j);
+                    expectedBoard[i][j] = 'O';
                 }
                 else {
                     gb.dropToken('X', j);
+                    expectedBoard[i][j] = 'X';
                 }
             }
         }
 
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
         assertEquals('O', gb.whatsAtPos(positionToCheck));
+        assertTrue(gb.toString().equals(expectedBoardString));
     }
 
     @Test
@@ -208,12 +254,106 @@ public class TestGameBoard {
         int numColumns = 100;
         int numToWin = 25;
 
+        int RowToCheck = 75;
+        int ColumnToCheck = 99;
         IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
 
-        BoardPosition positionToCheck = new BoardPosition(75, 99);
+        BoardPosition positionToCheck = new BoardPosition(RowToCheck, ColumnToCheck);
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
 
         assertEquals(' ', gb.whatsAtPos(positionToCheck));
+        assertTrue(gb.toString().equals(expectedBoardString));
 
+    }
+
+    @Test
+    public void test_MaxCol_MaxROW_FULLBOARD_whatsAtPos() {
+        int numRows = 100;
+        int numColumns = 100;
+        int numToWin = 25;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numColumns; j++) {
+                if (j % 2 == 0) {
+                    gb.dropToken('P', j);
+                    expectedBoard[i][j] = 'P';
+                }
+                else {
+                    gb.dropToken('J', j);
+                    expectedBoard[i][j] = 'J';
+                }
+            }
+        }
+
+        BoardPosition positionToCheck = new BoardPosition(numRows - 1, numColumns - 1);
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
+        assertEquals('J', gb.whatsAtPos(positionToCheck));
+        assertTrue(gb.toString().equals(expectedBoardString));
+
+    }
+
+    @Test
+    public void test_ExactCenter_FULLBOARD_whatsAtPos() {
+        int numRows = 100;
+        int numColumns = 100;
+        int numToWin = 25;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numColumns; j++) {
+                if (j % 2 == 0) {
+                    gb.dropToken('P', j);
+                    expectedBoard[i][j] = 'P';
+                }
+                else {
+                    gb.dropToken('J', j);
+                    expectedBoard[i][j] = 'J';
+                }
+            }
+        }
+
+        BoardPosition positionToCheck = new BoardPosition(numRows / 2, numColumns / 2);
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
+        assertEquals('P', gb.whatsAtPos(positionToCheck));
+        assertTrue(gb.toString().equals(expectedBoardString));
+    }
+
+    @Test
+    public void test_ExactCenter_QuarterFull_whatsAtPos() {
+        int numRows = 100;
+        int numColumns = 100;
+        int numToWin = 25;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+
+        for (int i = 0; i < (numRows / 4); i++) {
+            for (int j = 0; j < (numColumns / 4); j++) {
+                if (j % 2 == 0) {
+                    gb.dropToken('P', j);
+                    expectedBoard[i][j] = 'P';
+                }
+                else {
+                    gb.dropToken('J', j);
+                    expectedBoard[i][j] = 'J';
+                }
+            }
+        }
+
+        BoardPosition positionToCheck = new BoardPosition(numRows / 2, numColumns / 2);
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
+        assertEquals(' ', gb.whatsAtPos(positionToCheck));
+        assertTrue(gb.toString().equals(expectedBoardString));
     }
 
 
