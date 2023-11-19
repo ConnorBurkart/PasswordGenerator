@@ -381,16 +381,15 @@ public class TestGameBoard {
 
         BoardPosition colToCheck = new BoardPosition(0, 0);
         for (int i = 0; i < numToWin; i++) {
-            gb.dropToken('X', 9 - i);
-            expectedBoard[i][numColumns - 1 - i] = 'X';
-            colToCheck = new BoardPosition(i, numColumns - 1 - i);
-            for (int j = numColumns - 1; j >= numColumns - 5; j--) {
-                /*if (j == 9) {
-                    continue;
-                }*/
-                gb.dropToken('O', j);
+            gb.dropToken('X', numColumns - 1 - i);
+            for (int j = numColumns - 2; j >= numColumns - 5; j--) {
+                if (i != 4) {
+                    gb.dropToken('O', j);
+                }
                 expectedBoard[i][j] = 'O';
             }
+            expectedBoard[i][numColumns - 1 - i] = 'X';
+            colToCheck = new BoardPosition(i, numColumns - 1 - i);
         }
         String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
         System.out.println(gb.toString());
