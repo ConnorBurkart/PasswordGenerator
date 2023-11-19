@@ -397,6 +397,34 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(expectedBoardString));
     }
 
+    //checkDiagWin to return true for diagonal direction bottom left to top right with last token placed at bottom left
+    @Test
+    public void test_bottomLeft_to_topRight_checkDiagWin() {
+        int numRows = 10;
+        int numColumns = 10;
+        int numToWin = 5;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+        BoardPosition colToCheck = new BoardPosition(0, 0);
+        for (int i = 4; i >= 0; i--) {
+            for (int j = (i - 1); j >= 0; j--) {
+                gb.dropToken('O', j);
+                expectedBoard[i][j] = 'O';
+            }
+            gb.dropToken('X', i);
+            expectedBoard[i][i] = 'X';
+            colToCheck = new BoardPosition(i, i);
+        }
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+        System.out.println(gb.toString());
+        System.out.println(expectedBoardString.toString());
+
+        assertTrue(gb.checkDiagWin(colToCheck, 'X'));
+        assertTrue(gb.toString().equals(expectedBoardString));
+    }
+
     //whatsAtPos tests
     //
     @Test
