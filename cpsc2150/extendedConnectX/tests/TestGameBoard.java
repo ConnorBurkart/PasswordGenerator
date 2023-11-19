@@ -392,8 +392,6 @@ public class TestGameBoard {
             colToCheck = new BoardPosition(i, numColumns - 1 - i);
         }
         String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
-        System.out.println(gb.toString());
-        System.out.println(expectedBoardString.toString());
 
         assertTrue(gb.checkDiagWin(colToCheck, 'X'));
         assertTrue(gb.toString().equals(expectedBoardString));
