@@ -47,7 +47,7 @@ public class TestGameBoard {
     }
 
     //Constructor Tests
-
+    //Test constructor to make sure correct GameBoard size was created 5x10 and numToWin is initialized correctly at 5
     @Test
     public void test_5_10_5_GameBoard() {
 
@@ -65,7 +65,7 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(blankBoard));
     }
 
-
+    //Test constructor to make sure correct GameBoard size was created 75x4 and numToWin is initialized correctly at 75
     @Test
     public void test_75_4_75_GameBoard() {
         int numRows = 75;
@@ -82,6 +82,8 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(blankBoard));
     }
 
+    //Test constructor to make sure correct GameBoard size was created 100x100 and numToWin is
+    //initialized correctly at 25
     @Test
     public void test_MaxSize_MaxNumToWin_GameBoard() {
         int numRows = 100;
@@ -99,6 +101,7 @@ public class TestGameBoard {
     }
 
     //CheckIfFree tests
+    // Checks to make sure a specific column is free. In this case column 3
     @Test
     public void test_3_empty_CheckIfFree() {
         int numRows = 4;
@@ -114,6 +117,7 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(blankBoard));
     }
 
+    //Checks to make see if half the column is free in this case column 0
     @Test
     public void test_0_half_CheckIfFree() {
         int numRows = 4;
@@ -142,6 +146,7 @@ public class TestGameBoard {
 
     }
 
+    //
     @Test
     public void test_2_fullBoard_CheckIfFree() {
         int numRows = 4;
@@ -173,6 +178,7 @@ public class TestGameBoard {
     }
 
     //checkHorizWin tests
+    //checkHorizWin from col 0-4 starting from right to left
     @Test
     public void test_0_5_checkHorizWin() {
         int numRows = 25;
@@ -194,7 +200,73 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(expectedBoardString));
     }
 
+    //checkHorizWin from col 4-0 starting from left to right
+    @Test
+    public void test_5_0_checkHorizWin() {
+        int numRows = 10;
+        int numColumns = 10;
+        int numToWin = 5;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+        for (int i = 4; i >= 0; i--) {
+            gb.dropToken('X', i);
+            expectedBoard[0][i] = 'X';
+        }
+        BoardPosition positionToCheck = new BoardPosition(0, 0);
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
+        assertTrue(gb.checkHorizWin(positionToCheck, 'X'));
+        assertTrue(gb.toString().equals(expectedBoardString));
+    }
+
+    //checkHorizWin from col 0-4 but starting the checkHorizWin from the middle 1st column with min numToWin
+    @Test
+    public void test_middle_placement_checkHorizWin() {
+        int numRows = 10;
+        int numColumns = 10;
+        int numToWin = 3;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+        for (int i = 0; i < numToWin; i++) {
+            gb.dropToken('X', i);
+            expectedBoard[0][i] = 'X';
+        }
+
+        BoardPosition positionToCheck = new BoardPosition(0, 1);
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
+        assertTrue(gb.checkHorizWin(positionToCheck, 'X'));
+        assertTrue(gb.toString().equals(expectedBoardString));
+    }
+
+    //checkHorizWin for a false win, where checkHorizWin should return false because not enough tokens to produce a win
+    @Test
+    public void test_Max_numToWin_allowed_checkHorizWin() {
+        int numRows = 50;
+        int numColumns = 50;
+        int numToWin = 25;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+        for (int i = 0; i < 21; i++) {
+            gb.dropToken('X', i);
+            expectedBoard[0][i] = 'X';
+        }
+
+        BoardPosition positionToCheck = new BoardPosition(0, 1);
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
+        assertTrue(!gb.checkHorizWin(positionToCheck, 'X'));
+        assertTrue(gb.toString().equals(expectedBoardString));
+    }
+
     //whatsAtPos tests
+    //
     @Test
     public void test_MinRow_MinCol_whatsAtPos() {
         int numRows = 3;
@@ -214,10 +286,9 @@ public class TestGameBoard {
 
         assertEquals('X', gb.whatsAtPos(positionToCheck));
         assertTrue(gb.toString().equals(expectedBoardString));
-
-
     }
 
+    //
     @Test
     public void test_25_4_FULLBOARD_whatsAtPos() {
         int numRows = 30;
@@ -249,6 +320,7 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(expectedBoardString));
     }
 
+    //
     @Test
     public void test_75_99_BLANK_whatsAtPos() {
         int numRows = 100;
@@ -268,6 +340,7 @@ public class TestGameBoard {
 
     }
 
+    //
     @Test
     public void test_MaxCol_MaxROW_FULLBOARD_whatsAtPos() {
         int numRows = 100;
@@ -298,6 +371,7 @@ public class TestGameBoard {
 
     }
 
+    //
     @Test
     public void test_ExactCenter_FULLBOARD_whatsAtPos() {
         int numRows = 100;
@@ -328,6 +402,7 @@ public class TestGameBoard {
     }
 
     //isPlayerAtPos tests
+    //
     @Test
     public void test_bottomLeft_FULLBOARD_isPlayerAtPos() {
         int numRows = 75;
@@ -361,6 +436,7 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(expectedBoardString));
     }
 
+    //
     @Test
     public void test_bottomRight_FULLBOARD_isPlayerAtPos() {
         int numRows = 75;
