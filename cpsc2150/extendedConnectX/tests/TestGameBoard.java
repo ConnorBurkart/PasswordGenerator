@@ -369,9 +369,75 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(expectedBoardString));
     }
 
-    //checkDiagWin to return true for diagonal direction top left to bottom right with last token placed at bottom right
+
+
+    //This one does not work yet
+
+    //checkDiagWin to return true for diagonal direction bottom right to top left with last token placed at bottom right
     @Test
     public void test_bottomRight_to_topLeft_checkDiagWin() {
+        int numRows = 10;
+        int numColumns = 10;
+        int numToWin = 5;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+        BoardPosition colToCheck = new BoardPosition(0, 0);
+        int xPlace = 4;
+
+        for (int i = 4; i >= 0 ; i--) {
+            for (int j = 5; j < numColumns; j++) {
+                int rowToDrop = 0;
+                while (rowToDrop < xPlace) {
+                    gb.dropToken('O', j);
+                    rowToDrop++;
+                }
+                expectedBoard[i][j] = 'O';
+                xPlace--;
+            }
+            gb.dropToken('X', numColumns - 1 - i);
+            expectedBoard[i][numColumns - 1 - i] = 'X';
+            colToCheck = new BoardPosition(i, numColumns - 1 - i);
+        }
+
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+        System.out.println(gb.toString());
+        System.out.println(expectedBoardString.toString());
+
+        assertTrue(gb.checkDiagWin(colToCheck, 'X'));
+        assertTrue(gb.toString().equals(expectedBoardString));
+    }
+
+    //checkDiagWin to return true for diagonal direction bottom left to top right with last token placed at bottom left
+    @Test
+    public void test_bottomLeft_to_topRight_checkDiagWin() {
+        int numRows = 10;
+        int numColumns = 10;
+        int numToWin = 5;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+        BoardPosition colToCheck = new BoardPosition(0, 0);
+        for (int i = 4; i >= 0; i--) {
+            for (int j = (i - 1); j >= 0; j--) {
+                gb.dropToken('O', i);
+                expectedBoard[j][i] = 'O';
+            }
+            gb.dropToken('X', i);
+            expectedBoard[i][i] = 'X';
+            colToCheck = new BoardPosition(i, i);
+        }
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
+        assertTrue(gb.checkDiagWin(colToCheck, 'X'));
+        assertTrue(gb.toString().equals(expectedBoardString));
+    }
+
+    //checkDiagWin to return true for diagonal direction top left to bottom right with last token placed at bottom right
+    @Test
+    public void test_topLeft_to_bottomRight_checkDiagWin() {
         int numRows = 10;
         int numColumns = 10;
         int numToWin = 5;
@@ -397,9 +463,11 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(expectedBoardString));
     }
 
-    //checkDiagWin to return true for diagonal direction bottom left to top right with last token placed at bottom left
+
+    //CheckTie tests
+    //CheckTie when the board is completely full. Returns true
     @Test
-    public void test_bottomLeft_to_topRight_checkDiagWin() {
+    public void test_when_there_is_tie_checkTie() {
         int numRows = 10;
         int numColumns = 10;
         int numToWin = 5;
@@ -407,21 +475,90 @@ public class TestGameBoard {
         IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
         char[][] expectedBoard = new char[numRows][numColumns];
 
-        BoardPosition colToCheck = new BoardPosition(0, 0);
-        for (int i = 4; i >= 0; i--) {
-            for (int j = (i - 1); j >= 0; j--) {
-                gb.dropToken('O', j);
-                expectedBoard[i][j] = 'O';
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numColumns; j++) {
+                if (i % 2 == 0) {
+                    gb.dropToken('X', j);
+                    expectedBoard[i][j] = 'X';
+                } else {
+                    gb.dropToken('O', j);
+                    expectedBoard[i][j] = 'O';
+                }
             }
-            gb.dropToken('X', i);
-            expectedBoard[i][i] = 'X';
-            colToCheck = new BoardPosition(i, i);
         }
         String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
-        System.out.println(gb.toString());
-        System.out.println(expectedBoardString.toString());
 
-        assertTrue(gb.checkDiagWin(colToCheck, 'X'));
+        assertTrue(gb.checkTie());
+        assertTrue(gb.toString().equals(expectedBoardString));
+    }
+
+    //checkTie when the board is completely empty. Return false
+    @Test
+    public void test_empty_board_checkTie() {
+        int numRows = 10;
+        int numColumns = 10;
+        int numToWin = 5;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
+        assertTrue(!gb.checkTie());
+        assertTrue(gb.toString().equals(expectedBoardString));
+    }
+
+    //checkTie when the columns on the board are half full. Return false
+    @Test
+    public void test_half_full_columns_checkTie() {
+        int numRows = 10;
+        int numColumns = 10;
+        int numToWin = 5;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (i % 2 == 0) {
+                    gb.dropToken('X', j);
+                    expectedBoard[i][j] = 'X';
+                } else {
+                    gb.dropToken('O', j);
+                    expectedBoard[i][j] = 'O';
+                }
+            }
+        }
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
+        assertTrue(!gb.checkTie());
+        assertTrue(gb.toString().equals(expectedBoardString));
+    }
+
+    //checkTie when the rows on the board are half full. Return false
+    @Test
+    public void test_half_full_rows_checkTie() {
+        int numRows = 10;
+        int numColumns = 10;
+        int numToWin = 5;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < numColumns; j++) {
+                if (i % 2 == 0) {
+                    gb.dropToken('X', j);
+                    expectedBoard[i][j] = 'X';
+                } else {
+                    gb.dropToken('O', j);
+                    expectedBoard[i][j] = 'O';
+                }
+            }
+        }
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
+        assertTrue(!gb.checkTie());
         assertTrue(gb.toString().equals(expectedBoardString));
     }
 
