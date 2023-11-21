@@ -797,6 +797,8 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(expectedBoardString));
     }
 
+    //checks to see if the element at row 4, column 0 returns the expected
+    // character which should be U
     @Test
     public void test_TopLeft_FULLBOARD_isPlayerAtPos() {
         int numRows = 5;
