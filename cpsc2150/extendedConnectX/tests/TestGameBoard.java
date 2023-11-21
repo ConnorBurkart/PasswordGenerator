@@ -673,7 +673,8 @@ public class TestGameBoard {
 
     }
 
-    //
+    //Checking to see what is in the exact center of a max board to see if it
+    // returns the correct element at that position which should be P
     @Test
     public void test_ExactCenter_FULLBOARD_whatsAtPos() {
         int numRows = 100;
