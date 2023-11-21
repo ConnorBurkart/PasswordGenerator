@@ -740,7 +740,8 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(expectedBoardString));
     }
 
-    //
+    //Checks to see if the element at the bottom right of a full 5x5 board
+    // matches the desired character at that position which is X
     @Test
     public void test_bottomRight_FULLBOARD_isPlayerAtPos() {
         int numRows = 5;
