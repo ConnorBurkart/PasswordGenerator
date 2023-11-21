@@ -640,7 +640,9 @@ public class TestGameBoard {
 
     }
 
-    //
+    //Checking to see what is at the upper right boundary of a max
+    // board to see if it returns the correct element at that position
+    // which should be J
     @Test
     public void test_MaxCol_MaxROW_FULLBOARD_whatsAtPos() {
         int numRows = 100;
