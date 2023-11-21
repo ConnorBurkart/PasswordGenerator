@@ -1,5 +1,12 @@
 package cpsc2150.extendedConnectX.tests;
 
+/*
+GROUP MEMBER NAMES AND GITHUB USERNAMES SHOULD GO HERE
+Jacob Colson (jccolso)
+Warren Wasden (wwasden)
+Steven Cabezas (scabeza)
+*/
+
 import cpsc2150.extendedConnectX.models.BoardPosition;
 import cpsc2150.extendedConnectX.models.GameBoard;
 import cpsc2150.extendedConnectX.models.IGameBoard;
