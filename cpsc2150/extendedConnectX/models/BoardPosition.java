@@ -109,7 +109,7 @@ public class BoardPosition
     @Override
     public String toString()
     {
-        //returns the Row and Column values as a String.
-        return "<" + this.Row + ">" + "<" + this.Column + ">";
+        //returns the Row and Column values as a Strings
+        return Integer.toString(this.getRow()) + this.getColumn();
     }
 }
