@@ -25,7 +25,7 @@ public class BoardPosition
      * @param aRow number of Rows
      * @param aColumn number of Columns
      *
-     * @pre aRow > 0 AND aRow <= 100 AND aColumn > 0 AND aColumn <= 100
+     * @pre aRow > 0 AND aRow <= [Maximum number of rows] AND aColumn > 0 AND aColumn <= [Maximum number of columns]
      *
      * @post Row = aRow AND Column = aColumn
      */

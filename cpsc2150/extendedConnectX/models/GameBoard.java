@@ -10,9 +10,12 @@ Steven Cabezas (scabeza)
  * This class contains the methods that can be done by the game in order to validate token positions
  * and to advance the game.
  *
- * @invariant ROWS >= 3 AND ROWS <= 100 AND 3 <= COLUMNS AND COLUMNS <= 100 And 3 <= numToWin AND
- * [numToWin <= 25 or numToWin <= 25 iff COLUMNS <= 25 or ROWS <= 25 else numToWin <= ROWS or numToWin <= COLUMNS] AND
- * [GameBoard should be a 2-D array that is of size ROWS x COLUMNS specified by the user]
+ * @invariant [GameBoard should be of size ROWS x COLUMNS specified by the user]
+ * AND ROWS >= [minimum number of rows] AND ROWS <= [Maximum number of rows] AND COLUMNS >= [minimum number of columns AND
+ * Columns <= [Maximum number of columns] AND numToWin >= [Minimum number to win]
+ * AND [numToWin <= [Maximum number to win] or numToWin <= [Maximum number to win] iff COLUMNS <= [Max number of columns]
+ * or ROWS <= [Max Number of rows] else numToWin <= ROWS or numToWin <= COLUMNS] AND
+ * [GameBoard cannot contain blank ' ' between two indicies of player token]
  *
  * @corresponds num_rows = ROWS
  * @corresponds num_columns = COLUMNS
@@ -35,7 +38,9 @@ public class GameBoard extends AbsGameBoard implements IGameBoard
      * @param aCol number of columns for the GameBoard
      * @param numWin number required to win the game
      *
-     * @pre 3 <= aRow AND aRow <= 100 AND 3 <= aCol AND aCol <= 100 AND 3<= numWin AND numWin <= 25
+     * @pre [Min number of rows] <= aRow AND aRow <= [Max number of rows]
+     * AND [Min number of columns] <= aCol AND aCol <= [Max number of columns] AND
+     * [min number to win] <= numWin AND numWin <= [Max number to win]
      *
      * @post [Creates instance of empty 2D array to represent gameBoard of size ROWSxCOLUMNS]
      * AND ROWS = aRow AND COLUMNS = aCol AND numToWin = numWin
@@ -57,7 +62,7 @@ public class GameBoard extends AbsGameBoard implements IGameBoard
      *  
      * @param c indicates the column number
      * 
-     * @pre 3 <= c AND c <= COLUMNS AND [checkIfFree() for column, c, should return true.]
+     * @pre 0 <= c AND c <= COLUMNS - 1 AND [checkIfFree() for column, c, should return true.]
      * 
      * @post [Drops token on GameBoard array at column c, contains player character] AND
      * ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self

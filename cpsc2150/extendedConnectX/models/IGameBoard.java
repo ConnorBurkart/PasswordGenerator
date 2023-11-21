@@ -18,6 +18,7 @@ package cpsc2150.extendedConnectX.models;
  *          num_columns : z
  *          num_to_win : z
  *
+ *
  *@constraints: [|self| = num_rows x num_columns] AND [num_to_win indicates number of consecutive matches to win the game]
  *
  */
@@ -30,7 +31,7 @@ public interface IGameBoard {
      *
      *@return [boolean, true IFF column contains ' ', false otherwise]
      *
-     *@pre 3 <= c < num_columns
+     *@pre min_number_Win <= c < num_columns
      *
      *@post [self = #self AND returns true IFF column contains a ' ' and returns
      * false otherwise] AND num_rows = #num_rows AND num_columns = #num_columns AND num_to_win = #num_to_win
@@ -52,7 +53,7 @@ public interface IGameBoard {
     public void dropToken(char p, int c);
 
     /** checkForWinContract
-     * Checks to see if there are 5 tokens in a row, up,
+     * Checks to see if there are num_to_win tokens in a row, up,
      * or diagonal
      *
      * @param c indicates column number to check.
@@ -60,10 +61,10 @@ public interface IGameBoard {
      * @return [returns true iff 5 of the same players tokens are placed in a consecutive
      * horizontal, vertical, or diagonal row. False iff 5 tokens are not consecutively placed.]
      *
-     * @pre c >= 3 AND c <= num_of_columns - 1
+     * @pre c >= min_number_Rows AND c <= num_of_columns - 1
      *
-     * @post [checkForWin returns true iff the last placed token is the 5th consecutive token in a vertical,
-     * horizontal, or diagonal row. False iff the last placed token is not 5th or consecutive in a vertical,
+     * @post [checkForWin returns true iff the last placed token is the num_to_win consecutive token in a vertical,
+     * horizontal, or diagonal row. False iff the last placed token is not num_to_win or consecutive in a vertical,
      * horizontal, or diagonal row.] AND self = #self AND num_rows = #num_rows AND num_columns = #num_columns
      * AND num_to_win = #num_to_win
      */
@@ -130,7 +131,7 @@ public interface IGameBoard {
      * @pre [pos is Valid BoardPosition object]
      *
      * @post [Returns true iff last token placed in the 5th consecutive in a horizontal alignment, returns false
-     * iff last placed token was not 5th or in a consecutive row.] AND self = #self
+     * iff last placed token was not num_to_win or in a consecutive row.] AND self = #self
      * AND num_rows = #num_rows AND num_columns = #num_columns AND num_to_win = #num_to_win
      */
     public default boolean checkHorizWin(BoardPosition pos, char p) {
@@ -172,8 +173,8 @@ public interface IGameBoard {
      *
      * @pre [pos is Valid BoardPosition object]
      *
-     * @post [checkVertWin returns true iff last placed token was 5th consecutive token in a vertical alignment.
-     * returns false iff last placed token was not 5th or in a consecutive row.]
+     * @post [checkVertWin returns true iff last placed token was num_to_win consecutive token in a vertical alignment.
+     * returns false iff last placed token was not num_to_win or in a consecutive row.]
      * AND self = #self AND num_rows = #num_rows AND num_columns = #num_columns AND num_to_win = #num_to_win
      */
     public default boolean checkVertWin(BoardPosition pos, char p) {

@@ -18,9 +18,10 @@ import java.util.Map;
  * and to advance the game for the memory efficient option.
  *
  * @invariant [GameBoard should be of size ROWS x COLUMNS specified by the user]
- * AND ROWS >= 3 AND ROWS <= 100 AND COLUMNS >= 3 AND
- * Columns <= 100 AND numToWin >= 3 AND [numToWin <= 25 or numToWin <= 25 iff COLUMNS <= 25 or ROWS <= 25 else
- * numToWin <= ROWS or numToWin <= COLUMNS] AND
+ * AND ROWS >= [minimum number of rows] AND ROWS <= [Maximum number of rows] AND COLUMNS >= [minimum number of columns AND
+ * Columns <= [Maximum number of columns] AND numToWin >= [Minimum number to win]
+ * AND [numToWin <= [Maximum number to win] or numToWin <= [Maximum number to win] iff COLUMNS <= [Max number of columns]
+ * or ROWS <= [Max Number of rows] else numToWin <= ROWS or numToWin <= COLUMNS] AND
  *[GameBoard cannot contain blank ' ' between two indicies of player token]
  *
  * @corresponds num_rows = ROWS
@@ -43,7 +44,8 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
      * @param aCol number of columns for the GameBoard
      * @param numWin number required to win the game
      *
-     * @pre [3 <= aRow <= 100] AND [3 <= aCol <= 100] AND [3 <= numWin <= 25]
+     * @pre [min number of rows <= aRow <= max number of rows] AND [min number of columns <= aCol <= max number of columns]
+     * AND [min number to win <= numWin <= max number to win]
      * @post ROWS = aRow AND COLUMNS = aCol AND numToWin = numWin
      */
     public GameBoardMem(int aRow, int aCol, int numWin) {
@@ -124,7 +126,7 @@ public class GameBoardMem extends AbsGameBoard implements IGameBoard {
      *
      * @param c indicates the column number
      *
-     * @pre [p is valid player token current in play] AND c >= 3 AND [c <= getNumColumns - 1]
+     * @pre [p is valid player token current in play] AND c >= [min number of columns] AND [c <= getNumColumns - 1]
      *
      * @post [Drops token on GameBoard at column c, contains player character]
      * AND ROWS = #ROWS AND COLUMNS = #COLUMNS AND numToWin = #numToWin AND self = #self
