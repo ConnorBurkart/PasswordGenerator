@@ -155,7 +155,7 @@ public class TestGameBoard {
 
     }
 
-    // Check to see if
+    // Check to see if column 2 is free which is false because the board is full
     @Test
     public void test_2_fullBoard_CheckIfFree() {
         int numRows = 4;
@@ -353,6 +353,7 @@ public class TestGameBoard {
         assertEquals(gb.toString(), expectedBoardString);
     }
 
+    //checks to see if checkVertWin returns true if there are consecutive tokens not starting on the bottom
     @Test
     public void test_verticalWinNotOnBottomRow_Col4_checkVertWin() {
         int numRows = 10;
