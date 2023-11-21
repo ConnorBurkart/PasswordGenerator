@@ -1020,6 +1020,9 @@ public class TestGameBoard {
         assertEquals(gb.toString(), expectedBoardString);
     }
 
+
+    //Checks to see if the element at row 25, column 2 in a 75 x 4 is returns
+    // the expected character which should be O
     @Test
     public void test_25_2_HalfFull_isPlayerAtPos() {
         int numRows = 75;
@@ -1052,6 +1055,8 @@ public class TestGameBoard {
     }
 
     //dropToken tests
+    //Checks if dropToken correctly fills up a column at the lowest possible
+    // available position at column 3 in a 5x5 board
     @Test
     public void test_3_fullColumn_DropToken() {
         int numRows = 5;
@@ -1072,6 +1077,8 @@ public class TestGameBoard {
         assertEquals(gb.toString(), expectedBoardString);
     }
 
+    //Checks if dropToken can fill up two different columns to a desired
+    // limit which in this case if half filled
     @Test
     public void test_0_5_HalfFUll_DropToken() {
         int numRows = 6;
@@ -1098,7 +1105,8 @@ public class TestGameBoard {
         assertEquals(gb.toString(), expectedBoardString);
     }
 
-
+    //Checks to see if dropToken can fill the bottom row one at
+    // a time if available
     @Test
     public void test_fullBottomRow_DropToken() {
         int numRows = 25;
@@ -1118,6 +1126,7 @@ public class TestGameBoard {
         assertEquals(gb.toString(), expectedBoardString);
     }
 
+    //checks to see if dropToken can fill the board column by column
     @Test
     public void test_FullBoard_DropToken() {
         int numRows = 25;
@@ -1145,6 +1154,7 @@ public class TestGameBoard {
         assertEquals(gb.toString(), expectedBoardString);
     }
 
+    //checks if dropToken can fill the board going diagonally 
     @Test
     public void test_DropDiagonally_DropToken() {
         int numRows = 25;
