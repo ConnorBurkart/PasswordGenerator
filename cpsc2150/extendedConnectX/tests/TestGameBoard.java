@@ -391,9 +391,9 @@ public class TestGameBoard {
                 int rowToDrop = 0;
                 while (rowToDrop < xPlace) {
                     gb.dropToken('O', j);
+                    expectedBoard[rowToDrop][j] = 'O';
                     rowToDrop++;
                 }
-                expectedBoard[i][j] = 'O';
                 xPlace--;
             }
             gb.dropToken('X', numColumns - 1 - i);
@@ -402,8 +402,6 @@ public class TestGameBoard {
         }
 
         String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
-        System.out.println(gb.toString());
-        System.out.println(expectedBoardString.toString());
 
         assertTrue(gb.checkDiagWin(colToCheck, 'X'));
         assertTrue(gb.toString().equals(expectedBoardString));
@@ -457,6 +455,130 @@ public class TestGameBoard {
             expectedBoard[i][numColumns - 1 - i] = 'X';
             colToCheck = new BoardPosition(i, numColumns - 1 - i);
         }
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
+        assertTrue(gb.checkDiagWin(colToCheck, 'X'));
+        assertTrue(gb.toString().equals(expectedBoardString));
+    }
+
+    // checkDiagWin to return true for diagonal direction bottom left to top right, and top right to bottom left
+    // with final token being placed in the middle of the 5 token sequence
+    @Test
+    public void test_bottomLeft_to_topRight_and_topRight_to_bottomLeft_middlePlacement_checkDiagWin() {
+        int numRows = 10;
+        int numColumns = 10;
+        int numToWin = 5;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 1; j < 2; j++) {
+                if (i != 1) {
+                    gb.dropToken('O', j);
+                }
+                expectedBoard[i][j] = 'O';
+            }
+            gb.dropToken('X', i);
+            expectedBoard[i][i] = 'X';
+        }
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 3; j < 5; j++) {
+                if (j == 4 && i != 4) {
+                    gb.dropToken('O', j);
+                } else if (j == 3 && i != 3 && i != 4) {
+                    gb.dropToken('O', j);
+                }
+                if (j == 3 && i != 4) {
+                    expectedBoard[i][j] = 'O';
+                }
+                else if (j == 4 && i != 4) {
+                    expectedBoard[i][j] = 'O';
+                }
+            }
+            if (i > 2) {
+                gb.dropToken('X', i);
+                expectedBoard[i][i] = 'X';
+            }
+        }
+
+        int j = 2;
+        for (int i = 0; i < 3; i++) {
+            if (i == 2) {
+                gb.dropToken('X', i);
+                expectedBoard[i][i] = 'X';
+            }
+            else {
+                gb.dropToken('O', j);
+                expectedBoard[i][j] = 'O';
+            }
+        }
+        BoardPosition colToCheck = new BoardPosition(2, 2);
+        String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
+
+        assertTrue(gb.checkDiagWin(colToCheck, 'X'));
+        assertTrue(gb.toString().equals(expectedBoardString));
+    }
+
+    // checkDiagWin to return true for diagonal direction bottom right to top left, and top left to bottom right
+    // with final token being placed in the middle of the 5 token sequence
+    @Test
+    public void test_topLeft_to_bottomRight_and_bottomRight_to_topLeft_middlePlacement_checkDiagWin() {
+        int numRows = 10;
+        int numColumns = 10;
+        int numToWin = 5;
+
+        IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
+        char[][] expectedBoard = new char[numRows][numColumns];
+
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 9; j > 8; j--) {
+                if (i != 1) {
+                    gb.dropToken('O', j - 1);
+                }
+                expectedBoard[i][j - 1] = 'O';
+            }
+            gb.dropToken('X', numColumns - 1 - i);
+            expectedBoard[i][numColumns - 1 - i] = 'X';
+        }
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 5; j < 7; j++) {
+                if (j == 5 && i != 4) {
+                    gb.dropToken('O', j);
+                }
+                else if (j == 6 && i < 3) {
+                    gb.dropToken('O', j);
+                }
+                if (i < 3 && j == 6) {
+                    expectedBoard[i][j] = 'O';
+                }
+                else if ( i < 4 && j == 5) {
+                    expectedBoard[i][j] = 'O';
+                }
+            }
+            if (i > 2) {
+                gb.dropToken('X', numColumns - 1 - i);
+                expectedBoard[i][numColumns - 1 - i] = 'X';
+            }
+        }
+
+        int j = 7;
+        for (int i = 0; i < 3; i++) {
+            if (i == 2) {
+                gb.dropToken('X', j);
+                expectedBoard[i][j] = 'X';
+            }
+            else {
+                gb.dropToken('O', j);
+                expectedBoard[i][j] = 'O';
+            }
+        }
+
+
+        BoardPosition colToCheck = new BoardPosition(2, 7);
         String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
 
         assertTrue(gb.checkDiagWin(colToCheck, 'X'));
