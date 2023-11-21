@@ -775,6 +775,8 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(expectedBoardString));
     }
 
+    //Checks to see if test returns false in an empty 3x3 board when the expected
+    // character X is not there
     @Test
     public void test_3_3_EMPTYBOARD_isPlayerAtPos() {
         int numRows = 7;
