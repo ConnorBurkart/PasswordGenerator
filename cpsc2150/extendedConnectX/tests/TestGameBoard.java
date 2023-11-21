@@ -369,10 +369,6 @@ public class TestGameBoard {
         assertTrue(gb.toString().equals(expectedBoardString));
     }
 
-
-
-    //This one does not work yet
-
     //checkDiagWin to return true for diagonal direction bottom right to top left with last token placed at bottom right
     @Test
     public void test_bottomRight_to_topLeft_checkDiagWin() {
