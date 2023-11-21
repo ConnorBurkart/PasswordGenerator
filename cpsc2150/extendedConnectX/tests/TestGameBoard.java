@@ -705,7 +705,8 @@ public class TestGameBoard {
     }
 
     //isPlayerAtPos tests
-    //
+    //Checks to see if the element at the bottom left of a full 5x5 board
+    // matches the desired character at that position which is O
     @Test
     public void test_bottomLeft_FULLBOARD_isPlayerAtPos() {
         int numRows = 5;
