@@ -563,7 +563,7 @@ public class TestGameBoard {
     }
 
     //whatsAtPos tests
-    //
+    //Checking lower left boundary to see if it returns correct element at that position
     @Test
     public void test_MinRow_MinCol_whatsAtPos() {
         int numRows = 3;
@@ -580,7 +580,7 @@ public class TestGameBoard {
         BoardPosition positionToCheck = new BoardPosition(RowToDrop, ColumnToDrop);
 
         String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
-
+        
         assertEquals('X', gb.whatsAtPos(positionToCheck));
         assertTrue(gb.toString().equals(expectedBoardString));
     }
