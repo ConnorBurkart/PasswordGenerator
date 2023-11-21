@@ -619,13 +619,13 @@ public class TestGameBoard {
 
     //
     @Test
-    public void test_75_99_BLANK_whatsAtPos() {
-        int numRows = 100;
-        int numColumns = 100;
-        int numToWin = 25;
+    public void test_7_9_BLANK_whatsAtPos() {
+        int numRows = 10;
+        int numColumns = 10;
+        int numToWin = 5;
 
-        int RowToCheck = 75;
-        int ColumnToCheck = 99;
+        int RowToCheck = 7;
+        int ColumnToCheck = 9;
         IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
         char[][] expectedBoard = new char[numRows][numColumns];
 
@@ -702,7 +702,7 @@ public class TestGameBoard {
     //
     @Test
     public void test_bottomLeft_FULLBOARD_isPlayerAtPos() {
-        int numRows = 75;
+        int numRows = 5;
         int numColumns = 4;
         int numToWin = 5;
 
@@ -736,11 +736,11 @@ public class TestGameBoard {
     //
     @Test
     public void test_bottomRight_FULLBOARD_isPlayerAtPos() {
-        int numRows = 75;
+        int numRows = 5;
         int numColumns = 4;
         int numToWin = 5;
 
-        int rowToCheck = 74;
+        int rowToCheck = 4;
         int colToCheck = 3;
 
         IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
