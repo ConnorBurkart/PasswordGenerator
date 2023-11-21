@@ -1,11 +1,10 @@
+package cpsc2150.extendedConnectX.tests;
 /*
 GROUP MEMBER NAMES AND GITHUB USERNAMES SHOULD GO HERE
 Jacob Colson (jccolso)
 Warren Wasden (wwasden)
 Steven Cabezas (scabeza)
 */
-
-package cpsc2150.extendedConnectX.tests;
 
 import cpsc2150.extendedConnectX.models.BoardPosition;
 import cpsc2150.extendedConnectX.models.GameBoard;
@@ -14,15 +13,14 @@ import static org.junit.Assert.*;
 import cpsc2150.extendedConnectX.models.IGameBoard;
 import cpsc2150.extendedConnectX.models.GameBoardMem;
 
-import java.util.HashMap;
-import java.util.List;
-
 public class TestGameBoardMem {
 
+    //Calls the appropriate constructor for GameBoard implementation
     private IGameBoard GameBoardFactory(int aRow, int aColumn, int numWin) {
         return new GameBoardMem(aRow, aColumn, numWin);
     }
 
+    //Creates a string from the expectedGameBoard array.
     private String makeExpectedGameBoard(char[][] aArray, int numRows, int numColumns) {
         String expectedBoard = "";
         int DoubleDigit = 10;
