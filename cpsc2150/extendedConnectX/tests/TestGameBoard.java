@@ -67,10 +67,10 @@ public class TestGameBoard {
 
     //Test constructor to make sure correct GameBoard size was created 75x4 and numToWin is initialized correctly at 75
     @Test
-    public void test_75_4_75_GameBoard() {
+    public void test_75_4_25_GameBoard() {
         int numRows = 75;
         int numColumns = 4;
-        int numToWin = 75;
+        int numToWin = 25;
 
         char[][] expectedBoard = new char[numRows][numColumns];
         IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
@@ -769,8 +769,8 @@ public class TestGameBoard {
 
     @Test
     public void test_3_3_EMPTYBOARD_isPlayerAtPos() {
-        int numRows = 25;
-        int numColumns = 25;
+        int numRows = 7;
+        int numColumns = 7;
         int numToWin = 5;
 
         int rowToCheck = 3;
@@ -789,11 +789,11 @@ public class TestGameBoard {
 
     @Test
     public void test_TopLeft_FULLBOARD_isPlayerAtPos() {
-        int numRows = 75;
+        int numRows = 5;
         int numColumns = 4;
         int numToWin = 5;
 
-        int rowToCheck = 74;
+        int rowToCheck = 4;
         int colToCheck = 0;
 
         IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
@@ -844,8 +844,6 @@ public class TestGameBoard {
                 }
             }
         }
-
-
         String expectedBoardString = makeExpectedGameBoard(expectedBoard, numRows, numColumns);
         BoardPosition positionToCheck = new BoardPosition(rowToCheck, colToCheck);
 
@@ -856,8 +854,8 @@ public class TestGameBoard {
     //dropToken tests
     @Test
     public void test_3_fullColumn_DropToken() {
-        int numRows = 25;
-        int numColumns = 25;
+        int numRows = 5;
+        int numColumns = 5;
         int numToWin = 5;
 
         int columnToDrop = 3;
@@ -876,8 +874,8 @@ public class TestGameBoard {
 
     @Test
     public void test_0_5_HalfFUll_DropToken() {
-        int numRows = 26;
-        int numColumns = 26;
+        int numRows = 6;
+        int numColumns = 6;
         int numToWin = 5;
 
         IGameBoard gb = GameBoardFactory(numRows, numColumns, numToWin);
