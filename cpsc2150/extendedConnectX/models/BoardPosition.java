@@ -80,20 +80,17 @@ public class BoardPosition
      * AND self = #self AND Row = #Row AND Column = #Column
      */
     @Override
-    public boolean equals(Object obj)
-    {
-        //checks that this BoardPosition is equal to the parameter.
+    public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
 
-        //Casts obj to BoardPosition type
-        BoardPosition pos = (BoardPosition) obj;
-
-        //Returns true if this rows and columns equals pos rows and cols
-        if (getRow() == pos.getRow() && getColumn() == pos.getColumn()) {
-            return true;
+        if (obj instanceof BoardPosition) {
+            BoardPosition pos = (BoardPosition) obj;
+            return Objects.equals(getRow(), pos.getRow()) &&
+                    Objects.equals(getColumn(), pos.getColumn());
         }
+
         return false;
     }
 
