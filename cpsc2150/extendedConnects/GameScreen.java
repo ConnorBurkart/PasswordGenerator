@@ -20,6 +20,9 @@ public class GameScreen {
     public static final int maxPlayers = 10;
     public static final int minPlayers = 2;
     public static final int maxRowsCol = 100;
+
+    private static final int BOARD_MAX_COLUMN = playerBoard.getNumColumns() - 1;
+
     public static void printBoard() {
         System.out.println(playerBoard.toString());
     }
@@ -187,7 +190,7 @@ public class GameScreen {
                     int col = askPlayerForColumn();
 
                     //Determines if column entered is valid.
-                    if (col > 0 && col < playerBoard.getNumColumns() - 1) {
+                    if (col > 0 && col < BOARD_MAX_COLUMN) {
                         validCol = true;
                     }
 
@@ -197,8 +200,8 @@ public class GameScreen {
                             System.out.println("Column cannot be less than 0");
                             System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
                             col = askPlayerForColumn();
-                        } else if (col > playerBoard.getNumColumns() - 1) {
-                            System.out.println("Column cannot be greater than " + (playerBoard.getNumColumns() - 1));
+                        } else if (col > BOARD_MAX_COLUMN) {
+                            System.out.println("Column cannot be greater than " + (BOARD_MAX_COLUMN));
                             System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
                             col = askPlayerForColumn();
                         }
@@ -222,7 +225,7 @@ public class GameScreen {
                             System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
                             col = askPlayerForColumn();
                         } else if (col > playerBoard.getNumColumns() - 1) {
-                            System.out.println("Column cannot be greater than " + (playerBoard.getNumColumns() - 1));
+                            System.out.println("Column cannot be greater than " + (BOARD_MAX_COLUMN));
                             System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
                             col = askPlayerForColumn();
                         }

@@ -62,6 +62,7 @@ public interface IGameBoard {
      * horizontal, vertical, or diagonal row. False iff 5 tokens are not consecutively placed.]
      *
      * @pre c >= min_number_Rows AND c <= num_of_columns - 1
+     * @pre pos is a valid BoardPosition object on the game board
      *
      * @post [checkForWin returns true iff the last placed token is the num_to_win consecutive token in a vertical,
      * horizontal, or diagonal row. False iff the last placed token is not num_to_win or consecutive in a vertical,
@@ -280,7 +281,7 @@ public interface IGameBoard {
      *
      * @param pos Indicates position on gameBoard
      *
-     * @return player's character as a char.
+     * @return player's character as a char and if empty will contaion an empty character.
      *
      * @pre [pos is Valid BoardPosition object]
      *
