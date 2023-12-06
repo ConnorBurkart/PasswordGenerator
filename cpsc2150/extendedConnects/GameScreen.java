@@ -20,8 +20,6 @@ public class GameScreen {
     public static final int maxPlayers = 10;
     public static final int minPlayers = 2;
     public static final int maxRowsCol = 100;
-    public static final int minRowsCol = 3;
-
     public static void printBoard() {
         System.out.println(playerBoard.toString());
     }
