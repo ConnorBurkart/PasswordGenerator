@@ -23,6 +23,9 @@ public class GameScreen {
 
     private static final int BOARD_MAX_COLUMN = playerBoard.getNumColumns() - 1;
 
+    private static final Scanner scanner = new Scanner(System.in);
+
+
     public static void printBoard() {
         System.out.println(playerBoard.toString());
     }
@@ -34,14 +37,15 @@ public class GameScreen {
     public static int askPlayerForColumn() {
         int column = 0;
         //Gets column number from player.
-        Scanner in = new Scanner(System.in);
-        column = in.nextInt();
+        int column = scanner.nextInt();
 
         return column;
 
     }
 
     public static void main(String[] args) {
+
+
         // Input validation for the amount of players
         char playerInput = 'y';
 
@@ -51,8 +55,7 @@ public class GameScreen {
             int numOfPlayers = 0;
             while (valid) {
                 System.out.println("How many players?");
-                Scanner playerAmount = new Scanner(System.in);
-                numOfPlayers = playerAmount.nextInt();
+                numOfPlayers = scanner.nextInt();
                 if (numOfPlayers > maxPlayers) {
                     System.out.println("Must be 10 players or fewer");
                 } else if (numOfPlayers < minPlayers) {
@@ -69,8 +72,7 @@ public class GameScreen {
             for (int i = 0; i < numOfPlayers; i++) {
                 char playerChar;
                 System.out.println("Enter the character to represent player " + (i + 1));
-                Scanner scan = new Scanner(System.in);
-                playerChar = scan.next().charAt(0);
+                playerChar = scanner.next().charAt(0);
                 playerChar = Character.toUpperCase(playerChar);
 
                 //Checks to make sure entered token does not already exist.
@@ -96,8 +98,7 @@ public class GameScreen {
             int numberToWin = 0;
 
             System.out.println("How many rows should be on the board?");
-            Scanner input = new Scanner(System.in);
-            numOfRows = input.nextInt();
+            numOfRows = scanner.nextInt();
 
             //Validates user input for Rows
             while (numOfRows < minRowsCol) {
@@ -157,8 +158,7 @@ public class GameScreen {
             //Gets user input for choice of gameType, loops until they enter valid choice.
             while (efficiency != 'M' && efficiency != 'F') {
                 System.out.println("Would you like a Fast Game (F/f) or a Memory Efficient Game (M/m)?");
-                Scanner speed = new Scanner(System.in);
-                efficiency = speed.next().charAt(0);
+                efficiency = scanner.next().charAt(0);
                 efficiency = Character.toUpperCase(efficiency);
 
                 if (efficiency != 'M' && efficiency != 'F') {
@@ -249,8 +249,7 @@ public class GameScreen {
                         do {
                             System.out.println("Tie!");
                             System.out.println("Would you like to play again? Y/N");
-                            Scanner inputChar = new Scanner(System.in);
-                            playerInput = inputChar.next().charAt(0);
+                            playerInput = scanner.next().charAt(0);
                             playerInput = Character.toUpperCase(playerInput);
                         } while (playerInput != 'Y' && playerInput != 'N');
                         gameNotOver = false;
@@ -266,8 +265,7 @@ public class GameScreen {
                         //Validates user's input, loops until valid choice is entered.
                         do {
                             System.out.println("Would you like to play again? Y/N");
-                            Scanner inputChar = new Scanner(System.in);
-                            playerInput = inputChar.next().charAt(0);
+                            playerInput = scanner.next().charAt(0);
                             playerInput = Character.toUpperCase(playerInput);
                         } while (playerInput != 'Y' && playerInput != 'N');
                         gameNotOver = false;
