@@ -24,10 +24,10 @@ Steven Cabezas (scabeza)
  */
 public class GameBoard extends AbsGameBoard implements IGameBoard
 {
-    private static int ROWS;
-    private static int COLUMNS;
-    private static int numToWin;
-    private static char[][] playersGameBoard;
+    private ROWS;
+    private COLUMNS;
+    private numToWin;
+    private char[][] playersGameBoard;
 
     /**
      * Constructs a speed efficient GameBoard that is a 2D array with a size

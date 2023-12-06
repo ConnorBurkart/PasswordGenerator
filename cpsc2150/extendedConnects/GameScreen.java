@@ -224,7 +224,7 @@ public class GameScreen {
                             System.out.println("Column cannot be less than 0");
                             System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
                             col = askPlayerForColumn();
-                        } else if (col > playerBoard.getNumColumns() - 1) {
+                        } else if (col > BOARD_MAX_COLUMN) {
                             System.out.println("Column cannot be greater than " + (BOARD_MAX_COLUMN));
                             System.out.println("Player " + playerCharacters[i] + ", what column do you want to place your marker in?");
                             col = askPlayerForColumn();
