@@ -25,7 +25,7 @@ package cpsc2150.extendedConnectX.models;
 public interface IGameBoard {
 
     /**checkIfFreeContract
-     * Returns true if column contains free space
+     * Checks if a specified column contains free space
      *
      * @param c indicates column number to check
      *
@@ -33,16 +33,13 @@ public interface IGameBoard {
      *
      *@pre min_number_Win <= c < num_columns
      *
-     *@post [self = #self AND returns true IFF column contains a ' ' and returns
-     * false otherwise] AND num_rows = #num_rows AND num_columns = #num_columns AND num_to_win = #num_to_win
+     * @post Returns true if the column contains a ' ', and false otherwise. The state of the game board remains unchanged.
      *
      */
     public default boolean checkIfFree(int c) {
 
-        //Creates boardPosition at row 8 and column c on GameBoard
         BoardPosition pos = new BoardPosition(getNumRows() - 1, c);
 
-        //Checks that particular column is not full by checking top position in column
         if (whatsAtPos(pos) != ' ') {
             return false;
         }
@@ -112,7 +109,6 @@ public interface IGameBoard {
 
         for (int i = 0; i < getNumColumns(); i++) {
 
-            //If no column is free then game ends in tie
             if (checkIfFree(i)) {
                 return false;
             }
@@ -137,10 +133,8 @@ public interface IGameBoard {
      */
     public default boolean checkHorizWin(BoardPosition pos, char p) {
 
-        // Initialize count to 1 because we have the current position.
         int count = 1;
 
-        // Check to the left of the current position.
         int column = pos.getColumn() - 1;
         while (column >= 0 && count < getNumToWin() && whatsAtPos(pos)
                 == whatsAtPos(new BoardPosition(pos.getRow(), column))) {
@@ -149,7 +143,6 @@ public interface IGameBoard {
             column--;
         }
 
-        // Check to the right of the current position.
         column = pos.getColumn() + 1;
         while (column < getNumColumns() && count < getNumToWin() && whatsAtPos(pos)
                 == whatsAtPos(new BoardPosition(pos.getRow(), column))) {
@@ -200,7 +193,8 @@ public interface IGameBoard {
     }
 
     /**
-     * Check if either player has num_to_win tokens connected diagonally
+     * Check if either player has num_to_win tokens connected diagonally.Check the up right diagonal direction then
+     * Check the down left diagonal direction. Then the set of Check the down right diagonal direction then Check the up left diagonal direction.
      *
      * @param pos Indicates position on gameBoard
      *
@@ -220,7 +214,6 @@ public interface IGameBoard {
         // Initialize the count to 1 because we have the current position.
         int count = 1;
 
-        // Check the up right diagonal direction
         BoardPosition currentPos = new BoardPosition(pos.getRow() + 1,
                 pos.getColumn() + 1);
         while (currentPos.getRow() < getNumRows() && currentPos.getColumn() < getNumColumns()
@@ -234,7 +227,6 @@ public interface IGameBoard {
             return true;
         }
 
-        // Check the down left diagonal direction
         currentPos = new BoardPosition(pos.getRow() - 1, pos.getColumn() - 1);
         while (currentPos.getRow() >= 0 && currentPos.getColumn() >= 0
                 && whatsAtPos(currentPos) == p) {
@@ -249,7 +241,6 @@ public interface IGameBoard {
 
         count = 1;
 
-        // Check the up left diagonal direction
         currentPos = new BoardPosition(pos.getRow() + 1, pos.getColumn() - 1);
         while (currentPos.getRow() < getNumRows() && currentPos.getColumn() >= 0
                 && whatsAtPos(currentPos) == p) {
@@ -262,7 +253,7 @@ public interface IGameBoard {
             return true;
         }
 
-        // Check the down right diagonal direction
+        
         currentPos = new BoardPosition(pos.getRow() - 1, pos.getColumn() + 1);
         while (currentPos.getRow() >= 0 && currentPos.getColumn() < getNumColumns()
                 && whatsAtPos(currentPos) == p) {
