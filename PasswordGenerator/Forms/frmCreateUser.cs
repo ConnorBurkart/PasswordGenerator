@@ -44,8 +44,6 @@ namespace PasswordGenerator.Forms
                 File.AppendAllText(filePath, loginBox.Text + " " + passwordBox.Text + Environment.NewLine);
 
                 this.Close();
-            
-
 
         }
     }

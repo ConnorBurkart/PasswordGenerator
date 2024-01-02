@@ -40,62 +40,60 @@
             // 
             // loginBox
             // 
-            this.loginBox.Location = new System.Drawing.Point(96, 20);
+            this.loginBox.Location = new System.Drawing.Point(108, 20);
             this.loginBox.Margin = new System.Windows.Forms.Padding(4);
             this.loginBox.Name = "loginBox";
-            this.loginBox.Size = new System.Drawing.Size(132, 22);
+            this.loginBox.Size = new System.Drawing.Size(132, 27);
             this.loginBox.TabIndex = 0;
-            this.loginBox.TextChanged += new System.EventHandler(this.loginBox_TextChanged);
             // 
             // passwordBox
             // 
-            this.passwordBox.Location = new System.Drawing.Point(96, 52);
+            this.passwordBox.Location = new System.Drawing.Point(108, 52);
             this.passwordBox.Margin = new System.Windows.Forms.Padding(4);
             this.passwordBox.Name = "passwordBox";
-            this.passwordBox.Size = new System.Drawing.Size(132, 22);
+            this.passwordBox.Size = new System.Drawing.Size(132, 27);
             this.passwordBox.TabIndex = 1;
-            this.passwordBox.TextChanged += new System.EventHandler(this.passwordBox_TextChanged);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.butLogin);
             this.panel1.Controls.Add(this.lblPassword);
             this.panel1.Controls.Add(this.lblUser);
             this.panel1.Controls.Add(this.passwordBox);
             this.panel1.Controls.Add(this.loginBox);
-            this.panel1.Location = new System.Drawing.Point(113, 66);
+            this.panel1.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(106, 66);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 100);
+            this.panel1.Size = new System.Drawing.Size(269, 135);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(13, 58);
+            this.lblPassword.Location = new System.Drawing.Point(3, 55);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(73, 17);
+            this.lblPassword.Size = new System.Drawing.Size(85, 19);
             this.lblPassword.TabIndex = 3;
             this.lblPassword.Text = "Password:";
-            this.lblPassword.Click += new System.EventHandler(this.lblPassword_Click);
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(13, 26);
+            this.lblUser.Location = new System.Drawing.Point(3, 23);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(81, 17);
+            this.lblUser.Size = new System.Drawing.Size(93, 19);
             this.lblUser.TabIndex = 2;
             this.lblUser.Text = "Username: ";
-            this.lblUser.Click += new System.EventHandler(this.lblUser_Click);
             // 
             // lblNewAccount
             // 
-            this.lblNewAccount.AutoSize = true;
-            this.lblNewAccount.Location = new System.Drawing.Point(393, 220);
+            this.lblNewAccount.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewAccount.Location = new System.Drawing.Point(205, 224);
             this.lblNewAccount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNewAccount.Name = "lblNewAccount";
-            this.lblNewAccount.Size = new System.Drawing.Size(56, 17);
+            this.lblNewAccount.Size = new System.Drawing.Size(92, 32);
             this.lblNewAccount.TabIndex = 3;
             this.lblNewAccount.TabStop = true;
             this.lblNewAccount.Text = "Sign up";
@@ -103,9 +101,10 @@
             // 
             // butLogin
             // 
-            this.butLogin.Location = new System.Drawing.Point(185, 184);
+            this.butLogin.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.butLogin.Location = new System.Drawing.Point(0, 94);
             this.butLogin.Name = "butLogin";
-            this.butLogin.Size = new System.Drawing.Size(108, 41);
+            this.butLogin.Size = new System.Drawing.Size(269, 41);
             this.butLogin.TabIndex = 4;
             this.butLogin.Text = "Login";
             this.butLogin.UseVisualStyleBackColor = true;
@@ -115,8 +114,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(483, 281);
-            this.Controls.Add(this.butLogin);
+            this.BackColor = System.Drawing.Color.PeachPuff;
+            this.ClientSize = new System.Drawing.Size(482, 303);
             this.Controls.Add(this.lblNewAccount);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -125,7 +124,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

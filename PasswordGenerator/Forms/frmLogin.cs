@@ -27,27 +27,7 @@ namespace PasswordGenerator.Forms
             createUserForm.Show();
         }
 
-        private void passwordBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblPassword_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblUser_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void loginBox_TextChanged(object sender, EventArgs e)
         {
 
         }
