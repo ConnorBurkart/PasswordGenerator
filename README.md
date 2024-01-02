@@ -23,3 +23,6 @@ password logic. Strong passwords have four key things. The length of the passwor
 make it up to 18 character for those passwords that need to be really secure. The rest of the variables are letter, numbers, and special characters. Including all
 different types of these in a password makes it harder and harder to guess. So you have the option of all of them. I used the website https://www.passwordmonster.com/ 
 to help see how strong it is.
+
+### File Use & Encryption 
+In the Password Generator project, effective file use is paramount. The focus is on secure file handling to store and retrieve passwords safely. I aim to implement file encryption and decryption to prevent passwords from being stored as plain text. This approach not only enhances security but also provides hands-on experience with file management techniques in C#. I wanted to make sure it could run on any PC, that is why I went the text path. I figureed out the SQL server appaorach but I would have to run the server off my local computer. The way it is currently set up it will create a file and be able to encrrypt and decrypt it at will.This component is essential for learning best practices in file handling and data security, specifically tailored for password management.
