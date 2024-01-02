@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasswordGenerator.Forms;
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -22,7 +23,9 @@ namespace PasswordGenerator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new home());
+
+            // Assuming frmLogin is recognized now
+            Application.Run(new frmLogin());
         }
 
 
