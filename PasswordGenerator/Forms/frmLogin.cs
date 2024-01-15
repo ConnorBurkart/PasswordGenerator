@@ -13,9 +13,14 @@ namespace PasswordGenerator.Forms
 {
     public partial class frmLogin : Form
     {
-        public frmLogin()
+
+        private home homeForm;
+
+        public frmLogin(home home)
         {
             InitializeComponent();
+            homeForm = home;
+
         }
 
         private void lblNewAccount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -37,15 +42,21 @@ namespace PasswordGenerator.Forms
             bool isValidUser = ValidateUser(loginBox.Text, passwordBox.Text);
             if (isValidUser)
             {
-                // Create an instance of frmCreateUser
-                home frmHome = new home();
 
-                // Show frmCreateUser
-                frmHome.Show();
+                homeForm.username = loginBox.Text;
+                homeForm.password = passwordBox.Text;
+
+                this.DialogResult = DialogResult.OK;
+
+
+                this.Close();
+
             }
             else
             {
                 MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.DialogResult = DialogResult.Cancel;
+
             }
         }
 

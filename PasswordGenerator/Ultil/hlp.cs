@@ -24,9 +24,23 @@ namespace PasswordGenerator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Assuming frmLogin is recognized now
-            Application.Run(new frmLogin());
+            home homeForm = new home();
+
+            frmLogin loginForm = new frmLogin(homeForm);
+
+            Application.Run(loginForm);
+
+            if (loginForm.DialogResult == DialogResult.OK) // You can set DialogResult in the login form
+            {
+                homeForm.ShowDialog();
+            }
+
+
+
+
+
         }
+
 
 
         // This is how we add the entry to the txt file

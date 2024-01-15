@@ -21,13 +21,15 @@ namespace PasswordGenerator
         public int specialCount = 18;
         public int numberCount = 10;
         public int letterCount = 51;
+        public string username;
+        public string password;
+
+
 
         public home()
         {
             InitializeComponent();
-
-            // Creates a connection to local host
-            SqlConnection con = new SqlConnection("data source = localhost; database = master; Trusted_Connection=True ");
+            lblUser.Text = username;
 
 
         }
@@ -109,6 +111,18 @@ namespace PasswordGenerator
 
             // Shows Form
             newfrom.Show();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void InformationFromLogin(string user, string pass)
+        {
+            username = user;
+            password = pass;
+
         }
 
     }

@@ -39,17 +39,21 @@
             this.addPasswordButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.lblUser = new System.Windows.Forms.Label();
+            this.lblUser2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // finalResult
             // 
             this.finalResult.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.finalResult.Location = new System.Drawing.Point(397, 87);
+            this.finalResult.Location = new System.Drawing.Point(354, 290);
             this.finalResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.finalResult.Name = "finalResult";
             this.finalResult.ReadOnly = true;
@@ -61,7 +65,7 @@
             this.tblTitle.AutoSize = true;
             this.tblTitle.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tblTitle.ForeColor = System.Drawing.Color.Coral;
-            this.tblTitle.Location = new System.Drawing.Point(390, 9);
+            this.tblTitle.Location = new System.Drawing.Point(61, 8);
             this.tblTitle.Name = "tblTitle";
             this.tblTitle.Size = new System.Drawing.Size(331, 37);
             this.tblTitle.TabIndex = 1;
@@ -144,7 +148,7 @@
             // 
             // addPasswordButton
             // 
-            this.addPasswordButton.Location = new System.Drawing.Point(619, 85);
+            this.addPasswordButton.Location = new System.Drawing.Point(607, 290);
             this.addPasswordButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addPasswordButton.Name = "addPasswordButton";
             this.addPasswordButton.Size = new System.Drawing.Size(149, 27);
@@ -175,13 +179,6 @@
             this.panel2.Size = new System.Drawing.Size(310, 370);
             this.panel2.TabIndex = 22;
             // 
-            // panel3
-            // 
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(310, 119);
-            this.panel3.TabIndex = 0;
-            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.lengthBox);
@@ -192,14 +189,54 @@
             this.panel4.Size = new System.Drawing.Size(310, 127);
             this.panel4.TabIndex = 22;
             // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(310, 119);
+            this.panel3.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.lblUser);
+            this.panel5.Controls.Add(this.lblUser2);
+            this.panel5.Controls.Add(this.tblTitle);
+            this.panel5.Location = new System.Drawing.Point(308, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(491, 119);
+            this.panel5.TabIndex = 23;
+            // 
+            // lblUser
+            // 
+            this.lblUser.AutoSize = true;
+            this.lblUser.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.ForeColor = System.Drawing.Color.Coral;
+            this.lblUser.Location = new System.Drawing.Point(242, 54);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(86, 30);
+            this.lblUser.TabIndex = 3;
+            this.lblUser.Text = "label2";
+            this.lblUser.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // lblUser2
+            // 
+            this.lblUser2.AutoSize = true;
+            this.lblUser2.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser2.ForeColor = System.Drawing.Color.Coral;
+            this.lblUser2.Location = new System.Drawing.Point(86, 54);
+            this.lblUser2.Name = "lblUser2";
+            this.lblUser2.Size = new System.Drawing.Size(130, 30);
+            this.lblUser2.TabIndex = 2;
+            this.lblUser2.Text = "Welcome";
+            // 
             // home
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(800, 370);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.addPasswordButton);
-            this.Controls.Add(this.tblTitle);
             this.Controls.Add(this.finalResult);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -212,6 +249,8 @@
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,5 +271,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label lblUser;
+        private System.Windows.Forms.Label lblUser2;
     }
 }
