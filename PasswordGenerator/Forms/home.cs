@@ -125,5 +125,15 @@ namespace PasswordGenerator
 
         }
 
+        private void home_Activated(object sender, EventArgs e)
+        {
+            lblUser.Text = username;
+        }
+
+        private void panel6_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Close();
+
+        }
     }
 }

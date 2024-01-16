@@ -44,6 +44,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblUser2 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -53,7 +54,7 @@
             // finalResult
             // 
             this.finalResult.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.finalResult.Location = new System.Drawing.Point(354, 290);
+            this.finalResult.Location = new System.Drawing.Point(440, 124);
             this.finalResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.finalResult.Name = "finalResult";
             this.finalResult.ReadOnly = true;
@@ -148,10 +149,10 @@
             // 
             // addPasswordButton
             // 
-            this.addPasswordButton.Location = new System.Drawing.Point(607, 290);
+            this.addPasswordButton.Location = new System.Drawing.Point(612, 308);
             this.addPasswordButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addPasswordButton.Name = "addPasswordButton";
-            this.addPasswordButton.Size = new System.Drawing.Size(149, 27);
+            this.addPasswordButton.Size = new System.Drawing.Size(176, 51);
             this.addPasswordButton.TabIndex = 11;
             this.addPasswordButton.Text = "Add Password";
             this.addPasswordButton.UseVisualStyleBackColor = true;
@@ -198,6 +199,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.panel6);
             this.panel5.Controls.Add(this.lblUser);
             this.panel5.Controls.Add(this.lblUser2);
             this.panel5.Controls.Add(this.tblTitle);
@@ -211,7 +213,7 @@
             this.lblUser.AutoSize = true;
             this.lblUser.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUser.ForeColor = System.Drawing.Color.Coral;
-            this.lblUser.Location = new System.Drawing.Point(242, 54);
+            this.lblUser.Location = new System.Drawing.Point(232, 54);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(86, 30);
             this.lblUser.TabIndex = 3;
@@ -225,9 +227,18 @@
             this.lblUser2.ForeColor = System.Drawing.Color.Coral;
             this.lblUser2.Location = new System.Drawing.Point(86, 54);
             this.lblUser2.Name = "lblUser2";
-            this.lblUser2.Size = new System.Drawing.Size(130, 30);
+            this.lblUser2.Size = new System.Drawing.Size(158, 30);
             this.lblUser2.TabIndex = 2;
-            this.lblUser2.Text = "Welcome";
+            this.lblUser2.Text = "Welcome ,  ";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Red;
+            this.panel6.Location = new System.Drawing.Point(425, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(66, 45);
+            this.panel6.TabIndex = 4;
+            this.panel6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel6_MouseClick);
             // 
             // home
             // 
@@ -243,6 +254,7 @@
             this.Name = "home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Password Generator";
+            this.Activated += new System.EventHandler(this.home_Activated);
             this.Click += new System.EventHandler(this.numChecked_Checbox);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -274,5 +286,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Label lblUser2;
+        private System.Windows.Forms.Panel panel6;
     }
 }
