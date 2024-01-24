@@ -92,5 +92,11 @@ namespace PasswordGenerator.Forms
                 return false; // Return false in case of an error
             }
         }
+
+        private void panel6_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Close();
+
+        }
     }
 }

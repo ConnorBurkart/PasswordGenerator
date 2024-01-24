@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(home));
             this.finalResult = new System.Windows.Forms.TextBox();
             this.tblTitle = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -42,19 +43,22 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblUser2 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // finalResult
             // 
             this.finalResult.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.finalResult.Location = new System.Drawing.Point(440, 124);
+            this.finalResult.Location = new System.Drawing.Point(399, 119);
             this.finalResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.finalResult.Name = "finalResult";
             this.finalResult.ReadOnly = true;
@@ -66,7 +70,7 @@
             this.tblTitle.AutoSize = true;
             this.tblTitle.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tblTitle.ForeColor = System.Drawing.Color.Coral;
-            this.tblTitle.Location = new System.Drawing.Point(61, 8);
+            this.tblTitle.Location = new System.Drawing.Point(8, 0);
             this.tblTitle.Name = "tblTitle";
             this.tblTitle.Size = new System.Drawing.Size(331, 37);
             this.tblTitle.TabIndex = 1;
@@ -95,7 +99,7 @@
             // resultButton
             // 
             this.resultButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.resultButton.Location = new System.Drawing.Point(74, 57);
+            this.resultButton.Location = new System.Drawing.Point(0, 69);
             this.resultButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.resultButton.Name = "resultButton";
             this.resultButton.Size = new System.Drawing.Size(132, 48);
@@ -149,10 +153,10 @@
             // 
             // addPasswordButton
             // 
-            this.addPasswordButton.Location = new System.Drawing.Point(612, 308);
+            this.addPasswordButton.Location = new System.Drawing.Point(131, 69);
             this.addPasswordButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addPasswordButton.Name = "addPasswordButton";
-            this.addPasswordButton.Size = new System.Drawing.Size(176, 51);
+            this.addPasswordButton.Size = new System.Drawing.Size(176, 48);
             this.addPasswordButton.TabIndex = 11;
             this.addPasswordButton.Text = "Add Password";
             this.addPasswordButton.UseVisualStyleBackColor = true;
@@ -177,13 +181,14 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(310, 370);
+            this.panel2.Size = new System.Drawing.Size(310, 360);
             this.panel2.TabIndex = 22;
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.lengthBox);
             this.panel4.Controls.Add(this.lblPassword);
+            this.panel4.Controls.Add(this.addPasswordButton);
             this.panel4.Controls.Add(this.resultButton);
             this.panel4.Location = new System.Drawing.Point(0, 243);
             this.panel4.Name = "panel4";
@@ -192,6 +197,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(310, 119);
@@ -205,15 +211,24 @@
             this.panel5.Controls.Add(this.tblTitle);
             this.panel5.Location = new System.Drawing.Point(308, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(491, 119);
+            this.panel5.Size = new System.Drawing.Size(413, 119);
             this.panel5.TabIndex = 23;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Red;
+            this.panel6.Location = new System.Drawing.Point(345, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(66, 45);
+            this.panel6.TabIndex = 4;
+            this.panel6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel6_MouseClick);
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
             this.lblUser.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUser.ForeColor = System.Drawing.Color.Coral;
-            this.lblUser.Location = new System.Drawing.Point(232, 54);
+            this.lblUser.Location = new System.Drawing.Point(153, 54);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(86, 30);
             this.lblUser.TabIndex = 3;
@@ -225,29 +240,29 @@
             this.lblUser2.AutoSize = true;
             this.lblUser2.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUser2.ForeColor = System.Drawing.Color.Coral;
-            this.lblUser2.Location = new System.Drawing.Point(86, 54);
+            this.lblUser2.Location = new System.Drawing.Point(10, 54);
             this.lblUser2.Name = "lblUser2";
             this.lblUser2.Size = new System.Drawing.Size(158, 30);
             this.lblUser2.TabIndex = 2;
             this.lblUser2.Text = "Welcome ,  ";
             // 
-            // panel6
+            // pictureBox1
             // 
-            this.panel6.BackColor = System.Drawing.Color.Red;
-            this.panel6.Location = new System.Drawing.Point(425, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(66, 45);
-            this.panel6.TabIndex = 4;
-            this.panel6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel6_MouseClick);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(106, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(201, 119);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // home
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(800, 370);
+            this.ClientSize = new System.Drawing.Size(726, 360);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.addPasswordButton);
             this.Controls.Add(this.finalResult);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -261,8 +276,10 @@
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,5 +304,6 @@
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Label lblUser2;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

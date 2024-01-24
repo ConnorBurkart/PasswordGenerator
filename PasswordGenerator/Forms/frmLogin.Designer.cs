@@ -35,6 +35,7 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblNewAccount = new System.Windows.Forms.LinkLabel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             this.passwordBox.Location = new System.Drawing.Point(193, 94);
             this.passwordBox.Margin = new System.Windows.Forms.Padding(4);
             this.passwordBox.Name = "passwordBox";
+            this.passwordBox.PasswordChar = '*';
             this.passwordBox.Size = new System.Drawing.Size(150, 27);
             this.passwordBox.TabIndex = 1;
             // 
@@ -114,11 +116,21 @@
             this.lblNewAccount.Text = "Sign up";
             this.lblNewAccount.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblNewAccount_LinkClicked);
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Red;
+            this.panel6.Location = new System.Drawing.Point(385, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(66, 45);
+            this.panel6.TabIndex = 5;
+            this.panel6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel6_MouseClick);
+            // 
             // frmLogin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(451, 287);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.lblNewAccount);
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.Color.Coral;
@@ -141,5 +153,6 @@
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.LinkLabel lblNewAccount;
         private System.Windows.Forms.Button butLogin;
+        private System.Windows.Forms.Panel panel6;
     }
 }
