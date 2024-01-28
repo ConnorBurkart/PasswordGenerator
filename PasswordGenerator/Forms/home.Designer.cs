@@ -58,7 +58,7 @@
             // finalResult
             // 
             this.finalResult.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.finalResult.Location = new System.Drawing.Point(399, 119);
+            this.finalResult.Location = new System.Drawing.Point(381, 119);
             this.finalResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.finalResult.Name = "finalResult";
             this.finalResult.ReadOnly = true;

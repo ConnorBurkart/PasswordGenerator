@@ -38,7 +38,7 @@ namespace PasswordGenerator.Forms
             // 
             // passwordBox
             // 
-            this.passwordBox.Location = new System.Drawing.Point(197, 124);
+            this.passwordBox.Location = new System.Drawing.Point(197, 136);
             this.passwordBox.Margin = new System.Windows.Forms.Padding(4);
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.Size = new System.Drawing.Size(132, 22);
@@ -55,28 +55,32 @@ namespace PasswordGenerator.Forms
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(114, 130);
+            this.lblPassword.Font = new System.Drawing.Font("Century Gothic", 16.2F);
+            this.lblPassword.Location = new System.Drawing.Point(26, 124);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(73, 17);
+            this.lblPassword.Size = new System.Drawing.Size(149, 34);
             this.lblPassword.TabIndex = 3;
             this.lblPassword.Text = "Password:";
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(114, 98);
+            this.lblUser.Font = new System.Drawing.Font("Century Gothic", 16.2F);
+            this.lblUser.Location = new System.Drawing.Point(26, 80);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(81, 17);
+            this.lblUser.Size = new System.Drawing.Size(164, 34);
             this.lblUser.TabIndex = 2;
             this.lblUser.Text = "Username: ";
             // 
             // lblNewAccount
             // 
             this.lblNewAccount.AutoSize = true;
-            this.lblNewAccount.Location = new System.Drawing.Point(194, 173);
+            this.lblNewAccount.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewAccount.LinkColor = System.Drawing.Color.Coral;
+            this.lblNewAccount.Location = new System.Drawing.Point(213, 187);
             this.lblNewAccount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNewAccount.Name = "lblNewAccount";
-            this.lblNewAccount.Size = new System.Drawing.Size(50, 17);
+            this.lblNewAccount.Size = new System.Drawing.Size(79, 23);
             this.lblNewAccount.TabIndex = 5;
             this.lblNewAccount.TabStop = true;
             this.lblNewAccount.Text = "Create";
@@ -84,14 +88,16 @@ namespace PasswordGenerator.Forms
             // 
             // frmCreateUser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(483, 281);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.lblNewAccount);
             this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.loginBox);
+            this.ForeColor = System.Drawing.Color.Coral;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmCreateUser";
             this.Text = "frmCreateUser";
             this.ResumeLayout(false);

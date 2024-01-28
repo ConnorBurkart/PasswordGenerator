@@ -104,10 +104,10 @@
             // 
             // lblNewAccount
             // 
-            this.lblNewAccount.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewAccount.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNewAccount.ForeColor = System.Drawing.Color.Cornsilk;
             this.lblNewAccount.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblNewAccount.Location = new System.Drawing.Point(201, 237);
+            this.lblNewAccount.Location = new System.Drawing.Point(185, 233);
             this.lblNewAccount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNewAccount.Name = "lblNewAccount";
             this.lblNewAccount.Size = new System.Drawing.Size(92, 32);
