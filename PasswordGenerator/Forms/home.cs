@@ -135,5 +135,15 @@ namespace PasswordGenerator
             this.Close();
 
         }
+
+        private void tblTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lengthBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

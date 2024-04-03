@@ -107,7 +107,7 @@
             this.panel6.BackColor = System.Drawing.Color.Red;
             this.panel6.Location = new System.Drawing.Point(431, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(66, 45);
+            this.panel6.Size = new System.Drawing.Size(69, 45);
             this.panel6.TabIndex = 7;
             // 
             // frmAddPassword
